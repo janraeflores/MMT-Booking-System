@@ -17,7 +17,7 @@
     <title>MMT - Account</title>
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="./Assets/Styles/PatientAccount.css">
+    <link rel="stylesheet" type="text/css" href="Assets/Styles/PatientAccount.css">
 </head>
 
 <body>
