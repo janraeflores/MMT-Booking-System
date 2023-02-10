@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="MMTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <non-jta-data-source>java:/comp/env/jdbc/mmtdb</non-jta-data-source>
+    <class>models.Service</class>
+    <class>models.Client</class>
+    <class>models.Appointment</class>
+    <class>models.EmergencyContact</class>
+    <class>models.Role</class>
+    <class>models.Account</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+  </persistence-unit>
+</persistence>

@@ -176,3 +176,6 @@ INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
   VALUES ('Cupping','Cupping is a traditional Chinese therapy that involves placing suction cups on the skin to create a vacuum effect.',0.00);
 INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
   VALUES ('Facial','A facial is a cosmetic treatment for the face that is designed to cleanse, exfoliate, and nourish the skin.',0.00);
+
+INSERT INTO `account` (`email`, `active` ,`username`, `password`, `role`)
+  VALUES ('bob@gmail.com', 1 ,'bobson1', 'password', 2);
