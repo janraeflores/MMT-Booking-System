@@ -79,23 +79,23 @@
                         <p>SERVICES</p>
                         <div class="service-select">
                             <select name="s-type" id="s-type">
-                                <option value="1">-----</option>
-                                <option value="2">THERAPEUTIC MASSAGE</option>
-                                <option value="3">RELAXATION MASSAGE</option>
-                                <option value="4">LYMPHATIC MASSAGE</option>
-                                <option value="5">DEEP TISSUE MASSAGE</option>
-                                <option value="6">HOT STONE MASSAGE</option>
-                                <option value="7">CUPPING THERAPY</option>
-                                <option value="8">FACIAL</option>
-                                <option value="9">TEETH WHITENING</option>
+                                <option value="">-----</option>
+                                <option value="">THERAPEUTIC MASSAGE</option>
+                                <option value="">RELAXATION MASSAGE</option>
+                                <option value="">LYMPHATIC MASSAGE</option>
+                                <option value="">DEEP TISSUE MASSAGE</option>
+                                <option value="">HOT STONE MASSAGE</option>
+                                <option value="">CUPPING THERAPY</option>
+                                <option value="">FACIAL</option>
+                                <option value="">TEETH WHITENING</option>
                             </select>
                         </div>
                         <div class="service-length">
                             <select name="s-length" id="s-length">
-                                <option value="1">-----</option>
-                                <option value="2">60 MINS (1 hour)</option>
-                                <option value="3">90 MINS (1.5 hours)</option>
-                                <option value="4">120 MINS (2 hours)</option>
+                                <option value="">-----</option>
+                                <option value="">60 MINS (1 hour)</option>
+                                <option value="">90 MINS (1.5 hours)</option>
+                                <option value="">120 MINS (2 hours)</option>
                             </select>
                         </div>
                         <div class="patient-info">
@@ -106,25 +106,25 @@
                                     </tr>
                                     <tr>
                                         <td>NAME:</td>
-                                        <td><input type="text" name="u-name" id="u-name"></td>
+                                        <td><input type="text" name="u-name" id="u-name" value=""></td>
                                     </tr>
                                     <tr>
                                         <td>PHONE:</td>
-                                        <td><input type="tel" name="u-tel" id="u-tel"></td>
+                                        <td><input type="tel" name="u-tel" id="u-tel" value=""></td>
                                     </tr>
                                     <tr>
                                         <td>EMAIL</td>
-                                        <td><input type="email" name="u-email" id="u-email"></td>
+                                        <td><input type="email" name="u-email" id="u-email" value=""></td>
                                     </tr>
                                     <tr>
                                         <td>ADDRESS:</td>
-                                        <td><input type="text" name="u-address" id="u-address"></td>
+                                        <td><input type="text" name="u-address" id="u-address" value=""></td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="medical-concerns">
                                 <p>MEDICAL CONCERNS:</p>
-                                <input type="text" name="med-concerns" id="med-concerns">
+                                <input type="text" name="med-concerns" id="med-concerns" value="">
                             </div>
                             <div class="reserve-container">
                                 <button id="reserve" onclick="">BOOK</button>
