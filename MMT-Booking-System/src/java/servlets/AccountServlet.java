@@ -31,10 +31,9 @@ public class AccountServlet extends HttpServlet {
 
         try {
             Account account = as.get(username);
-            Client client = cs.get(account.getUsername());
+            Client client = cs.get(username);
             request.setAttribute("account", account);
             request.setAttribute("client", client);
-            request.setAttribute("message", account.getUsername());
         } catch (Exception ex) {
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

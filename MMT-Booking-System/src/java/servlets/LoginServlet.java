@@ -49,8 +49,6 @@ public class LoginServlet extends HttpServlet {
                 return;
             }
             
-            getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response); 
-            
             session.setAttribute("username", username);
             
             boolean isActive = account.getActive();

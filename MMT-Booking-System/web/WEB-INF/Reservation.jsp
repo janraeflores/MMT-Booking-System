@@ -28,10 +28,10 @@
         <label for="active" class="close"></label>
         <div class="wrapper stack-top">
             <ul>
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">LOGIN</a></li>
+                <li><a href="account">HOME</a></li>
+                <li><a href="login">LOGIN</a></li>
                 <li><a href="#">SERVICES</a></li>
-                <li><a href="#">RESERVATION</a></li>
+                <li><a href="reservation">RESERVATION</a></li>
                 <li><a href="#">CONTACT</a></li>
             </ul>
         </div>
@@ -106,19 +106,19 @@
                                     </tr>
                                     <tr>
                                         <td>NAME:</td>
-                                        <td><input type="text" name="u-name" id="u-name" value=""></td>
+                                        <td><input type="text" name="u-name" id="u-name" value="${client.fullName}"></td>
                                     </tr>
                                     <tr>
                                         <td>PHONE:</td>
-                                        <td><input type="tel" name="u-tel" id="u-tel" value=""></td>
+                                        <td><input type="tel" name="u-tel" id="u-tel" value="${client.phone}"></td>
                                     </tr>
                                     <tr>
                                         <td>EMAIL</td>
-                                        <td><input type="email" name="u-email" id="u-email" value=""></td>
+                                        <td><input type="email" name="u-email" id="u-email" value="${client.contactEmail}"></td>
                                     </tr>
                                     <tr>
                                         <td>ADDRESS:</td>
-                                        <td><input type="text" name="u-address" id="u-address" value=""></td>
+                                        <td><input type="text" name="u-address" id="u-address" value="${client.address}"></td>
                                     </tr>
                                 </tbody>
                             </table>
