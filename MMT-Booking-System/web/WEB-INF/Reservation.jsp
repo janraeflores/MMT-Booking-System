@@ -136,7 +136,9 @@
         </div>
     </main>
 
-    <script src="/Assets/Scripts/Reservations.js"></script>
+                                    
+                                    
+    <script src="Assets/Scripts/Reservation.js"></script>
 </body>
 
 </html>
