@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package models;
 
 import java.io.Serializable;
@@ -17,6 +22,10 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author Keith
+ */
 @Entity
 @Table(name = "account")
 @XmlRootElement
@@ -29,20 +38,20 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Account implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
     @Basic(optional = false)
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
     @Column(name = "active")
     private boolean active;
+    @Id
     @Basic(optional = false)
     @Column(name = "username")
     private String username;
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contactEmail", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountUsername", fetch = FetchType.EAGER)
     private List<Client> clientList;
     @JoinColumn(name = "role", referencedColumnName = "role_id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
@@ -51,14 +60,14 @@ public class Account implements Serializable {
     public Account() {
     }
 
-    public Account(String email) {
-        this.email = email;
+    public Account(String username) {
+        this.username = username;
     }
 
-    public Account(String email, boolean active, String username, String password) {
+    public Account(String username, String email, boolean active, String password) {
+        this.username = username;
         this.email = email;
         this.active = active;
-        this.username = username;
         this.password = password;
     }
 
@@ -114,7 +123,7 @@ public class Account implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (email != null ? email.hashCode() : 0);
+        hash += (username != null ? username.hashCode() : 0);
         return hash;
     }
 
@@ -125,7 +134,7 @@ public class Account implements Serializable {
             return false;
         }
         Account other = (Account) object;
-        if ((this.email == null && other.email != null) || (this.email != null && !this.email.equals(other.email))) {
+        if ((this.username == null && other.username != null) || (this.username != null && !this.username.equals(other.username))) {
             return false;
         }
         return true;
@@ -133,7 +142,7 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Account[ email=" + email + " ]";
+        return "models.Account[ username=" + username + " ]";
     }
     
 }

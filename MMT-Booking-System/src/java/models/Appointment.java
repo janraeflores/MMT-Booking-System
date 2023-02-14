@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package models;
 
 import java.io.Serializable;
@@ -6,23 +11,28 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author Keith
+ */
 @Entity
 @Table(name = "appointment")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Appointment.findAll", query = "SELECT a FROM Appointment a")
-    , @NamedQuery(name = "Appointment.findByClientId", query = "SELECT a FROM Appointment a WHERE a.clientId = :clientId")
+    , @NamedQuery(name = "Appointment.findByAppointmentId", query = "SELECT a FROM Appointment a WHERE a.appointmentId = :appointmentId")
     , @NamedQuery(name = "Appointment.findByAppointmentAddress", query = "SELECT a FROM Appointment a WHERE a.appointmentAddress = :appointmentAddress")
     , @NamedQuery(name = "Appointment.findByAppointmentDate", query = "SELECT a FROM Appointment a WHERE a.appointmentDate = :appointmentDate")
     , @NamedQuery(name = "Appointment.findByStartTime", query = "SELECT a FROM Appointment a WHERE a.startTime = :startTime")
@@ -33,9 +43,10 @@ public class Appointment implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "client_id")
-    private Integer clientId;
+    @Column(name = "appointment_id")
+    private Integer appointmentId;
     @Column(name = "appointment_address")
     private String appointmentAddress;
     @Basic(optional = false)
@@ -55,35 +66,34 @@ public class Appointment implements Serializable {
     private boolean status;
     @Column(name = "additional_info")
     private String additionalInfo;
-    @JoinColumn(name = "client_id", referencedColumnName = "client_id", insertable = false, updatable = false)
+    @JoinColumn(name = "client", referencedColumnName = "client_id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Client client;
     @JoinColumn(name = "service", referencedColumnName = "service_type")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Service service;
-    
 
     public Appointment() {
     }
 
-    public Appointment(Integer clientId) {
-        this.clientId = clientId;
+    public Appointment(Integer appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
-    public Appointment(Integer clientId, Date appointmentDate, Date startTime, Date endTime, boolean status) {
-        this.clientId = clientId;
+    public Appointment(Integer appointmentId, Date appointmentDate, Date startTime, Date endTime, boolean status) {
+        this.appointmentId = appointmentId;
         this.appointmentDate = appointmentDate;
         this.startTime = startTime;
         this.endTime = endTime;
         this.status = status;
     }
 
-    public Integer getClientId() {
-        return clientId;
+    public Integer getAppointmentId() {
+        return appointmentId;
     }
 
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
+    public void setAppointmentId(Integer appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
     public String getAppointmentAddress() {
@@ -153,7 +163,7 @@ public class Appointment implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (clientId != null ? clientId.hashCode() : 0);
+        hash += (appointmentId != null ? appointmentId.hashCode() : 0);
         return hash;
     }
 
@@ -164,7 +174,7 @@ public class Appointment implements Serializable {
             return false;
         }
         Appointment other = (Appointment) object;
-        if ((this.clientId == null && other.clientId != null) || (this.clientId != null && !this.clientId.equals(other.clientId))) {
+        if ((this.appointmentId == null && other.appointmentId != null) || (this.appointmentId != null && !this.appointmentId.equals(other.appointmentId))) {
             return false;
         }
         return true;
@@ -172,7 +182,7 @@ public class Appointment implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Appointment[ clientId=" + clientId + " ]";
+        return "models.Appointment[ appointmentId=" + appointmentId + " ]";
     }
     
 }

@@ -14,7 +14,7 @@ import models.Account;
  */
 public class TestPersist {
     public static void main(String[] args) throws Exception {
-        Account acc = new Account("test@gmail.ca", true, "test", "password");
+        Account acc = new Account("test", "test@gmail.com", true, "password");
         
         AccountDB accdb = new AccountDB();
         accdb.insert(acc);

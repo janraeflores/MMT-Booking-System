@@ -13,7 +13,7 @@ public class AppointmentDB {
         
         try {
             Client client = appt.getClient();
-            client.getAppointmentsList().add(appt);
+            client.getAppointmentList().add(appt);
             
             et.begin();
             em.persist(appt);
@@ -32,7 +32,7 @@ public class AppointmentDB {
         
         try {
             Client client = appt.getClient();
-            client.getAppointmentsList().remove(appt);
+            client.getAppointmentList().remove(appt);
             
             et.begin();
             em.remove(em.merge(appt));

@@ -26,6 +26,7 @@
             <img src="./Assets/Images/white-logo-tp.png" alt="">
         </div>
         <h1>Massage Master Therapy</h1>
+        <h2>${message}</h2>
 
         <input type="checkbox" id="active">
         <label for="active" class="menu-btn"><span></span></label>
@@ -44,15 +45,16 @@
     <main>
         <div class="title-container">
             <h2>ACCOUNT DETAILS</h2>
+            <h3>${message}</h3>
         </div>
         <div class="line"></div>
 
         <div class="flex-container">
             <div class="left-column">
-                <p><a href="#">BOOKINGS</a></p>
+                <p><a href="reservation">BOOKINGS</a></p>
                 <p><a href="#">PERSONAL INFO</a></p>
             </div>
-            <form action="">
+            <form action="updateAccount" method="POST">
                 <div class="right-column">
                     <p>PROFILE</p>
                     <div class="line"></div>
@@ -62,25 +64,25 @@
                             <tr>
                                 <td class="left-table">FULL NAME</td>
                                 <td class="right-table">
-                                    <input type="text" name="full_name">
+                                    <input type="text" name="full_name" placeholder="${client.fullName}">
                                 </td>
                             </tr>
                             <tr>
                                 <td class="left-table">EMAIL</td>
                                 <td class="right-table">
-                                    <input type="text" name="full_name">
+                                    <input type="text" name="email">
                                 </td>
                             </tr>
                             <tr>
                                 <td class="left-table">PHONE NUMBER</td>
                                 <td class="right-table">
-                                    <input type="text" name="full_name">
+                                    <input type="text" name="phone">
                                 </td>
                             </tr>
                             <tr>
                                 <td class="left-table">ADDRESS</td>
                                 <td class="right-table">
-                                    <input type="text" name="full_name">
+                                    <input type="text" name="address">
                                 </td>
                             </tr>
                             <tr>
@@ -90,19 +92,19 @@
                             <tr>
                                 <td class="left-table-sub">Full Name:</td>
                                 <td class="right-table">
-                                    <input type="text" name="full_name">
+                                    <input type="text" name="ec_name">
                                 </td>
                             </tr>
                             <tr>
                                 <td class="left-table-sub">Phone Number:</td>
                                 <td class="right-table">
-                                    <input type="text" name="full_name">
+                                    <input type="text" name="ec_phone">
                                 </td>
                             </tr>
                             <tr>
                                 <td class="left-table">PASSWORD</td>
                                 <td class="right-table">
-                                    <input type="password" name="full_name">
+                                    <input type="password" name="password">
                                 </td>
                             </tr>
                         </tbody>

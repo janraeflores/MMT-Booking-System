@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`account` (
   `username` VARCHAR(20) NOT NULL,
   `password` VARCHAR(30) NOT NULL,
   `role` INT(11) NOT NULL,
-  PRIMARY KEY (`email`),
+  PRIMARY KEY (`username`),
   CONSTRAINT `fk_account_role`
     FOREIGN KEY (`role`)
     REFERENCES `mmtdb`.`role` (`role_id`));
@@ -47,26 +47,27 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`emergency_contact` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mmtdb`.`client` (
   `client_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(20) NOT NULL,
-  `last_name` VARCHAR(20) NOT NULL,
+  `full_name` VARCHAR(20) NOT NULL,
   `contact_email` VARCHAR(40) NOT NULL,
-  `phone` INT(10) NOT NULL,
+  `account_username` VARCHAR(20) NOT NULL,
+  `phone` VARCHAR(10) NOT NULL,
   `birthdate` DATE,
-  `address` VARCHAR(50),
+  `address` VARCHAR(50) NOT NULL,
   `ec_contact` VARCHAR(40),
   `medical_info` VARCHAR(100),
   PRIMARY KEY (`client_id`),
   CONSTRAINT `fk_client_ec`
     FOREIGN KEY (`ec_contact`)
     REFERENCES `mmtdb`.`emergency_contact` (`ec_name`),
-  CONSTRAINT `fk_client_contact_email`
-    FOREIGN KEY (`contact_email`)
-    REFERENCES `mmtdb`.`account` (`email`));
+  CONSTRAINT `fk_client_username`
+    FOREIGN KEY (`account_username`)
+    REFERENCES `mmtdb`.`account` (`username`));
 
 -- -----------------------------------------------------
 -- Table `mmtdb`.`appointment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mmtdb`.`appointment` (
+  `appointment_id` INT(11) NOT NULL AUTO_INCREMENT,
   `client` INT(11) NOT NULL,
   `service` VARCHAR(40) NOT NULL,
   `appointment_address` VARCHAR(50),
@@ -75,80 +76,7 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`appointment` (
   `end_time` TIME NOT NULL,
   `status` BOOLEAN NOT NULL,
   `additional_info` VARCHAR(100),
-  CONSTRAINT `fk_appointment_client`
-    FOREIGN KEY (`client`)
-    REFERENCES `mmtdb`.`client` (`client_id`),
-  CONSTRAINT `fk_appointment_service`
-    FOREIGN KEY (`service`)
-    REFERENCES `mmtdb`.`service` (`service_type`));
-  `service_desc` VARCHAR(200) NOT NULL,
-  `service_cost` DOUBLE NOT NULL,
-  PRIMARY KEY (`service_type`));
-
--- -----------------------------------------------------
--- Table `mmtdb`.`role`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mmtdb`.`role` (
-  `role_id` INT(11) NOT NULL,
-  `role_name` VARCHAR(25) NOT NULL,
-  PRIMARY KEY (`role_id`));
-
--- -----------------------------------------------------
--- Table `mmtdb`.`account`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mmtdb`.`account` (
-  `email` VARCHAR(40) NOT NULL,
-  `active` TINYINT(1) NOT NULL DEFAULT '1',
-  `username` VARCHAR(20) NOT NULL,
-  `password` VARCHAR(30) NOT NULL,
-  `role` INT(11) NOT NULL,
-  PRIMARY KEY (`email`),
-  CONSTRAINT `fk_account_role`
-    FOREIGN KEY (`role`)
-    REFERENCES `mmtdb`.`role` (`role_id`));
-
--- -----------------------------------------------------
--- Table `mmtdb`.`emergency_contact`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mmtdb`.`emergency_contact` (
-  `ec_name` VARCHAR(40) NOT NULL,
-  `ec_phone` INT(10) NOT NULL,
-  `ec_email` VARCHAR(40),
-  PRIMARY KEY (`ec_name`));
-
--- -----------------------------------------------------
--- Table `mmtdb`.`client`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mmtdb`.`client` (
-  `client_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(20) NOT NULL,
-  `last_name` VARCHAR(20) NOT NULL,
-  `contact_email` VARCHAR(40) NOT NULL,
-  `phone` INT(10) NOT NULL,
-  `birthdate` DATE,
-  `address` VARCHAR(50),
-  `ec_contact` VARCHAR(40),
-  `medical_info` VARCHAR(100),
-  PRIMARY KEY (`client_id`),
-  CONSTRAINT `fk_client_ec`
-    FOREIGN KEY (`ec_contact`)
-    REFERENCES `mmtdb`.`emergency_contact` (`ec_name`),
-  CONSTRAINT `fk_client_contact_email`
-    FOREIGN KEY (`contact_email`)
-    REFERENCES `mmtdb`.`account` (`email`));
-
--- -----------------------------------------------------
--- Table `mmtdb`.`appointment`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mmtdb`.`appointment` (
-  `client` INT(11) NOT NULL,
-  `service` VARCHAR(40) NOT NULL,
-  `appointment_address` VARCHAR(50),
-  `appointment_date` DATE NOT NULL,
-  `start_time` TIME NOT NULL,
-  `end_time` TIME NOT NULL,
-  `status` BOOLEAN NOT NULL,
-  `additional_info` VARCHAR(100),
+  PRIMARY KEY (`appointment_id`),
   CONSTRAINT `fk_appointment_client`
     FOREIGN KEY (`client`)
     REFERENCES `mmtdb`.`client` (`client_id`),
@@ -178,4 +106,9 @@ INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
   VALUES ('Facial','A facial is a cosmetic treatment for the face that is designed to cleanse, exfoliate, and nourish the skin.',0.00);
 
 INSERT INTO `account` (`email`, `active` ,`username`, `password`, `role`)
-  VALUES ('bob@gmail.com', 1 ,'bobson1', 'password', 2);
+  VALUES ('bob@gmail.com', true, 'bob', 'password', 2);
+INSERT INTO `account` (`email`, `active` ,`username`, `password`, `role`)
+  VALUES ('admin@gmail.com', true,'admin', 'password', 1);
+
+INSERT INTO `client`  (`full_name`, `contact_email`, `account_username`, `phone`, `address`)
+  VALUES('bob vance', 'bob@gmail.com', 'bob', '4037779999', 'sumwhere st, Bob City, BOB');

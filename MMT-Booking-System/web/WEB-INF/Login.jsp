@@ -36,7 +36,7 @@
         <div>
             <img class="mmt-logo" src="./Assets/Images/white-logo-tp.png" />
 
-            <form class="form">
+            <form class="form" action="login" method="POST">
                 <div class="user-container">
                     <i class="gg-user"></i>
                     <div class="username">

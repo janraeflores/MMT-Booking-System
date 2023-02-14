@@ -3,6 +3,7 @@ package dataaccess;
 import java.util.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import models.Account;
 import models.Client;
 
 public class ClientDB {
@@ -17,7 +18,20 @@ public class ClientDB {
             em.close();
         }
     }
-    public Client getClient(int clientId) {
+    public Client get(String username) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        
+        try {
+            Account account = em.find(Account.class, username);
+            List<Client> clientList = account.getClientList();
+            Client client = clientList.get(0);
+            return client;
+            
+        } finally {
+            em.close();
+        }
+    }
+    public Client get(int clientId) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
@@ -57,6 +71,21 @@ public class ClientDB {
             et.commit();
         } catch (Exception e) {
             et.rollback();
+        } finally {
+            em.close();
+        }
+    }
+    
+    public void update(Client client) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        
+        try {
+            trans.begin();
+            em.merge(client);
+            trans.commit();
+        } catch(Exception e) {
+            trans.rollback();
         } finally {
             em.close();
         }

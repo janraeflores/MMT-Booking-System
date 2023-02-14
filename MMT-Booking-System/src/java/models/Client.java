@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package models;
 
 import java.io.Serializable;
@@ -15,21 +20,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author Keith
+ */
 @Entity
 @Table(name = "client")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c")
     , @NamedQuery(name = "Client.findByClientId", query = "SELECT c FROM Client c WHERE c.clientId = :clientId")
-    , @NamedQuery(name = "Client.findByFirstName", query = "SELECT c FROM Client c WHERE c.firstName = :firstName")
-    , @NamedQuery(name = "Client.findByLastName", query = "SELECT c FROM Client c WHERE c.lastName = :lastName")
+    , @NamedQuery(name = "Client.findByFullName", query = "SELECT c FROM Client c WHERE c.fullName = :fullName")
+    , @NamedQuery(name = "Client.findByContactEmail", query = "SELECT c FROM Client c WHERE c.contactEmail = :contactEmail")
     , @NamedQuery(name = "Client.findByPhone", query = "SELECT c FROM Client c WHERE c.phone = :phone")
     , @NamedQuery(name = "Client.findByBirthdate", query = "SELECT c FROM Client c WHERE c.birthdate = :birthdate")
     , @NamedQuery(name = "Client.findByAddress", query = "SELECT c FROM Client c WHERE c.address = :address")
@@ -43,29 +52,29 @@ public class Client implements Serializable {
     @Column(name = "client_id")
     private Integer clientId;
     @Basic(optional = false)
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "full_name")
+    private String fullName;
     @Basic(optional = false)
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "contact_email")
+    private String contactEmail;
     @Basic(optional = false)
     @Column(name = "phone")
-    private int phone;
+    private String phone;
     @Column(name = "birthdate")
     @Temporal(TemporalType.DATE)
     private Date birthdate;
+    @Basic(optional = false)
     @Column(name = "address")
     private String address;
     @Column(name = "medical_info")
     private String medicalInfo;
-    @JoinColumn(name = "contact_email", referencedColumnName = "email")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Account contactEmail;
     @JoinColumn(name = "ec_contact", referencedColumnName = "ec_name")
     @ManyToOne(fetch = FetchType.EAGER)
     private EmergencyContact ecContact;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "client", fetch = FetchType.EAGER)
-    private Appointment appointment;
+    @JoinColumn(name = "account_username", referencedColumnName = "username")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Account accountUsername;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client", fetch = FetchType.EAGER)
     private List<Appointment> appointmentList;
 
     public Client() {
@@ -75,11 +84,12 @@ public class Client implements Serializable {
         this.clientId = clientId;
     }
 
-    public Client(Integer clientId, String firstName, String lastName, int phone) {
+    public Client(Integer clientId, String fullName, String contactEmail, String phone, String address) {
         this.clientId = clientId;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fullName = fullName;
+        this.contactEmail = contactEmail;
         this.phone = phone;
+        this.address = address;
     }
 
     public Integer getClientId() {
@@ -90,27 +100,27 @@ public class Client implements Serializable {
         this.clientId = clientId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getContactEmail() {
+        return contactEmail;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -138,14 +148,6 @@ public class Client implements Serializable {
         this.medicalInfo = medicalInfo;
     }
 
-    public Account getContactEmail() {
-        return contactEmail;
-    }
-
-    public void setContactEmail(Account contactEmail) {
-        this.contactEmail = contactEmail;
-    }
-
     public EmergencyContact getEcContact() {
         return ecContact;
     }
@@ -154,19 +156,23 @@ public class Client implements Serializable {
         this.ecContact = ecContact;
     }
 
-    public Appointment getAppointment() {
-        return appointment;
+    public Account getAccountUsername() {
+        return accountUsername;
     }
 
-    public void setAppointment(Appointment appointment) {
-        this.appointment = appointment;
+    public void setAccountUsername(Account accountUsername) {
+        this.accountUsername = accountUsername;
     }
-    
+
     @XmlTransient
-    public List<Appointment> getAppointmentsList() {
+    public List<Appointment> getAppointmentList() {
         return appointmentList;
     }
-    
+
+    public void setAppointmentList(List<Appointment> appointmentList) {
+        this.appointmentList = appointmentList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
