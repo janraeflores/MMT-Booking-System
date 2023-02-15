@@ -6,10 +6,12 @@ USE `mmtdb`;
 -- Table `mmtdb`.`service`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mmtdb`.`service` (
+  `service_id` INT(11) NOT NULL AUTO_INCREMENT,
   `service_type` VARCHAR(40) NOT NULL,
   `service_desc` VARCHAR(200) NOT NULL,
   `service_cost` DOUBLE NOT NULL,
-  PRIMARY KEY (`service_type`));
+  PRIMARY KEY (`service_id`));
+
 
 -- -----------------------------------------------------
 -- Table `mmtdb`.`role`
@@ -69,11 +71,11 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`client` (
 CREATE TABLE IF NOT EXISTS `mmtdb`.`appointment` (
   `appointment_id` INT(11) NOT NULL AUTO_INCREMENT,
   `client` INT(11) NOT NULL,
-  `service` VARCHAR(40) NOT NULL,
+  `service` INT(11) NOT NULL,
   `appointment_address` VARCHAR(50),
-  `appointment_date` DATE NOT NULL,
-  `start_time` TIME NOT NULL,
-  `end_time` TIME NOT NULL,
+  `appointment_date` DATE, NOT NULL,
+  `start_time` DATE, NOT NULL,
+  `end_time` DATE, NOT NULL,
   `status` BOOLEAN NOT NULL,
   `additional_info` VARCHAR(100),
   PRIMARY KEY (`appointment_id`),
@@ -82,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`appointment` (
     REFERENCES `mmtdb`.`client` (`client_id`),
   CONSTRAINT `fk_appointment_service`
     FOREIGN KEY (`service`)
-    REFERENCES `mmtdb`.`service` (`service_type`));
+    REFERENCES `mmtdb`.`service` (`service_id`));
 
 -- ------------
 -- CREATE ROLES
