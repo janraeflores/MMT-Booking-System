@@ -3,7 +3,8 @@
     Created on : 10-Feb-2023, 6:07:32 PM
     Author     : Flores
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,64 +75,60 @@
                 <div class="today-date">
                     <div class="event-day"></div>
                     <div class="event-date"></div>
+                    <form action="reservation" method="post">
+                        <div id="services" class="services hide">
+                            <p>SERVICES</p>
+                            <div class="service-select">
 
-                    <div id="services" class="services hide">
-                        <p>SERVICES</p>
-                        <div class="service-select">
-                            <select name="s-type" id="s-type">
-                                <option value="">-----</option>
-                                <option value="">THERAPEUTIC MASSAGE</option>
-                                <option value="">RELAXATION MASSAGE</option>
-                                <option value="">LYMPHATIC MASSAGE</option>
-                                <option value="">DEEP TISSUE MASSAGE</option>
-                                <option value="">HOT STONE MASSAGE</option>
-                                <option value="">CUPPING THERAPY</option>
-                                <option value="">FACIAL</option>
-                                <option value="">TEETH WHITENING</option>
-                            </select>
-                        </div>
-                        <div class="service-length">
-                            <select name="s-length" id="s-length">
-                                <option value="">-----</option>
-                                <option value="">60 MINS (1 hour)</option>
-                                <option value="">90 MINS (1.5 hours)</option>
-                                <option value="">120 MINS (2 hours)</option>
-                            </select>
-                        </div>
-                        <div class="patient-info">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <p>INFORMATION</p>
-                                    </tr>
-                                    <tr>
-                                        <td>NAME:</td>
-                                        <td><input type="text" name="u-name" id="u-name" value="${client.fullName}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>PHONE:</td>
-                                        <td><input type="tel" name="u-tel" id="u-tel" value="${client.phone}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>EMAIL</td>
-                                        <td><input type="email" name="u-email" id="u-email" value="${client.contactEmail}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>ADDRESS:</td>
-                                        <td><input type="text" name="u-address" id="u-address" value="${client.address}"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="medical-concerns">
-                                <p>MEDICAL CONCERNS:</p>
-                                <input type="text" name="med-concerns" id="med-concerns" value="">
+                                <select name="s-type" id="s-type">
+                                    <c:forEach items="${service}" var="service">
+                                        <option value="${service.serviceId}">${service.serviceType}</option>    
+                                    </c:forEach>
+                                </select>
                             </div>
-                            <div class="reserve-container">
-                                <button id="reserve" onclick="">BOOK</button>
+                            <div class="service-length">
+                                <select name="s-duration" id="s-duration">
+                                    <option value="0">-----</option>
+                                    <option value="60">60 MINS (1 hour)</option>
+                                    <option value="90">90 MINS (1.5 hours)</option>
+                                    <option value="120">120 MINS (2 hours)</option>
+                                </select>
+                            </div>
+                            <div class="patient-info">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <p>INFORMATION</p>
+                                        </tr>
+                                        <tr>
+                                            <td>NAME:</td>
+                                            <td><input type="text" name="u-name" id="u-name" value="${client.fullName}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>PHONE:</td>
+                                            <td><input type="tel" name="u-tel" id="u-tel" value="${client.phone}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>EMAIL:</td>
+                                            <td><input type="email" name="u-email" id="u-email" value="${client.contactEmail}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>ADDRESS:</td>
+                                            <td><input type="text" name="u-address" id="u-address" value="${client.address}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="medical-concerns">
+                                    <p>MEDICAL CONCERNS:</p>
+                                    <input type="text" name="med-concerns" id="med-concerns" value="">
+                                </div>
+                                <div class="reserve-container">
+                                    <button id="reserve" type="submit">BOOK</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </form>
+                </div>                       
             </div>
         </div>
     </main>
