@@ -11,7 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,20 +23,28 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Keith
+ * @author joann
  */
 @Entity
 @Table(name = "service")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Service.findAll", query = "SELECT s FROM Service s")
+    , @NamedQuery(name = "Service.findByServiceId", query = "SELECT s FROM Service s WHERE s.serviceId = :serviceId")
     , @NamedQuery(name = "Service.findByServiceType", query = "SELECT s FROM Service s WHERE s.serviceType = :serviceType")
     , @NamedQuery(name = "Service.findByServiceDesc", query = "SELECT s FROM Service s WHERE s.serviceDesc = :serviceDesc")
     , @NamedQuery(name = "Service.findByServiceCost", query = "SELECT s FROM Service s WHERE s.serviceCost = :serviceCost")})
 public class Service implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "service")
+    private List<Appointment> appointmentList;
+
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "service_id")
+    private Integer serviceId;
     @Basic(optional = false)
     @Column(name = "service_type")
     private String serviceType;
@@ -45,20 +54,27 @@ public class Service implements Serializable {
     @Basic(optional = false)
     @Column(name = "service_cost")
     private double serviceCost;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "service", fetch = FetchType.EAGER)
-    private List<Appointment> appointmentList;
 
     public Service() {
     }
 
-    public Service(String serviceType) {
-        this.serviceType = serviceType;
+    public Service(Integer serviceId) {
+        this.serviceId = serviceId;
     }
 
-    public Service(String serviceType, String serviceDesc, double serviceCost) {
+    public Service(Integer serviceId, String serviceType, String serviceDesc, double serviceCost) {
+        this.serviceId = serviceId;
         this.serviceType = serviceType;
         this.serviceDesc = serviceDesc;
         this.serviceCost = serviceCost;
+    }
+
+    public Integer getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(Integer serviceId) {
+        this.serviceId = serviceId;
     }
 
     public String getServiceType() {
@@ -85,19 +101,10 @@ public class Service implements Serializable {
         this.serviceCost = serviceCost;
     }
 
-    @XmlTransient
-    public List<Appointment> getAppointmentList() {
-        return appointmentList;
-    }
-
-    public void setAppointmentList(List<Appointment> appointmentList) {
-        this.appointmentList = appointmentList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (serviceType != null ? serviceType.hashCode() : 0);
+        hash += (serviceId != null ? serviceId.hashCode() : 0);
         return hash;
     }
 
@@ -108,7 +115,7 @@ public class Service implements Serializable {
             return false;
         }
         Service other = (Service) object;
-        if ((this.serviceType == null && other.serviceType != null) || (this.serviceType != null && !this.serviceType.equals(other.serviceType))) {
+        if ((this.serviceId == null && other.serviceId != null) || (this.serviceId != null && !this.serviceId.equals(other.serviceId))) {
             return false;
         }
         return true;
@@ -116,7 +123,16 @@ public class Service implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Service[ serviceType=" + serviceType + " ]";
+        return "models.Service[ serviceId=" + serviceId + " ]";
+    }
+
+    @XmlTransient
+    public List<Appointment> getAppointmentList() {
+        return appointmentList;
+    }
+
+    public void setAppointmentList(List<Appointment> appointmentList) {
+        this.appointmentList = appointmentList;
     }
     
 }
