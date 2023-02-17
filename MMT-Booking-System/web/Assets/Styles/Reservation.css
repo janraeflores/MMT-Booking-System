@@ -399,12 +399,12 @@ header h1 {
 .right .today-date .event-day {
     font-size: 45px;
     font-weight: 500;
-    color: rgba(249, 251, 253, 1);
+    color: rgba(105, 114, 104, 1);
 }
 .right .today-date .event-date {
     font-size: 35px;
     font-weight: 400;
-    color: rgba(249, 251, 253, 1);
+    color: rgba(105, 114, 104, 1);
 }
 
 @media screen and (max-width: 1000px) {
