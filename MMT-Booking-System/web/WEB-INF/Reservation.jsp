@@ -89,12 +89,26 @@
                                 </div>
                                 <div class="service-length">
                                     <select name="s-duration" id="s-duration">
-                                        <option value="0">-----</option>
+                                        <option value="0">Session Duration</option>
                                         <option value="60">60 MINS (1 hour)</option>
                                         <option value="90">90 MINS (1.5 hours)</option>
                                         <option value="120">120 MINS (2 hours)</option>
                                     </select>
                                 </div>
+                                <div class="time-slot">
+                                    <select name="t-slot" id="t-slot">
+                                        <option value="0">Time Slot</option>
+                                        <option value="1">10:00AM</option>
+                                        <option value="2">11:00AM</option>
+                                        <option value="3">12:00PM</option>
+                                        <option value="4">1:00PM</option>
+                                        <option value="5">2:00PM</option>
+                                        <option value="6">3:00PM</option>
+                                        <option value="7">4:00PM</option>
+                                        <option value="8">5:00PM</option>
+                                        <option value="9">6:00PM</option>
+                                    </select>
+                                </div>                                    
                                 <div class="patient-info">
                                     <table>
                                         <tbody>
@@ -130,7 +144,7 @@
                                         <p>Service: ${appointment.service.serviceType}</p>  
                                         <p>Length: ${duration} mins</p>
                                         <p>Appointment Date: ${appointment.appointmentDate}</p>   
-                                        <p>Appointment Address: ${appointment.appointmentAddress}</p>
+                                        <p>Appointment Address: ${appointment.appointmentAddress}</p>   
                                     </div>
                                 </div>
                             </div>

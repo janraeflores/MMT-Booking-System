@@ -93,7 +93,7 @@ INSERT INTO `role` VALUES (1, 'administrator');
 INSERT INTO `role` VALUES (2, 'client');
 
 INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
-  VALUES ('-----','Blank placeholder',0.00);
+  VALUES ('Service Options','Service placeholder',0.00);
 INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
   VALUES ('Therapeutic Massage','A therapeutic massage is a type of massage that aims to relieve pain, reduce stress, and improve physical and mental well-being.',0.00);
 INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
