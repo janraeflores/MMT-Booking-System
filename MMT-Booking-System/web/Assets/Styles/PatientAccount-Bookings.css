@@ -1,0 +1,340 @@
+/* 
+    Created on : 18-Feb-2023, 4:39:45 PM
+    Author     : Flores
+*/
+
+@import url("https://css.gg/css");
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Josefin+Slab:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+body {
+    margin: 0;
+    background-color: rgba(249, 251, 253, 1);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.wrapper {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100%;
+    width: 100%;
+    background: rgba(105, 114, 104, 1);
+    transition: all 1s ease-in-out;
+}
+
+#active:checked~.wrapper {
+    right: 0;
+}
+
+.menu-btn {
+    position: absolute;
+    z-index: 2;
+    right: 20px;
+    top: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.menu-btn span,
+.menu-btn:before,
+.menu-btn:after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 30%;
+    width: 40%;
+    border-bottom: 2px solid #000;
+    transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.menu-btn:before {
+    transform: translateY(-8px);
+}
+
+.menu-btn:after {
+    transform: translateY(8px);
+}
+
+.close {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transition: background .6s;
+}
+
+#active:checked+.menu-btn span {
+    transform: scaleX(0);
+}
+
+#active:checked+.menu-btn:before {
+    transform: rotate(45deg);
+    border-color: rgba(249, 251, 253, 1);
+}
+
+#active:checked+.menu-btn:after {
+    transform: rotate(-45deg);
+    border-color: rgba(249, 251, 253, 1);
+}
+
+.wrapper ul {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    height: 90%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    text-align: center;
+}
+
+.wrapper ul li {
+    height: 10%;
+    margin: 15px 0;
+}
+
+.wrapper ul li a {
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 500;
+    padding: 5px 30px;
+    color: rgba(249, 251, 253, 1);
+    border-radius: 50px;
+    position: absolute;
+    line-height: 50px;
+    margin: 5px 30px;
+    opacity: 0;
+    transition: all 0.5s ease;
+    transition: transform 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.wrapper ul li a:after {
+    position: absolute;
+    content: "";
+    background: rgba(249, 251, 253, 1);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 50px;
+    transform: scaleY(0);
+    z-index: -1;
+    transition: transform 0.5s ease;
+}
+
+.wrapper ul li a:hover:after {
+    transform: scaleY(1);
+}
+
+.wrapper ul li a:hover {
+    color: rgba(105, 114, 104, 1);
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+#active:checked~.wrapper ul li a {
+    opacity: 1;
+}
+
+.wrapper ul li a {
+    transition: opacity 1s, transform 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translateX(100px);
+}
+
+#active:checked~.wrapper ul li a {
+    transform: none;
+    transition-timing-function: ease, cubic-bezier(.1, 1.3, .3, 1);
+    transition-delay: 1s;
+    transform: translateX(-100px);
+}
+
+header {
+    background-color: rgba(188, 210, 238, 1);
+    position: relative;
+}
+
+.mmt-logo {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.mmt-logo img {
+    display: block;
+    height: 75px;
+}
+
+header h1 {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    font-family: "josefin slab";
+    font-weight: 400;
+    color: rgba(105, 114, 104, 1);
+    font-size: 40px;
+    margin-left: 10px;
+}
+
+main {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(249, 251, 253, 1);
+}
+
+.title-container {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.title-container h2 {
+    color: rgba(105, 114, 104, 1);
+    font-family: "josefin slab";
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.line {
+    height: 1px;
+    background: rgba(105, 114, 104, 1);
+    margin-bottom: 30px;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.left-column {
+    width: 25%;
+    flex: 1;
+    background-color: rgba(249, 251, 253, 1);
+}
+
+.left-column:first-child {
+    margin-right: 15px;
+}
+
+.left-column p {
+    color: rgba(105, 114, 104, 1);
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.left-column p a {
+    color: rgba(105, 114, 104, 1);
+    font-size: 20px;
+    border: 2px solid rgba(105, 114, 104, 1);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+p a:hover {
+    color: rgba(249, 251, 253, 1);
+}
+
+a:hover {
+    background-color: rgba(105, 114, 104, 1);
+    color: rgba(249, 251, 253, 1);
+}
+
+a:active {
+    text-decoration: none;
+}
+
+.right-column-container {
+    display: inline;
+    width: 70%;
+}
+
+table {
+    font-family: "josefin slab";
+    font-size: 18px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table tr {
+    background-color: rgba(249, 251, 253, 1);
+    border: 1px solid black;
+    padding: 8px;
+}
+
+table td,
+table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgba(105, 114, 104, 1);
+    color: rgba(249, 251, 253, 1);
+}
+
+footer {
+    background: #1a1a1a;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-top: 200px;
+}
+
+.footer-basic {
+    background-color: #ffffff;
+    color: rgba(105, 114, 104, 1);
+}
+
+.footer-basic ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.footer-basic li {
+    padding: 0 10px;
+}
+
+.footer-basic ul a {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.footer-basic ul a:hover {
+    opacity: 1;
+}
+
+.footer-basic .copyright {
+    margin-top: 15px;
+    text-align: center;
+}
