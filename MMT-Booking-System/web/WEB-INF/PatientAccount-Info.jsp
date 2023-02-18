@@ -85,6 +85,18 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td class="left-table">USERNAME</td>
+                                    <td class="right-table">
+                                        <input type="text" name="username" value="${account.username}">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="left-table">PASSWORD</td>
+                                    <td class="right-table">
+                                        <input type="password" name="password">
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td class="left-table">EMERGENCY CONTACT</td>
                                     <td></td>
                                 </tr>
@@ -98,12 +110,6 @@
                                     <td class="left-table-sub">Phone Number:</td>
                                     <td class="right-table">
                                         <input type="text" name="ec_phone">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-table">PASSWORD</td>
-                                    <td class="right-table">
-                                        <input type="password" name="password">
                                     </td>
                                 </tr>
                             </tbody>
