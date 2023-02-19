@@ -27,13 +27,15 @@ public class AppointmentService {
         return appt;
     }
     
-    public void insert(Client client, int serviceId, String appointmentAddress) throws Exception {
+    public void insert(Client client, int serviceId, String appointmentAddress, Date appointmentDate) throws Exception {
         ServiceDB servdb = new ServiceDB();
         AppointmentDB apptdb = new AppointmentDB();
      
         Service service = servdb.getService(serviceId);
         Appointment appt = new Appointment(0, client, service, true);
+        
         appt.setAppointmentAddress(appointmentAddress);
+        appt.setAppointmentDate(appointmentDate);
         apptdb.insert(appt);
     }
     
