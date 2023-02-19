@@ -80,7 +80,6 @@
                             <div id="services" class="services hide">
                                 <p>SERVICES</p>
                                 <div class="service-select">
-
                                     <select name="s-type" id="s-type">
                                         <c:forEach items="${service}" var="service">
                                             <option value="${service.serviceId}">${service.serviceType}</option>    
@@ -95,9 +94,10 @@
                                         <option value="120">120 MINS (2 hours)</option>
                                     </select>
                                 </div>
+                                <input type="hidden" id="selected-date" name="selected-date">
                                 <div class="time-slot">
                                     <select name="t-slot" id="t-slot">
-                                        <option value="0">Time Slot</option>
+                                        <option value="">Time Slot</option>
                                         <option value="1">10:00AM</option>
                                         <option value="2">11:00AM</option>
                                         <option value="3">12:00PM</option>
