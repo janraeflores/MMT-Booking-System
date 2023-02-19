@@ -73,7 +73,7 @@ public class Appointment implements Serializable {
 
     public Appointment(Integer appointmentId, Client client, Service service, boolean status) {
         this.appointmentId = appointmentId;
-        this.client = client;
+         this.client = client;
         this.service = service;
         this.status = status;
     }
