@@ -210,13 +210,17 @@ function getCurrentDate(date) {
     eventDay.innerHTML = dayName;
     eventDate.innerHTML = date + " " + months[month] + ", " + year;
 
-
-    /*
-    // Grab selected date here and push to java???
-    let selectedDate = date + " " + months[month] + " " + year;
-
+    let selectedDate = date + " " + months[month] + ", " + year;
+    
     // Current print out is day-month-year e.g. 4 February 2023
     console.log(selectedDate);
+    
+    // selected date is assigned to value of hidden input
+    document.getElementById("selected-date").value = selectedDate;
+    
+    /*
+    // Grab selected date here and push to java???
+    
 
     let ajax = new XMLHttpRequest();
     ajax.open("GET", "<URL>?selectedDate" + selectedDate, true)

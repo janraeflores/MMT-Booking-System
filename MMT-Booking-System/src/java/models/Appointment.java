@@ -52,10 +52,10 @@ public class Appointment implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date appointmentDate;
     @Column(name = "start_time")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIME)
     private Date startTime;
     @Column(name = "end_time")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIME)
     private Date endTime;
     @Column(name = "status")
     private Boolean status;
@@ -71,10 +71,6 @@ public class Appointment implements Serializable {
     public Appointment() {
     }
 
-    public Appointment(Integer appointmentId) {
-        this.appointmentId = appointmentId;
-    }
-    
     public Appointment(Integer appointmentId, Client client, Service service, boolean status) {
         this.appointmentId = appointmentId;
         this.client = client;
