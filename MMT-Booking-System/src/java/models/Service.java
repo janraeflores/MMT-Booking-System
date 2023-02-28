@@ -62,8 +62,7 @@ public class Service implements Serializable {
         this.serviceId = serviceId;
     }
 
-    public Service(Integer serviceId, String serviceType, String serviceDesc, double serviceCost) {
-        this.serviceId = serviceId;
+    public Service(String serviceType, String serviceDesc, double serviceCost) {
         this.serviceType = serviceType;
         this.serviceDesc = serviceDesc;
         this.serviceCost = serviceCost;

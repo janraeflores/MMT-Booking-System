@@ -55,7 +55,7 @@
                     <div class="forgot-password"><a href="#">Forgot Password?</a></div>
                 </form>
                 <div class="register-container">
-                    New here? Register an account here: <a href="#">Register!</a>
+                    New here? Register an account here: <a href="registration">Register!</a>
                 </div>
             </div>
         </main>

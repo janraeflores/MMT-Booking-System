@@ -37,7 +37,7 @@
                     <li><a href="#">SERVICES</a></li>
                     <li><a href="#">RESERVATION</a></li>
                     <li><a href="#">CONTACT</a></li>
-                    <li><a href="#">LOGOUT</a></li>
+                    <li><a href="login">LOGOUT</a></li>
                 </ul>
             </div>
         </header>
@@ -69,7 +69,7 @@
                                 <tr>
                                     <td class="left-table">EMAIL</td>
                                     <td class="right-table">
-                                        <input type="text" name="email" value="${client.contactEmail}">
+                                        <input type="text" name="email" value="${account.email}">
                                     </td>
                                 </tr>
                                 <tr>

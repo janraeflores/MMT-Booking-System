@@ -44,7 +44,8 @@
 
     <div class="flex-container">
         <div class="form-container">
-            <form action="" method="">
+                        ${message}
+            <form action="registration" method="POST">
                 <div class="email-container">
                     <p>Email Address:</p>
                     <div class="email">
@@ -63,30 +64,20 @@
                         <input type="password" name="pass-input" id="pass-input" value="">
                     </div>
                 </div>
-                <div class="fullName-container">
-                    <p>Full Name:</p>
-                    <div class="fullName">
-                        <input type="text" name="fullName-input" id="fullName-input" value="">
-                    </div>
-                </div>
-                <div class="telephone-container">
-                    <p>Phone Number:</p>
-                    <div class="telphone">
-                        <input type="tel" name="tel-input" id="tel-input" value="">
-                    </div>
-                </div>
-                <div class="address-container">
-                    <p>Address: (optional)</p>
-                    <div class="address">
-                        <input type="text" name="address-input" id="address-input" value="">
-                    </div>
-                </div>
                 <div class="button-container">
                     <input type="submit" class="button" value="REGISTER">
+                    <input type="hidden" name="action" value="register">
                     <!-- Not sure if the below line (line 81) is needed for backend -->
                     <!-- <input type="hidden" name="action" value="register"> -->
                 </div>
             </form>
+            <form action="" method="POST">
+                <div class="button-container">
+                <input type="submit" class="button" value="CANCEL">
+                <input type="hidden" name="action" value="cancel">
+                </div>
+            </form>
+            
         </div>
     </div>
 

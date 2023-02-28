@@ -20,9 +20,9 @@ public class MassageService {
         
         return servdb.getService(serviceId);
     }
-    public void insert(int serviceId, String type, String description, double cost) throws Exception {
+    public void insert(String type, String description, double cost) throws Exception {
         ServiceDB servdb = new ServiceDB();
-        Service service = new Service(0, type, description, cost);
+        Service service = new Service(type, description, cost);
         
         servdb.insert(service);
     }
