@@ -30,12 +30,12 @@
         <label for="active" class="close"></label>
         <div class="wrapper">
             <ul>
-                <li><a href="#">HOME</a></li>
+                <li><a href="">HOME</a></li>
                 <li><a href="#">LOGIN</a></li>
                 <li><a href="#">SERVICES</a></li>
                 <li><a href="#">RESERVATION</a></li>
                 <li><a href="#">CONTACT</a></li>
-                <li><a href="#">LOGOUT</a></li>
+                <li><a href="login">LOGOUT</a></li>
             </ul>
         </div>
     </header>
@@ -49,7 +49,7 @@
         <div class="flex-container">
             <div class="left-column">
                 <p><a href="#">BOOKINGS</a></p>
-                <p><a href="#">PERSONAL INFO</a></p>
+                <p><a href="account">PERSONAL INFO</a></p>
             </div>
             <div class="right-column-container">
                 <table id="booking-details">

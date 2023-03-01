@@ -33,7 +33,7 @@ public class ClientService {
         return client;
     }
     
-    public void insert(int clientId, String fullName, String contactEmail, String phone, String address) throws Exception {
+    public void insert(String fullName, String contactEmail, String phone, String address) throws Exception {
         Client client = new Client(0, fullName, contactEmail, phone, address);
         
         ClientDB clientDB = new ClientDB();

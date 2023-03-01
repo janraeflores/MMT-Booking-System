@@ -1,7 +1,7 @@
 <%-- 
     Document   : PatientAccount-Info
-    Created on : 6-Feb-2023, 5:48:21 PM
-    Author     : janraeSAIT
+    Created on : 28-Feb-2023, 9:59:13 PM
+    Author     : Keith
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,7 +14,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>MMT - Account</title>
+        <title>MMT - Client</title>
 
         <!-- Stylesheet -->
         <link rel="stylesheet" type="text/css" href="Assets/Styles/PatientAccount.css">
@@ -32,11 +32,6 @@
             <label for="active" class="close"></label>
             <div class="wrapper">
                 <ul>
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="#">LOGIN</a></li>
-                    <li><a href="#">SERVICES</a></li>
-                    <li><a href="reservation">RESERVATION</a></li>
-                    <li><a href="#">CONTACT</a></li>
                     <li><a href="login">LOGOUT</a></li>
                 </ul>
             </div>
@@ -44,57 +39,40 @@
 
         <main>
             <div class="title-container">
-                <h2>ACCOUNT DETAILS</h2>
-                ${message}
+                <h2>CLIENT DETAILS</h2>
             </div>
             <div class="line"></div>
 
             <div class="flex-container">
-                <div class="left-column">
-                    <p><a href="booking">BOOKINGS</a></p>
-                    <p><a href="#">PERSONAL INFO</a></p>
-                </div>
-                <form action="" method="POST">
+                <form action="client" method="POST">
                     <div class="right-column">
-                        <p>PROFILE</p>
+                        <p>CREATE CLIENT PROFILE</p>
                         <div class="line"></div>
 
                         <table>
                             <tbody>
                                 <tr>
-                                    <td class="left-table">FULL NAME</td>
+                                    <td class="left-table">EMAIL</td>
                                     <td class="right-table">
-                                        <input type="text" name="full_name" value="${client.fullName}">
+                                        <b>${account.email}</b>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="left-table">EMAIL</td>
+                                    <td class="left-table">FULL NAME</td>
                                     <td class="right-table">
-                                        <input type="text" name="email" value="${account.email}">
+                                        <input type="text" name="full_name" placeholder="full name">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="left-table">PHONE NUMBER</td>
                                     <td class="right-table">
-                                        <input type="text" name="phone" value="${client.phone}">
+                                        <input type="text" name="phone" placeholder="#########">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="left-table">ADDRESS</td>
                                     <td class="right-table">
-                                        <input type="text" name="address" value="${client.address}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-table">USERNAME</td>
-                                    <td class="right-table">
-                                        <input type="text" name="username" value="${account.username}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-table">PASSWORD</td>
-                                    <td class="right-table">
-                                        <input type="password" name="password" value="${account.password}">
+                                        <input type="text" name="address" placeholder="Massage Clinic">
                                     </td>
                                 </tr>
                                 <tr>
@@ -117,8 +95,8 @@
                         </table>
 
                         <div class="save-container">
-                            <button class="save">SAVE</button>
-                            <input type="hidden" name="action" value="updateAccount">
+                            <button class="save">SUBMIT</button>
+                            <input type="hidden" name="action" value="createClient">
                         </div>
                         <h4>${message}</h4>
                     </div>
