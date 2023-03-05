@@ -19,7 +19,6 @@ import services.AccountService;
 import services.AppointmentService;
 import services.ClientService;
 import services.MassageService;
-import services.Validate;
 
 /**
  *
@@ -84,7 +83,7 @@ public class ReservationServlet extends HttpServlet {
 
             apptserv.insert(client, serviceType, address, convertToDateTime(selectedDate));
 
-            // gets results of the appointment newly made
+            // gets results of the appointment newly made 
             int length = apptserv.getAll(client.getClientId()).size();
             Appointment appt = apptserv.getAll(client.getClientId()).get(length - 1);
             
@@ -97,7 +96,11 @@ public class ReservationServlet extends HttpServlet {
         }
         getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
     }
-    
+    /**
+     * 
+     * @param selectedDate
+     * @return 
+     */
     private Date convertToDateTime(String selectedDate) {
         
         // creates a formatter that matches 'selectedDate' format
