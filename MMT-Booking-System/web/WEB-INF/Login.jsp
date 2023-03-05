@@ -40,13 +40,13 @@
                     <div class="user-container">
                         <i class="gg-user"></i>
                         <div class="username">
-                            <input id="username" type="text" name="username" value="">
+                            <input id="username" type="text" name="username" placeholder="Username" value="">
                         </div>
                     </div>
                     <div class="password-container">
                         <i class="gg-lock"></i>
                         <div class="password">
-                            <input id="password" type="password" name="password" value="">
+                            <input id="password" type="password" name="password" placeholder="Password" value="">
                         </div>
                     </div>
                     <div class="login-container">
