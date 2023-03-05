@@ -38,7 +38,7 @@
 <body>
     <div class="title-container">
         <h2>Register Now (:</h2>
-        <p>Create an account or <a href="#">login here.</a></p>
+        <p>Already have an account? <a href="#">Login here!</a></p>
     </div>
     <div class="line"></div>
 

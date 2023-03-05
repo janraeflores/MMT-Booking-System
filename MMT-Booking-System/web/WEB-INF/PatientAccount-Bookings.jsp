@@ -42,7 +42,7 @@
 
     <main>
         <div class="title-container">
-            <h2>ACCOUNT DETAILS</h2>
+            <h2>BOOKINGS</h2>
         </div>
         <div class="line"></div>
 

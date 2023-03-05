@@ -139,7 +139,7 @@
                                     </div>
                                     <div class="reserve-container">
                                         <button id="reserve" type="submit">BOOK</button>
-
+                                        
                                         <p>Client: ${appointment.client.fullName}</p>             
                                         <p>Service: ${appointment.service.serviceType}</p>  
                                         <p>Length: ${duration} mins</p>
