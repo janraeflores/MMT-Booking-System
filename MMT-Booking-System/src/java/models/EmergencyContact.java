@@ -44,7 +44,7 @@ public class EmergencyContact implements Serializable {
     @Column(name = "ec_email")
     private String ecEmail;
     @OneToMany(mappedBy = "ecContact", fetch = FetchType.EAGER)
-    private List<Client> clientList;
+    private List<Account> accountList;
 
     public EmergencyContact() {
     }
@@ -83,12 +83,12 @@ public class EmergencyContact implements Serializable {
     }
 
     @XmlTransient
-    public List<Client> getClientList() {
-        return clientList;
+    public List<Account> getAccountList() {
+        return accountList;
     }
 
-    public void setClientList(List<Client> clientList) {
-        this.clientList = clientList;
+    public void setAccountList(List<Account> accountList) {
+        this.accountList = accountList;
     }
 
     @Override

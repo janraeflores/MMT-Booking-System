@@ -4,7 +4,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import models.Appointment;
-import models.Client;
+import models.Account;
 
 public class AppointmentDB {
     
@@ -21,8 +21,8 @@ public class AppointmentDB {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
-            Client client = em.find(Client.class, clientId);
-            return client.getAppointmentList();
+            Account account = em.find(Account.class, clientId);
+            return account.getAppointmentList();
             
         } finally {
             em.close();
@@ -43,12 +43,12 @@ public class AppointmentDB {
         EntityTransaction et = em.getTransaction();
         
         try {
-            Client client = appt.getClient();
-            client.getAppointmentList().add(appt);
+            Account account = appt.getAccount();
+            account.getAppointmentList().add(appt);
             
             et.begin();
             em.persist(appt);
-            em.merge(client);
+            em.merge(account);
             et.commit();
         } catch (Exception e) {
             et.rollback();
@@ -75,12 +75,12 @@ public class AppointmentDB {
         EntityTransaction et = em.getTransaction();
         
         try {
-            Client client = appt.getClient();
-            client.getAppointmentList().remove(appt);
+            Account account = appt.getAccount();
+            account.getAppointmentList().remove(appt);
             
             et.begin();
             em.remove(em.merge(appt));
-            em.merge(client);
+            em.merge(account);
             et.commit();
         } catch (Exception e) {
             et.rollback();

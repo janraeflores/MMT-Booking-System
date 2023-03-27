@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Joanna
+ * @author Keith
  */
 @Entity
 @Table(name = "appointment")
@@ -46,35 +47,46 @@ public class Appointment implements Serializable {
     @Basic(optional = false)
     @Column(name = "appointment_id")
     private Integer appointmentId;
+    @Basic(optional = false)
     @Column(name = "appointment_address")
     private String appointmentAddress;
+    @Basic(optional = false)
     @Column(name = "appointment_date")
     @Temporal(TemporalType.DATE)
     private Date appointmentDate;
+    @Basic(optional = false)
     @Column(name = "start_time")
     @Temporal(TemporalType.TIME)
     private Date startTime;
+    @Basic(optional = false)
     @Column(name = "end_time")
     @Temporal(TemporalType.TIME)
     private Date endTime;
+    @Basic(optional = false)
     @Column(name = "status")
-    private Boolean status;
+    private boolean status;
     @Column(name = "additional_info")
     private String additionalInfo;
-    @JoinColumn(name = "client", referencedColumnName = "client_id")
-    @ManyToOne(optional = false)
-    private Client client;
+    @JoinColumn(name = "account", referencedColumnName = "account_id")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Account account;
     @JoinColumn(name = "service", referencedColumnName = "service_id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Service service;
 
     public Appointment() {
     }
 
-    public Appointment(Integer appointmentId, Client client, Service service, boolean status) {
+    public Appointment(Integer appointmentId) {
         this.appointmentId = appointmentId;
-         this.client = client;
-        this.service = service;
+    }
+
+    public Appointment(Integer appointmentId, String appointmentAddress, Date appointmentDate, Date startTime, Date endTime, boolean status) {
+        this.appointmentId = appointmentId;
+        this.appointmentAddress = appointmentAddress;
+        this.appointmentDate = appointmentDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.status = status;
     }
 
@@ -118,11 +130,11 @@ public class Appointment implements Serializable {
         this.endTime = endTime;
     }
 
-    public Boolean getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
@@ -134,12 +146,12 @@ public class Appointment implements Serializable {
         this.additionalInfo = additionalInfo;
     }
 
-    public Client getClient() {
-        return client;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Service getService() {

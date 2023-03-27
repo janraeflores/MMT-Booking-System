@@ -6,12 +6,15 @@
 package models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,6 +22,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -31,28 +36,55 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a")
+    , @NamedQuery(name = "Account.findByAccountId", query = "SELECT a FROM Account a WHERE a.accountId = :accountId")
+    , @NamedQuery(name = "Account.findByFullName", query = "SELECT a FROM Account a WHERE a.fullName = :fullName")
     , @NamedQuery(name = "Account.findByEmail", query = "SELECT a FROM Account a WHERE a.email = :email")
     , @NamedQuery(name = "Account.findByActive", query = "SELECT a FROM Account a WHERE a.active = :active")
     , @NamedQuery(name = "Account.findByUsername", query = "SELECT a FROM Account a WHERE a.username = :username")
-    , @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM Account a WHERE a.password = :password")})
+    , @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM Account a WHERE a.password = :password")
+    , @NamedQuery(name = "Account.findByPhone", query = "SELECT a FROM Account a WHERE a.phone = :phone")
+    , @NamedQuery(name = "Account.findByBirthdate", query = "SELECT a FROM Account a WHERE a.birthdate = :birthdate")
+    , @NamedQuery(name = "Account.findByAddress", query = "SELECT a FROM Account a WHERE a.address = :address")
+    , @NamedQuery(name = "Account.findByMedicalInfo", query = "SELECT a FROM Account a WHERE a.medicalInfo = :medicalInfo")})
 public class Account implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "account_id")
+    private Integer accountId;
+    @Basic(optional = false)
+    @Column(name = "full_name")
+    private String fullName;
     @Basic(optional = false)
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
     @Column(name = "active")
     private boolean active;
-    @Id
     @Basic(optional = false)
     @Column(name = "username")
     private String username;
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountUsername", fetch = FetchType.EAGER)
-    private List<Client> clientList;
+    @Basic(optional = false)
+    @Column(name = "phone")
+    private String phone;
+    @Column(name = "birthdate")
+    @Temporal(TemporalType.DATE)
+    private Date birthdate;
+    @Basic(optional = false)
+    @Column(name = "address")
+    private String address;
+    @Column(name = "medical_info")
+    private String medicalInfo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account", fetch = FetchType.EAGER)
+    private List<Appointment> appointmentList;
+    @JoinColumn(name = "ec_contact", referencedColumnName = "ec_name")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private EmergencyContact ecContact;
     @JoinColumn(name = "role", referencedColumnName = "role_id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Role role;
@@ -60,15 +92,35 @@ public class Account implements Serializable {
     public Account() {
     }
 
-    public Account(String username) {
-        this.username = username;
+    public Account(Integer accountId) {
+        this.accountId = accountId;
     }
 
-    public Account(String username, String email, boolean active, String password) {
-        this.username = username;
+    public Account(Integer accountId, String fullName, String email, boolean active, String username, String password, String phone, String address) {
+        this.accountId = accountId;
+        this.fullName = fullName;
         this.email = email;
         this.active = active;
+        this.username = username;
         this.password = password;
+        this.phone = phone;
+        this.address = address;
+    }
+
+    public Integer getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
@@ -103,13 +155,53 @@ public class Account implements Serializable {
         this.password = password;
     }
 
-    @XmlTransient
-    public List<Client> getClientList() {
-        return clientList;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setClientList(List<Client> clientList) {
-        this.clientList = clientList;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getMedicalInfo() {
+        return medicalInfo;
+    }
+
+    public void setMedicalInfo(String medicalInfo) {
+        this.medicalInfo = medicalInfo;
+    }
+
+    @XmlTransient
+    public List<Appointment> getAppointmentList() {
+        return appointmentList;
+    }
+
+    public void setAppointmentList(List<Appointment> appointmentList) {
+        this.appointmentList = appointmentList;
+    }
+
+    public EmergencyContact getEcContact() {
+        return ecContact;
+    }
+
+    public void setEcContact(EmergencyContact ecContact) {
+        this.ecContact = ecContact;
     }
 
     public Role getRole() {
@@ -123,7 +215,7 @@ public class Account implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (username != null ? username.hashCode() : 0);
+        hash += (accountId != null ? accountId.hashCode() : 0);
         return hash;
     }
 
@@ -134,7 +226,7 @@ public class Account implements Serializable {
             return false;
         }
         Account other = (Account) object;
-        if ((this.username == null && other.username != null) || (this.username != null && !this.username.equals(other.username))) {
+        if ((this.accountId == null && other.accountId != null) || (this.accountId != null && !this.accountId.equals(other.accountId))) {
             return false;
         }
         return true;
@@ -142,7 +234,7 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Account[ username=" + username + " ]";
+        return "models.Account[ accountId=" + accountId + " ]";
     }
     
 }

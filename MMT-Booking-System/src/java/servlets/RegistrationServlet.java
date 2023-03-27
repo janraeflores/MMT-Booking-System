@@ -30,9 +30,12 @@ public class RegistrationServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
 
+        String fullName = request.getParameter("full_name-input");
         String email = request.getParameter("email-input");
         String username = request.getParameter("username-input");
         String password = request.getParameter("pass-input");
+        String phone = request.getParameter("phone-input");
+        String address = request.getParameter("address-input");
 
         String action = request.getParameter("action");
 
@@ -53,7 +56,7 @@ public class RegistrationServlet extends HttpServlet {
                         } else {
                             Role role = rs.get(2);
 
-                            as.insert(email, true, username, password, role);
+                            as.insert(0, fullName, email, true, username, password, phone, role, address);
                             
                             response.sendRedirect("booking"); 
                         }

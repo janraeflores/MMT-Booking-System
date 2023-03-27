@@ -22,20 +22,6 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`role` (
   PRIMARY KEY (`role_id`));
 
 -- -----------------------------------------------------
--- Table `mmtdb`.`account`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mmtdb`.`account` (
-  `email` VARCHAR(40) NOT NULL,
-  `active` TINYINT(1) NOT NULL DEFAULT '1',
-  `username` VARCHAR(20) NOT NULL,
-  `password` VARCHAR(30) NOT NULL,
-  `role` INT(11) NOT NULL,
-  PRIMARY KEY (`username`),
-  CONSTRAINT `fk_account_role`
-    FOREIGN KEY (`role`)
-    REFERENCES `mmtdb`.`role` (`role_id`));
-
--- -----------------------------------------------------
 -- Table `mmtdb`.`emergency_contact`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mmtdb`.`emergency_contact` (
@@ -45,43 +31,45 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`emergency_contact` (
   PRIMARY KEY (`ec_name`));
 
 -- -----------------------------------------------------
--- Table `mmtdb`.`client`
+-- Table `mmtdb`.`account`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mmtdb`.`client` (
-  `client_id` INT(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `mmtdb`.`account` (
   `full_name` VARCHAR(20) NOT NULL,
-  `contact_email` VARCHAR(40) NOT NULL,
-  `account_username` VARCHAR(20) NOT NULL,
+  `email` VARCHAR(40) NOT NULL,
+  `active` TINYINT(1) NOT NULL DEFAULT '1',
+  `username` VARCHAR(20) NOT NULL,
+  `password` VARCHAR(30) NOT NULL,
   `phone` VARCHAR(10) NOT NULL,
+  `role` INT(11) NOT NULL,
   `birthdate` DATE,
   `address` VARCHAR(50) NOT NULL,
   `ec_contact` VARCHAR(40),
   `medical_info` VARCHAR(100),
-  PRIMARY KEY (`client_id`),
-  CONSTRAINT `fk_client_ec`
+  PRIMARY KEY (`username`),
+  CONSTRAINT `fk_account_role`
+    FOREIGN KEY (`role`)
+    REFERENCES `mmtdb`.`role` (`role_id`),
+  CONSTRAINT `fk_account_ec`
     FOREIGN KEY (`ec_contact`)
-    REFERENCES `mmtdb`.`emergency_contact` (`ec_name`),
-  CONSTRAINT `fk_client_username`
-    FOREIGN KEY (`account_username`)
-    REFERENCES `mmtdb`.`account` (`username`));
+    REFERENCES `mmtdb`.`emergency_contact` (`ec_name`));
 
 -- -----------------------------------------------------
 -- Table `mmtdb`.`appointment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mmtdb`.`appointment` (
   `appointment_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `client` INT(11) NOT NULL,
+  `account` VARCHAR(20) NOT NULL,
   `service` INT(11) NOT NULL,
-  `appointment_address` VARCHAR(50),
-  `appointment_date` DATE, --NOT NULL,
-  `start_time` DATE, --NOT NULL,
-  `end_time` DATE, --NOT NULL,
-  `status` BOOLEAN, --NOT NULL,
+  `appointment_address` VARCHAR(50) NOT NULL,
+  `appointment_date` DATE NOT NULL,
+  `start_time` TIME NOT NULL,
+  `end_time` TIME NOT NULL,
+  `status` BOOLEAN NOT NULL,
   `additional_info` VARCHAR(100),
   PRIMARY KEY (`appointment_id`),
-  CONSTRAINT `fk_appointment_client`
-    FOREIGN KEY (`client`)
-    REFERENCES `mmtdb`.`client` (`client_id`),
+  CONSTRAINT `fk_appointment_account`
+    FOREIGN KEY (`account`)
+    REFERENCES `mmtdb`.`account` (`username`),
   CONSTRAINT `fk_appointment_service`
     FOREIGN KEY (`service`)
     REFERENCES `mmtdb`.`service` (`service_id`));
@@ -109,10 +97,7 @@ INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
 INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
   VALUES ('Facial','A facial is a cosmetic treatment for the face that is designed to cleanse, exfoliate, and nourish the skin.',0.00);
 
-INSERT INTO `account` (`email`, `active` ,`username`, `password`, `role`)
-  VALUES ('bob@gmail.com', true, 'bob', 'password', 2);
-INSERT INTO `account` (`email`, `active` ,`username`, `password`, `role`)
-  VALUES ('admin@gmail.com', true,'admin', 'password', 1);
-
-INSERT INTO `client`  (`full_name`, `contact_email`, `account_username`, `phone`, `address`)
-  VALUES('bob vance', 'bob@gmail.com', 'bob', '4037779999', 'sumwhere st, Bob City, BOB');
+INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `phone`, `role`, `birthdate`, `address`)
+  VALUES ('bob vance', 'bob@gmail.com', true, 'bob', 'password', '4037779999', 2, '1997-03-25', '808 Sumwhere St Bobtown, BOB');
+INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `role`, `phone`, `address`)
+  VALUES ('admin one', 'admin@gmail.com', true,'admin', 'password', 1, '1110002222', '58 Fredson Dr SE Calgary, AB T2H 1E1');

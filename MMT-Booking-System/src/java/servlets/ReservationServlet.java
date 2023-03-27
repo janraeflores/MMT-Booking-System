@@ -14,10 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Account;
 import models.Appointment;
-import models.Client;
 import services.AccountService;
 import services.AppointmentService;
-import services.ClientService;
 import services.MassageService;
 
 /**
@@ -34,16 +32,13 @@ public class ReservationServlet extends HttpServlet {
         String username = (String) session.getAttribute("username");
         
         AccountService as = new AccountService();
-        ClientService cs = new ClientService();
         MassageService ms = new MassageService();
         
         try {
             Account account = as.get(username);
-            Client client = cs.get(username);
             
             request.setAttribute("service", ms.getAll());
             request.setAttribute("account", account);
-            request.setAttribute("client", client);
             
         } catch (Exception ex) {
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,13 +54,12 @@ public class ReservationServlet extends HttpServlet {
         String username = (String) session.getAttribute("username");
             
         AccountService as = new AccountService();
-        ClientService cs = new ClientService();
         AppointmentService apptserv = new AppointmentService();
         MassageService ms = new MassageService();
        
         try {
             
-            Client client = cs.get(username);
+            Account account = as.get(username);
            
             int serviceType = Integer.parseInt(request.getParameter("s-type"));
             String serviceDuration = request.getParameter("s-duration"); 
@@ -73,22 +67,22 @@ public class ReservationServlet extends HttpServlet {
             String timeSlot = request.getParameter("t-slot");
             String address = request.getParameter("u-address");
 
-            //Date startTime = null;
-            //Date endTime = null;
+            Date startTime = null;
+            Date endTime = null;
             
             if (serviceType == 1 || timeSlot.equals("")) {
                 // error message to select a service or timeslot
                 return;
             }
 
-            apptserv.insert(client, serviceType, address, convertToDateTime(selectedDate));
+            apptserv.insert(serviceType, account, address, convertToDateTime(selectedDate), startTime, endTime);
 
             // gets results of the appointment newly made 
-            int length = apptserv.getAll(client.getClientId()).size();
-            Appointment appt = apptserv.getAll(client.getClientId()).get(length - 1);
+            int length = apptserv.getAll(account.getAccountId()).size();
+            Appointment appt = apptserv.getAll(account.getAccountId()).get(length - 1);
             
             request.setAttribute("appointment", appt);
-            request.setAttribute("client", client);
+            request.setAttribute("account", account);
             request.setAttribute("duration", serviceDuration);
             request.setAttribute("service", ms.getAll());
         } catch (Exception ex) {

@@ -33,21 +33,24 @@ public class AccountService {
         return accounts;
     }
     
-    public void insert(String email, boolean active, String username, String password, Role role) throws Exception {
-        Account account = new Account(username, email, active, password);
+    public void insert(int accountId, String fullName, String email, boolean active, String username, String password, String phone, Role role, String address) throws Exception {
+        Account account = new Account(accountId, fullName, email, active, username, password, phone, address);
         account.setRole(role);
         
         AccountDB accountDB = new AccountDB();
         accountDB.insert(account);
     }
     
-    public void update(String email, boolean active, String username, String password, Role role) throws Exception {
+    public void update(String fullName, String email, boolean active, String username, String password, String phone, Role role, String address) throws Exception {
         AccountDB accountDB = new AccountDB();
         Account account = accountDB.get(email);
+        account.setEmail(email);
         account.setActive(active);
         account.setUsername(username);
         account.setPassword(password);
+        account.setPhone(phone);
         account.setRole(role);
+        account.setAddress(address);
         
         accountDB.update(account);
     }

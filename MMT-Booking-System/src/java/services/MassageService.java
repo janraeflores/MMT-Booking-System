@@ -22,7 +22,7 @@ public class MassageService {
     }
     public void insert(String type, String description, double cost) throws Exception {
         ServiceDB servdb = new ServiceDB();
-        Service service = new Service(type, description, cost);
+        Service service = new Service(0, type, description, cost);
         
         servdb.insert(service);
     }

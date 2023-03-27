@@ -49,6 +49,7 @@
                             <input id="password" type="password" name="password" placeholder="Password" value="">
                         </div>
                     </div>
+                    ${message}
                     <div class="login-container">
                         <button class="login">LOGIN</button>
                     </div>

@@ -5,7 +5,7 @@ import dataaccess.ServiceDB;
 import java.util.Date;
 import java.util.List;
 import models.Appointment;
-import models.Client;
+import models.Account;
 import models.Service;
 
 public class AppointmentService {
@@ -27,17 +27,18 @@ public class AppointmentService {
         return appt;
     }
     
-    public void insert(Client client, int serviceId, String appointmentAddress, Date appointmentDate) throws Exception {
+    public void insert(int serviceId, Account account, String appointmentAddress, Date appointmentDate, Date startTime, Date endTime) throws Exception {
         ServiceDB servdb = new ServiceDB();
         AppointmentDB apptdb = new AppointmentDB();
      
         Service service = servdb.getService(serviceId);
-        Appointment appt = new Appointment(0, client, service, true);
+        Appointment appt = new Appointment(0, appointmentAddress, appointmentDate, startTime, endTime, true);
         
-        appt.setAppointmentAddress(appointmentAddress);
+        appt.setAccount(account);
         appt.setAppointmentDate(appointmentDate);
+        appt.setService(service);
         apptdb.insert(appt);
-    }
+        }
     
     public void delete(int appointmentId) throws Exception {
         AppointmentDB apptdb = new AppointmentDB();
