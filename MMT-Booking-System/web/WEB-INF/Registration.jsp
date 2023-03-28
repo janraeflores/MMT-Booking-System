@@ -38,13 +38,14 @@
     <body>
         <div class="title-container">
             <h2>Register Now (:</h2>
-            <p>Already have an account? <a href="#">Login here!</a></p>
+            <p>Already have an account? <a href="login">Login here!</a></p>
         </div>
         <div class="line"></div>
 
         <div class="flex-container">
             <div class="form-container">
-                ${message}
+                <div id="message">${message}</div>
+                
                 <form action="registration" method="POST">
                     <div class="email-container">
                         <p>Email Address:</p>
@@ -67,19 +68,19 @@
                     <div class="fullName-container">
                         <p>Full Name:</p>
                         <div class="full_name">
-                            <input type="full_name" name="full_name-input" id="full_name-input" value="">
+                            <input type="text" name="full_name-input" id="full_name-input" value="">
                         </div>
                     </div>
                     <div class="phone-container">
                         <p>Phone Number:</p>
                         <div class="phone">
-                            <input type="phone" name="phone-input" id="phone-input" value="">
+                            <input type="tel" name="phone-input" id="phone-input" value=""> 
                         </div>
                     </div>
                     <div class="address-container">
                         <p>Address:</p>
                         <div class="address">
-                            <input type="address" name="address-input" id="address-input" value="">
+                            <input type="text" name="address-input" id="address-input" value="">
                         </div>
                     </div>
                     <div class="button-container">
