@@ -29,7 +29,7 @@ public class EmergencyContactService {
         return ecs;
     }
     
-    public void insert(String ecName, int phone, String email) throws Exception {
+    public void insert(String ecName, String phone, String email) throws Exception {
         EmergencyContact ec = new EmergencyContact(ecName, phone);
         
         ec.setEcEmail(email);
@@ -38,7 +38,7 @@ public class EmergencyContactService {
         ecDB.insert(ec);
     }
     
-    public void update(String ecName, int phone, String email) throws Exception {
+    public void update(String ecName, String phone, String email) throws Exception {
         EmergencyContactDB ecDB = new EmergencyContactDB();
         EmergencyContact ec = ecDB.get(ecName);
         

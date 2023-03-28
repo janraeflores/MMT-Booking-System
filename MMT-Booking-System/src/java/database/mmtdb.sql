@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`role` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mmtdb`.`emergency_contact` (
   `ec_name` VARCHAR(40) NOT NULL,
-  `ec_phone` INT(10) NOT NULL,
+  `ec_phone` VARCHAR(10) NOT NULL,
   `ec_email` VARCHAR(40),
   PRIMARY KEY (`ec_name`));
 
@@ -97,7 +97,10 @@ INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
 INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
   VALUES ('Facial','A facial is a cosmetic treatment for the face that is designed to cleanse, exfoliate, and nourish the skin.',0.00);
 
-INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `phone`, `role`, `birthdate`, `address`)
-  VALUES ('bob vance', 'bob@gmail.com', true, 'bob', 'password', '4037779999', 2, '1997-03-25', '808 Sumwhere St Bobtown, BOB');
+INSERT INTO `emergency_contact` (`ec_name`, `ec_phone`, `ec_email`)
+    VALUES ('Bobby Vance', '9998887777', 'Bobby@gmail.com');
+
+INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `phone`, `role`, `birthdate`, `address`, `ec_contact`)
+  VALUES ('bob vance', 'bob@gmail.com', true, 'bob', 'password', '4037779999', 2, '1997-03-25', '808 Sumwhere St Bobtown, BOB', 'Bobby Vance');
 INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `role`, `phone`, `address`)
   VALUES ('admin one', 'admin@gmail.com', true,'admin', 'password', 1, '1110002222', '58 Fredson Dr SE Calgary, AB T2H 1E1');

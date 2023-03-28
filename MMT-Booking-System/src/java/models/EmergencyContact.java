@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package models;
 
 import java.io.Serializable;
@@ -16,7 +21,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Joanna
+ * @author Keith
  */
 @Entity
 @Table(name = "emergency_contact")
@@ -35,7 +40,7 @@ public class EmergencyContact implements Serializable {
     private String ecName;
     @Basic(optional = false)
     @Column(name = "ec_phone")
-    private int ecPhone;
+    private String ecPhone;
     @Column(name = "ec_email")
     private String ecEmail;
     @OneToMany(mappedBy = "ecContact", fetch = FetchType.EAGER)
@@ -48,7 +53,7 @@ public class EmergencyContact implements Serializable {
         this.ecName = ecName;
     }
 
-    public EmergencyContact(String ecName, int ecPhone) {
+    public EmergencyContact(String ecName, String ecPhone) {
         this.ecName = ecName;
         this.ecPhone = ecPhone;
     }
@@ -61,11 +66,11 @@ public class EmergencyContact implements Serializable {
         this.ecName = ecName;
     }
 
-    public int getEcPhone() {
+    public String getEcPhone() {
         return ecPhone;
     }
 
-    public void setEcPhone(int ecPhone) {
+    public void setEcPhone(String ecPhone) {
         this.ecPhone = ecPhone;
     }
 
