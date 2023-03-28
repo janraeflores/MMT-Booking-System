@@ -66,15 +66,17 @@ public class AccountServlet extends HttpServlet {
                 String password = request.getParameter("password");
                 boolean active = true;
                 String ecName = request.getParameter("ec_name");
-                int ecPhone = Integer.parseInt(request.getParameter("ec_phone"));
+                String ecPhone = request.getParameter("ec_phone");
                 String ecEmail = request.getParameter("ec_email");
-
-                as.update(fullName, email, active, userName, password, phone, role, address, ec);
-                request.setAttribute("message", "Account has been updated successfully!");
 
                 if (ec == null) {
                     ecs.insert(ecName, ecPhone, ecEmail);
+                } else {
+                    ecs.update(ecName, ecPhone, ecEmail);
                 }
+
+                as.update(fullName, email, active, userName, password, phone, role, address, ec);
+                request.setAttribute("message", "Account has been updated successfully!");
             }
 
         } catch (Exception e) {
