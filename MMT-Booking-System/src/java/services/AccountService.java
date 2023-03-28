@@ -3,6 +3,7 @@ package services;
 import dataaccess.AccountDB;
 import java.util.List;
 import models.Account;
+import models.EmergencyContact;
 import models.Role;
 
 public class AccountService {
@@ -41,7 +42,7 @@ public class AccountService {
         accountDB.insert(account);
     }
     
-    public void update(String fullName, String email, boolean active, String username, String password, String phone, Role role, String address) throws Exception {
+    public void update(String fullName, String email, boolean active, String username, String password, String phone, Role role, String address, EmergencyContact ec) throws Exception {
         AccountDB accountDB = new AccountDB();
         Account account = accountDB.get(email);
         account.setEmail(email);
@@ -51,6 +52,7 @@ public class AccountService {
         account.setPhone(phone);
         account.setRole(role);
         account.setAddress(address);
+        account.setEcContact(ec);
         
         accountDB.update(account);
     }

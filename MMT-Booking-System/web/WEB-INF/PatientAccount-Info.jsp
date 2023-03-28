@@ -37,7 +37,7 @@
                     <li><a href="#">SERVICES</a></li>
                     <li><a href="reservation">RESERVATION</a></li>
                     <li><a href="#">CONTACT</a></li>
-                    <li><a href="login">LOGOUT</a></li>
+                    <li><a href="logout">LOGOUT</a></li>
                 </ul>
             </div>
         </header>
@@ -64,7 +64,7 @@
                                 <tr>
                                     <td class="left-table">FULL NAME</td>
                                     <td class="right-table">
-                                        <input type="text" name="full_name" value="${client.fullName}">
+                                        <input type="text" name="full_name" value="${account.fullName}">
                                     </td>
                                 </tr>
                                 <tr>
@@ -76,13 +76,13 @@
                                 <tr>
                                     <td class="left-table">PHONE NUMBER</td>
                                     <td class="right-table">
-                                        <input type="text" name="phone" value="${client.phone}">
+                                        <input type="text" name="phone" value="${account.phone}">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="left-table">ADDRESS</td>
                                     <td class="right-table">
-                                        <input type="text" name="address" value="${client.address}">
+                                        <input type="text" name="address" value="${account.address}">
                                     </td>
                                 </tr>
                                 <tr>
@@ -97,22 +97,29 @@
                                         <input type="password" name="password" value="${account.password}">
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="left-table">EMERGENCY CONTACT</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td class="left-table-sub">Full Name:</td>
-                                    <td class="right-table">
-                                        <input type="text" name="ec_name">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-table-sub">Phone Number:</td>
-                                    <td class="right-table">
-                                        <input type="text" name="ec_phone">
-                                    </td>
-                                </tr>
+                            <br>
+                            <tr>
+                                <td class="left-table">EMERGENCY CONTACT</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="left-table-sub">Full Name:</td>
+                                <td class="right-table">
+                                    <input type="text" name="ec_name" value="${ec.ecName}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left-table-sub">Phone Number:</td>
+                                <td class="right-table">
+                                    <input type="text" name="ec_phone" value="${ec.ecPhone}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left-table-sub">Email:</td>
+                                <td class="right-table">
+                                    <input type="text" name="ec_email" value="${ec.ecEmail}">
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
 

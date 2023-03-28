@@ -26,7 +26,7 @@
                 <li><a href="#">LOGIN</a></li>
                 <li><a href="#">SERVICES</a></li>
                 <li><a href="#">RESERVATION</a></li>
-                <li><a href="#">CONTACT</a></li>
+                <li><a href="">CONTACT</a></li>
             </ul>
         </div>
     </header>
@@ -36,7 +36,6 @@
             <div>
                 <img class="mmt-logo" src="./Assets/Images/white-logo-tp.png" />
                 <form class="form" action="login" method="POST">
-                    <div>${message}</div>
                     <div class="user-container">
                         <i class="gg-user"></i>
                         <div class="username">
@@ -49,7 +48,7 @@
                             <input id="password" type="password" name="password" placeholder="Password" value="">
                         </div>
                     </div>
-                    ${message}
+                    <div>${message}</div>
                     <div class="login-container">
                         <button class="login">LOGIN</button>
                     </div>
