@@ -31,7 +31,7 @@ public class AppointmentService {
         ServiceDB servdb = new ServiceDB();
         AppointmentDB apptdb = new AppointmentDB();
      
-        Service service = servdb.getService(serviceId);
+        Service service = servdb.get(serviceId);
         Appointment appt = new Appointment(0, appointmentAddress, appointmentDate, startTime, endTime, true);
         
         appt.setAccount(account);

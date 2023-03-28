@@ -78,10 +78,10 @@ public class ReservationServlet extends HttpServlet {
             apptserv.insert(serviceType, account, address, convertToDateTime(selectedDate), startTime, endTime);
 
             // gets results of the appointment newly made 
-            int length = apptserv.getAll(account.getAccountId()).size();
-            Appointment appt = apptserv.getAll(account.getAccountId()).get(length - 1);
+            //int length = apptserv.getAll(account.getAccountId()).size();
+            //Appointment appt = apptserv.getAll(account.getAccountId()).get(length - 1);
             
-            request.setAttribute("appointment", appt);
+            //request.setAttribute("appointment", appt);
             request.setAttribute("account", account);
             request.setAttribute("duration", serviceDuration);
             request.setAttribute("service", ms.getAll());

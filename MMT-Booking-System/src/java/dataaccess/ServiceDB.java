@@ -20,7 +20,7 @@ public class ServiceDB {
         }
     }
     
-    public Service getService(int serviceId) throws Exception {
+    public Service get(int serviceId) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {

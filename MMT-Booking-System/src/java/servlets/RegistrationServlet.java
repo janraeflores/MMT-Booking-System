@@ -56,7 +56,7 @@ public class RegistrationServlet extends HttpServlet {
                         } else {
                             Role role = rs.get(2);
 
-                            as.insert(0, fullName, email, true, username, password, phone, role, address);
+                            as.insert(username, fullName, email, true, password, phone, role, address);
                             
                             response.sendRedirect("booking"); 
                         }

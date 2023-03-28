@@ -6,8 +6,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import models.Account;
 import models.Role;
 import services.AccountService;
+import services.Validate;
 
 /**
  *
@@ -31,7 +30,6 @@ public class LoginServlet extends HttpServlet {
         session.invalidate();
 
         getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
-        return;
     }
 
     @Override
@@ -43,12 +41,16 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        String message = "";
-
         AccountService as = new AccountService();
         Account account = as.login(username, password);
-
+        
+        if (Validate.isEmpty(new String[]{username, password})) {
+            request.setAttribute("message", "Please provide a valid username or password.");
+            getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
+            return;
+        }
         if (account == null) {
+            request.setAttribute("message", "Please provide a valid username or password.");
             getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
             return;
         }

@@ -63,7 +63,7 @@ public class AccountDB {
         }
     }
     
-        public void update(Account account) throws Exception {
+    public void update(Account account) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
 
@@ -78,7 +78,7 @@ public class AccountDB {
         }
     }
         
-        public void update(Account account, Role pRole) throws Exception {
+    public void update(Account account, Role pRole) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
 

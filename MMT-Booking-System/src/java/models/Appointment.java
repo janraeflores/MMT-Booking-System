@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Keith
+ * @author Joanna
  */
 @Entity
 @Table(name = "appointment")
@@ -67,7 +67,7 @@ public class Appointment implements Serializable {
     private boolean status;
     @Column(name = "additional_info")
     private String additionalInfo;
-    @JoinColumn(name = "account", referencedColumnName = "account_id")
+    @JoinColumn(name = "account", referencedColumnName = "username")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Account account;
     @JoinColumn(name = "service", referencedColumnName = "service_id")

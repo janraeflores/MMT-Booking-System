@@ -18,7 +18,7 @@ public class MassageService {
     public Service get(int serviceId) throws Exception {
         ServiceDB servdb = new ServiceDB();
         
-        return servdb.getService(serviceId);
+        return servdb.get(serviceId);
     }
     public void insert(String type, String description, double cost) throws Exception {
         ServiceDB servdb = new ServiceDB();
@@ -28,7 +28,7 @@ public class MassageService {
     }
     public void update(int serviceId, String type, String description, double cost) throws Exception {
         ServiceDB servdb = new ServiceDB();
-        Service service = servdb.getService(serviceId);
+        Service service = servdb.get(serviceId);
         
         service.setServiceType(type);
         service.setServiceDesc(description);
@@ -38,7 +38,7 @@ public class MassageService {
     }
     public void delete(int serviceId) throws Exception {
         ServiceDB servdb = new ServiceDB();
-        Service service = servdb.getService(serviceId);
+        Service service = servdb.get(serviceId);
         
         servdb.delete(service);
     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package models;
 
 import java.io.Serializable;
@@ -13,8 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,14 +22,13 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Keith
+ * @author Joanna
  */
 @Entity
 @Table(name = "account")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a")
-    , @NamedQuery(name = "Account.findByAccountId", query = "SELECT a FROM Account a WHERE a.accountId = :accountId")
     , @NamedQuery(name = "Account.findByFullName", query = "SELECT a FROM Account a WHERE a.fullName = :fullName")
     , @NamedQuery(name = "Account.findByEmail", query = "SELECT a FROM Account a WHERE a.email = :email")
     , @NamedQuery(name = "Account.findByActive", query = "SELECT a FROM Account a WHERE a.active = :active")
@@ -49,11 +41,6 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Account implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "account_id")
-    private Integer accountId;
     @Basic(optional = false)
     @Column(name = "full_name")
     private String fullName;
@@ -63,6 +50,7 @@ public class Account implements Serializable {
     @Basic(optional = false)
     @Column(name = "active")
     private boolean active;
+    @Id
     @Basic(optional = false)
     @Column(name = "username")
     private String username;
@@ -92,27 +80,18 @@ public class Account implements Serializable {
     public Account() {
     }
 
-    public Account(Integer accountId) {
-        this.accountId = accountId;
+    public Account(String username) {
+        this.username = username;
     }
 
-    public Account(Integer accountId, String fullName, String email, boolean active, String username, String password, String phone, String address) {
-        this.accountId = accountId;
+    public Account(String username, String fullName, String email, boolean active, String password, String phone, String address) {
+        this.username = username;
         this.fullName = fullName;
         this.email = email;
         this.active = active;
-        this.username = username;
         this.password = password;
         this.phone = phone;
         this.address = address;
-    }
-
-    public Integer getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
     }
 
     public String getFullName() {
@@ -215,7 +194,7 @@ public class Account implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (accountId != null ? accountId.hashCode() : 0);
+        hash += (username != null ? username.hashCode() : 0);
         return hash;
     }
 
@@ -226,7 +205,7 @@ public class Account implements Serializable {
             return false;
         }
         Account other = (Account) object;
-        if ((this.accountId == null && other.accountId != null) || (this.accountId != null && !this.accountId.equals(other.accountId))) {
+        if ((this.username == null && other.username != null) || (this.username != null && !this.username.equals(other.username))) {
             return false;
         }
         return true;
@@ -234,7 +213,7 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Account[ accountId=" + accountId + " ]";
+        return "models.Account[ username=" + username + " ]";
     }
     
 }

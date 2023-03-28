@@ -32,9 +32,9 @@ public class AccountService {
         List<Account> accounts = accountDB.getAll();
         return accounts;
     }
-    
-    public void insert(int accountId, String fullName, String email, boolean active, String username, String password, String phone, Role role, String address) throws Exception {
-        Account account = new Account(accountId, fullName, email, active, username, password, phone, address);
+                      
+    public void insert(String username, String fullName, String email, boolean active, String password, String phone, Role role, String address) throws Exception {
+        Account account = new Account(username, fullName, email, active, password, phone, address);
         account.setRole(role);
         
         AccountDB accountDB = new AccountDB();
