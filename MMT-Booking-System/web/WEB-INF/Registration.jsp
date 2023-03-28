@@ -50,37 +50,37 @@
                     <div class="email-container">
                         <p>Email Address:</p>
                         <div class="email">
-                            <input type="email" name="email-input" id="email-input" value="">
+                            <input type="email" name="email-input" id="email-input">
                         </div>
                     </div>
                     <div class="username-container">
                         <p>Username:</p>
                         <div class="username">
-                            <input type="text" name="username-input" id="username-input" value="">
+                            <input type="text" name="username-input" id="username-input">
                         </div>
                     </div>
                     <div class="password-container">
                         <p>Password:</p>
                         <div class="password">
-                            <input type="password" name="pass-input" id="pass-input" value="">
+                            <input type="password" name="pass-input" id="pass-input">
                         </div>
                     </div>
                     <div class="fullName-container">
                         <p>Full Name:</p>
                         <div class="full_name">
-                            <input type="text" name="full_name-input" id="full_name-input" value="">
+                            <input type="text" name="full_name-input" id="full_name-input">
                         </div>
                     </div>
                     <div class="phone-container">
                         <p>Phone Number:</p>
                         <div class="phone">
-                            <input type="tel" name="phone-input" id="phone-input" value=""> 
+                            <input type="tel" name="phone-input" id="phone-input"> 
                         </div>
                     </div>
                     <div class="address-container">
                         <p>Address:</p>
                         <div class="address">
-                            <input type="text" name="address-input" id="address-input" value="">
+                            <input type="text" name="address-input" id="address-input">
                         </div>
                     </div>
                     <div class="button-container">

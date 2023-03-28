@@ -29,7 +29,9 @@ public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-
+        AccountService as = new AccountService();
+        RoleService rs = new RoleService();
+        
         String fullName = request.getParameter("full_name-input");
         String email = request.getParameter("email-input");
         String username = request.getParameter("username-input");
@@ -39,26 +41,22 @@ public class RegistrationServlet extends HttpServlet {
 
         String action = request.getParameter("action");
 
-        AccountService as = new AccountService();
-        RoleService rs = new RoleService();
-
-        String message;
-
         try {
             if (action != null) {
                 switch (action) {
                     case "register":
-                        if (Validate.isEmpty(new String[]{email, username, password})) {
-                            message = "Please fill out all fields";
+                        if (Validate.isEmpty(new String[]{email, username, password, fullName, phone, address})) {
+                            
+                            request.setAttribute("message", "Please fill out all fields.");
+                            getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
+                        } else if (!email.contains("@") && !email.contains(".com")) {
 
-                            request.setAttribute("message", message);
+                            request.setAttribute("message", "Your email must be valid.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
                         } else {
                             Role role = rs.get(2);
-
-                            as.insert(username, fullName, email, true, password, phone, role, address);
-                            
-                            response.sendRedirect("booking"); 
+                            as.insert(username, fullName, email, true, password, phone, role, address); 
+                            response.sendRedirect("booking?username=" + username); 
                         }
                         break;
                     case "cancel":

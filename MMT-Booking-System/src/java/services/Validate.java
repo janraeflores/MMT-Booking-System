@@ -12,15 +12,19 @@ public class Validate {
     /**
      * Tests an array of input fields if an input is empty or null
      * @param input as an array of inputs
-     * @return true if any of the fields contained in the array is empty, otherwise, returns false
+     * @return true if any of the fields contained in the array are empty, otherwise, returns false
      */
     public static boolean isEmpty(String[] input) {
-        for (String s : input) {
-            if (s.equals("") && s == null) {
-                return true;
+        try {
+            for (String s : input) {
+                if (!s.equals("")) {
+                    return false;
+                }
             }
+        } catch (NullPointerException e) {
+            return false;
         }
-        return false;
+        return true;
     }
     /**
      * Validates a password, on registration, that meets the requirements expressed in the regex pattern, PASSWORD_PATTERN

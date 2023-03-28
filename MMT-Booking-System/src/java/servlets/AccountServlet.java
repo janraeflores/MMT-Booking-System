@@ -76,12 +76,9 @@ public class AccountServlet extends HttpServlet {
                     ecs.insert(ecName, ecPhone, ecEmail);
                 }
             }
-
         } catch (Exception e) {
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, e);
         }
-
         response.sendRedirect("account");
-        return;
     }
 }

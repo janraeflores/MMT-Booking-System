@@ -36,6 +36,7 @@
             <div>
                 <img class="mmt-logo" src="./Assets/Images/white-logo-tp.png" />
                 <form class="form" action="login" method="POST">
+                    <div id="message">${message}</div>
                     <div class="user-container">
                         <i class="gg-user"></i>
                         <div class="username">
@@ -48,7 +49,7 @@
                             <input id="password" type="password" name="password" placeholder="Password" value="">
                         </div>
                     </div>
-                    <div>${message}</div>
+                    
                     <div class="login-container">
                         <button class="login">LOGIN</button>
                     </div>

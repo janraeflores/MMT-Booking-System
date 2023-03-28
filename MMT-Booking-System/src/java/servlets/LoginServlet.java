@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlets;
 
 import java.io.IOException;
@@ -50,7 +46,7 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         if (account == null) {
-            request.setAttribute("message", "Please provide a valid username or password.");
+            request.setAttribute("message", "Your credentials cannot be verified.");
             getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
             return;
         }
