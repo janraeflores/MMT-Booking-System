@@ -10,7 +10,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>MMT - Login</title>
+        <title>MMT</title>
 
         <!-- Stylesheet -->
         <link rel="stylesheet" type="text/css" href="Assets/Styles/LoginPage.css">
@@ -22,7 +22,7 @@
         <label for="active" class="close"></label>
         <div class="wrapper">
             <ul>
-                <li><a href="landingpage">HOME</a></li>
+                <li><a href="MMT">HOME</a></li>
                 <li><a href="login">LOGIN</a></li>
                 <li><a href="#">SERVICES</a></li>
                 <li><a href="booking">RESERVATION</a></li>

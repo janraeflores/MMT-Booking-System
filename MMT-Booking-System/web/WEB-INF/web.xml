@@ -62,7 +62,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LandingPageServlet</servlet-name>
-        <url-pattern>/landingpage</url-pattern>
+        <url-pattern>/MMT</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -70,6 +70,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>landingpage</welcome-file>
+        <welcome-file>MMT</welcome-file>
     </welcome-file-list>
 </web-app>
