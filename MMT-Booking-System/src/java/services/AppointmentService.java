@@ -16,10 +16,10 @@ public class AppointmentService {
         return apptdb.getAll();
     }
     // get all appointments associated with specific client
-    public List<Appointment> getAll(int clientId) throws Exception {
+    public List<Appointment> getAll(String username) throws Exception {
         AppointmentDB apptdb = new AppointmentDB();
         
-        return apptdb.getAll(clientId);
+        return apptdb.getAll(username);
     }
     public Appointment get(int appointmentId) throws Exception {
         AppointmentDB apptdb = new AppointmentDB();
@@ -27,18 +27,18 @@ public class AppointmentService {
         return appt;
     }
     
-    public void insert(int serviceId, Account account, String appointmentAddress, Date appointmentDate, Date startTime, Date endTime) throws Exception {
+    public void insert(int serviceId, Account account, String appointmentAddress, Date appointmentDate, int duration) throws Exception {
         ServiceDB servdb = new ServiceDB();
         AppointmentDB apptdb = new AppointmentDB();
      
         Service service = servdb.get(serviceId);
-        Appointment appt = new Appointment(0, appointmentAddress, appointmentDate, startTime, endTime, true);
+        Appointment appt = new Appointment(0, appointmentAddress, appointmentDate, true, duration);
         
         appt.setAccount(account);
         appt.setAppointmentDate(appointmentDate);
         appt.setService(service);
         apptdb.insert(appt);
-        }
+    }
     
     public void delete(int appointmentId) throws Exception {
         AppointmentDB apptdb = new AppointmentDB();
@@ -47,7 +47,13 @@ public class AppointmentService {
         apptdb.delete(appt);
     }
     
-    public void update(Date appointmentDate, Date startTime, Date endTime, String address) throws Exception {
+    public void update(int appointmentId, Date appointmentDate, String address) throws Exception {
+        AppointmentDB apptdb = new AppointmentDB();
+        Appointment appt = apptdb.get(appointmentId);
         
+        appt.setAppointmentDate(appointmentDate);
+        appt.setAppointmentAddress(address);
+        
+        apptdb.update(appt);
     }
 }

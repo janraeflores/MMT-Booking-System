@@ -34,10 +34,10 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`emergency_contact` (
 -- Table `mmtdb`.`account`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mmtdb`.`account` (
+  `username` VARCHAR(20) NOT NULL,
   `full_name` VARCHAR(20) NOT NULL,
   `email` VARCHAR(40) NOT NULL,
   `active` TINYINT(1) NOT NULL DEFAULT '1',
-  `username` VARCHAR(20) NOT NULL,
   `password` VARCHAR(30) NOT NULL,
   `phone` VARCHAR(10) NOT NULL,
   `role` INT(11) NOT NULL,
@@ -61,11 +61,10 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`appointment` (
   `account` VARCHAR(20) NOT NULL,
   `service` INT(11) NOT NULL,
   `appointment_address` VARCHAR(50) NOT NULL,
-  `appointment_date` DATE NOT NULL,
-  `start_time` TIME NOT NULL,
-  `end_time` TIME NOT NULL,
+  `appointment_date` DATETIME NOT NULL,
   `status` BOOLEAN NOT NULL,
   `additional_info` VARCHAR(100),
+  `duration` INT(11) NOT NULL,
   PRIMARY KEY (`appointment_id`),
   CONSTRAINT `fk_appointment_account`
     FOREIGN KEY (`account`)
@@ -80,8 +79,7 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`appointment` (
 INSERT INTO `role` VALUES (1, 'administrator');
 INSERT INTO `role` VALUES (2, 'client');
 
-INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
-  VALUES ('Service Options','Service placeholder',0.00);
+
 INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
   VALUES ('Therapeutic Massage','A therapeutic massage is a type of massage that aims to relieve pain, reduce stress, and improve physical and mental well-being.',0.00);
 INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)

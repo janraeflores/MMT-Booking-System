@@ -78,7 +78,6 @@ function initializeCalendar() {
 
 initializeCalendar();
 
-
 // Previous Month Function
 function previousMonth() {
     month--;

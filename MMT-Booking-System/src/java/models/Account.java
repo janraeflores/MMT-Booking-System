@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package models;
 
 import java.io.Serializable;
@@ -24,20 +19,19 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 /**
  *
- * @author Keith
+ * @author Joanna
  */
 @Entity
 @Table(name = "account")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a")
+    , @NamedQuery(name = "Account.findByUsername", query = "SELECT a FROM Account a WHERE a.username = :username")
     , @NamedQuery(name = "Account.findByFullName", query = "SELECT a FROM Account a WHERE a.fullName = :fullName")
     , @NamedQuery(name = "Account.findByEmail", query = "SELECT a FROM Account a WHERE a.email = :email")
     , @NamedQuery(name = "Account.findByActive", query = "SELECT a FROM Account a WHERE a.active = :active")
-    , @NamedQuery(name = "Account.findByUsername", query = "SELECT a FROM Account a WHERE a.username = :username")
     , @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM Account a WHERE a.password = :password")
     , @NamedQuery(name = "Account.findByPhone", query = "SELECT a FROM Account a WHERE a.phone = :phone")
     , @NamedQuery(name = "Account.findByBirthdate", query = "SELECT a FROM Account a WHERE a.birthdate = :birthdate")
@@ -46,6 +40,10 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Account implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "username")
+    private String username;
     @Basic(optional = false)
     @Column(name = "full_name")
     private String fullName;
@@ -55,10 +53,6 @@ public class Account implements Serializable {
     @Basic(optional = false)
     @Column(name = "active")
     private boolean active;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "username")
-    private String username;
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
@@ -99,6 +93,14 @@ public class Account implements Serializable {
         this.address = address;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getFullName() {
         return fullName;
     }
@@ -121,14 +123,6 @@ public class Account implements Serializable {
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -170,7 +164,6 @@ public class Account implements Serializable {
     public void setMedicalInfo(String medicalInfo) {
         this.medicalInfo = medicalInfo;
     }
-
     @XmlTransient
     public List<Appointment> getAppointmentList() {
         return appointmentList;
@@ -179,7 +172,6 @@ public class Account implements Serializable {
     public void setAppointmentList(List<Appointment> appointmentList) {
         this.appointmentList = appointmentList;
     }
-
     public EmergencyContact getEcContact() {
         return ecContact;
     }

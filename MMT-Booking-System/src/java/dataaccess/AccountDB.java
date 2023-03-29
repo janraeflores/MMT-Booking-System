@@ -46,6 +46,7 @@ public class AccountDB {
             em.close();
         }
     }
+    
     public void delete(Account account) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction et = em.getTransaction();

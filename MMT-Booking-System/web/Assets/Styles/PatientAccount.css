@@ -201,7 +201,7 @@ main {
     color: rgba(105, 114, 104, 1);
     font-family: "josefin slab";
     font-size: 24px;
-    font-weight: 300;
+    font-weight: 700;
 }
 
 .line {
@@ -259,7 +259,7 @@ form {
     min-height: 500px;
 }
 
-.right-column p{
+.right-column p {
     font-family: "josefin slab";
     font-size: 20px;
     margin: 0;
@@ -269,13 +269,14 @@ form {
 }
 
 table {
-    font-family: "josefin slab";
+    font-family: "josefin sans";
     font-size: 18px;
 }
 
 table tbody tr .left-table {
     background-color: rgba(249, 251, 253, 1);
     width: 200px;
+    font-weight: 600;
     padding-left: 30px;
     padding-top: 15px;
     padding-bottom: 15px;

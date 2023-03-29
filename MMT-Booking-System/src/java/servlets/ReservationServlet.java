@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -58,48 +59,53 @@ public class ReservationServlet extends HttpServlet {
         MassageService ms = new MassageService();
        
         try {
-            
             Account account = as.get(username);
-           
+            
+            request.setAttribute("account", account);
+            request.setAttribute("service", ms.getAll());
+            
             int serviceType = Integer.parseInt(request.getParameter("s-type"));
-            String serviceDuration = request.getParameter("s-duration"); 
+            int serviceDuration = Integer.parseInt(request.getParameter("s-duration")); 
             String selectedDate = request.getParameter("selected-date");
             String timeSlot = request.getParameter("t-slot");
             String address = request.getParameter("u-address");
 
-            Date startTime = null;
-            Date endTime = null;
             
-            if (serviceType == 1 || timeSlot.equals("")) {
-                // error message to select a service or timeslot
+            if (serviceType == 0) {
+                if (serviceDuration == 0) {
+                    request.setAttribute("message", "Please select a massage type and duration.");
+                    getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
+                    return;
+                }
+                request.setAttribute("message", "Please select a massage type.");
+                getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
                 return;
             }
 
-            apptserv.insert(serviceType, account, address, convertToDateTime(selectedDate), startTime, endTime);
+            apptserv.insert(serviceType, account, address, convertToDate(selectedDate + " " + timeSlot), serviceDuration);
 
             // gets results of the appointment newly made 
-            //int length = apptserv.getAll(account.getAccountId()).size();
-            //Appointment appt = apptserv.getAll(account.getAccountId()).get(length - 1);
+            int length = apptserv.getAll(username).size();
+            Appointment appt = apptserv.getAll(username).get(length - 1);
             
-            //request.setAttribute("appointment", appt);
-            request.setAttribute("account", account);
+            request.setAttribute("appointment", appt);
             request.setAttribute("duration", serviceDuration);
-            request.setAttribute("service", ms.getAll());
+            
         } catch (Exception ex) {
             Logger.getLogger(ReservationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
+        response.sendRedirect("booking");
+        
     }
     /**
-     * 
+     * Converts a selectedDate, that includes the day and time, as a String to a Date object
      * @param selectedDate
      * @return 
      */
-    private Date convertToDateTime(String selectedDate) {
+    private Date convertToDate(String selectedDate) {
         
         // creates a formatter that matches 'selectedDate' format
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("d MMMM, yyyy");
-        
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("d MMMM, yyyy h:mm a");
         
         // selected date is converted to 'yyyy-mm-dd' format
         LocalDate ld = LocalDate.parse(selectedDate, dateFormat);
@@ -109,5 +115,6 @@ public class ReservationServlet extends HttpServlet {
         
         return date;
     }
+    
 
 }

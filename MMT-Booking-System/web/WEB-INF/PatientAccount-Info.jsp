@@ -44,15 +44,14 @@
 
         <main>
             <div class="title-container">
-                <h2>ACCOUNT DETAILS</h2>
-                ${message}
+                <h2 id="title">ACCOUNT DETAILS</h2>
             </div>
             <div class="line"></div>
 
             <div class="flex-container">
                 <div class="left-column">
                     <p><a href="booking">BOOKINGS</a></p>
-                    <p><a href="#">PERSONAL INFO</a></p>
+                    <p><a href="account">PERSONAL INFO</a></p>
                 </div>
                 <form action="" method="POST">
                     <div class="right-column">
@@ -64,37 +63,37 @@
                                 <tr>
                                     <td class="left-table">FULL NAME</td>
                                     <td class="right-table">
-                                        <input type="text" name="full_name" value="${account.fullName}">
+                                        <input type="text" class="right-table-input" name="full_name" value="${account.fullName}">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="left-table">EMAIL</td>
                                     <td class="right-table">
-                                        <input type="text" name="email" value="${account.email}">
+                                        <input type="text" class="right-table-input" name="email" value="${account.email}">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="left-table">PHONE NUMBER</td>
                                     <td class="right-table">
-                                        <input type="text" name="phone" value="${account.phone}">
+                                        <input type="text" class="right-table-input" name="phone" value="${account.phone}">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="left-table">ADDRESS</td>
                                     <td class="right-table">
-                                        <input type="text" name="address" value="${account.address}">
+                                        <input type="text" class="right-table-input" name="address" value="${account.address}">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="left-table">USERNAME</td>
                                     <td class="right-table">
-                                        <input type="text" name="username" value="${account.username}">
+                                        <input type="text" class="right-table-input" name="username" value="${account.username}" readonly>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="left-table">PASSWORD</td>
                                     <td class="right-table">
-                                        <input type="password" name="password" value="${account.password}">
+                                        <input type="password" class="right-table-input" name="password" value="${account.password}">
                                     </td>
                                 </tr>
                             <br>
@@ -127,7 +126,7 @@
                             <button class="save">SAVE</button>
                             <input type="hidden" name="action" value="updateAccount">
                         </div>
-                        <h4>${message}</h4>
+                        <div id="message">${message}</div>
                     </div>
                 </form>
             </div>

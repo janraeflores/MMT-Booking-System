@@ -17,7 +17,7 @@ public class AccountService {
                 return account;
             }
         } catch (Exception e) {
-            
+            e.getMessage();
         }
         return null;
     }
@@ -44,10 +44,9 @@ public class AccountService {
     
     public void update(String fullName, String email, boolean active, String username, String password, String phone, Role role, String address, EmergencyContact ec) throws Exception {
         AccountDB accountDB = new AccountDB();
-        Account account = accountDB.get(email);
+        Account account = accountDB.get(username);
         account.setEmail(email);
         account.setActive(active);
-        account.setUsername(username);
         account.setPassword(password);
         account.setPhone(phone);
         account.setRole(role);
@@ -57,9 +56,9 @@ public class AccountService {
         accountDB.update(account);
     }
     
-    public void delete(String email) throws Exception {
+    public void delete(String username) throws Exception {
         AccountDB accountDB = new AccountDB();
-        Account account = accountDB.get(email);
+        Account account = accountDB.get(username);
         
         accountDB.delete(account);
     }

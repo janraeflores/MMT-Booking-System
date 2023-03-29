@@ -17,11 +17,11 @@ public class AppointmentDB {
             em.close();
         }
     }
-    public List<Appointment> getAll(int clientId) throws Exception {
+    public List<Appointment> getAll(String username) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
-            Account account = em.find(Account.class, clientId);
+            Account account = em.find(Account.class, username);
             return account.getAppointmentList();
             
         } finally {

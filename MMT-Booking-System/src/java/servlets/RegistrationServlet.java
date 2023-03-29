@@ -56,7 +56,9 @@ public class RegistrationServlet extends HttpServlet {
                         } else {
                             Role role = rs.get(2);
                             as.insert(username, fullName, email, true, password, phone, role, address); 
-                            response.sendRedirect("booking?username=" + username); 
+                            
+                            session.setAttribute("account", as.get(username));
+                            response.sendRedirect("booking"); 
                         }
                         break;
                     case "cancel":

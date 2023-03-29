@@ -77,10 +77,12 @@
                         <div class="event-day"></div>
                         <div class="event-date"></div>
                         <form action="reservation" method="post">
+                            
                             <div id="services" class="services hide">
                                 <p>SERVICES</p>
                                 <div class="service-select">
                                     <select name="s-type" id="s-type">
+                                        <option value="0">Massage Options</option>
                                         <c:forEach items="${service}" var="service">
                                             <option value="${service.serviceId}">${service.serviceType}</option>    
                                         </c:forEach>
@@ -89,24 +91,26 @@
                                 <div class="service-length">
                                     <select name="s-duration" id="s-duration">
                                         <option value="0">Session Duration</option>
-                                        <option value="60">60 MINS (1 hour)</option>
-                                        <option value="90">90 MINS (1.5 hours)</option>
-                                        <option value="120">120 MINS (2 hours)</option>
+                                        <option value="60">60 Mins (1 hr)</option>
+                                        <option value="90">90 Mins (1.5 hrs)</option>
+                                        <option value="120">120 Mins (2 hrs)</option>
                                     </select>
                                 </div>
+                                
                                 <input type="hidden" id="selected-date" name="selected-date">
+                                
                                 <div class="time-slot">
                                     <select name="t-slot" id="t-slot">
-                                        <option value="">Time Slot</option>
-                                        <option value="1">10:00AM</option>
-                                        <option value="2">11:00AM</option>
-                                        <option value="3">12:00PM</option>
-                                        <option value="4">1:00PM</option>
-                                        <option value="5">2:00PM</option>
-                                        <option value="6">3:00PM</option>
-                                        <option value="7">4:00PM</option>
-                                        <option value="8">5:00PM</option>
-                                        <option value="9">6:00PM</option>
+                                        <option value="0">Time Slot</option>
+                                        <option value="10:00 AM">10:00 AM</option>
+                                        <option value="11:00 AM">11:00 AM</option>
+                                        <option value="12:00 PM">12:00 PM</option>
+                                        <option value="1:00 PM">1:00 PM</option>
+                                        <option value="2:00 PM">2:00 PM</option>
+                                        <option value="3:00 PM">3:00 PM</option>
+                                        <option value="4:00 PM">4:00 PM</option>
+                                        <option value="5:00 PM">5:00 PM</option>
+                                        <option value="6:00 PM">6:00 PM</option>
                                     </select>
                                 </div>                                    
                                 <div class="patient-info">
@@ -117,35 +121,36 @@
                                         </tr>
                                         <tr>
                                             <td>NAME:</td>
-                                            <td><input type="text" name="u-name" id="u-name" value="${client.fullName}"></td>
+                                            <td><input type="text" name="u-name" id="u-name" value="${account.fullName}"></td>
                                         </tr>
                                         <tr>
                                             <td>PHONE:</td>
-                                            <td><input type="tel" name="u-tel" id="u-tel" value="${client.phone}"></td>
+                                            <td><input type="tel" name="u-tel" id="u-tel" value="${account.phone}"></td>
                                         </tr>
                                         <tr>
                                             <td>EMAIL:</td>
-                                            <td><input type="email" name="u-email" id="u-email" value="${client.contactEmail}"></td>
+                                            <td><input type="email" name="u-email" id="u-email" value="${account.email}"></td>
                                         </tr>
                                         <tr>
                                             <td>ADDRESS:</td>
-                                            <td><input type="text" name="u-address" id="u-address" value="${client.address}"></td>
+                                            <td><input type="text" name="u-address" id="u-address" value="${account.address}"></td>
                                         </tr>
                                         </tbody>
                                     </table>
                                     <div class="medical-concerns">
                                         <p>MEDICAL CONCERNS:</p>
-                                        <input type="text" name="med-concerns" id="med-concerns" value="">
+                                        <textarea rows="5" cols="30" name="med-concerns" id="med-concerns"></textarea>
                                     </div>
                                     <div class="reserve-container">
                                         <button id="reserve" type="submit">BOOK</button>
                                         
-                                        <p>Client: ${appointment.client.fullName}</p>             
+                                        <p>Client: ${appointment.account.fullName}</p>             
                                         <p>Service: ${appointment.service.serviceType}</p>  
                                         <p>Length: ${duration} mins</p>
                                         <p>Appointment Date: ${appointment.appointmentDate}</p>   
                                         <p>Appointment Address: ${appointment.appointmentAddress}</p>   
                                     </div>
+                                    <div id="message">${message}</div>
                                 </div>
                             </div>
                         </form>
