@@ -4,6 +4,7 @@
     Author     : Flores
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,10 +31,9 @@
         <label for="active" class="close"></label>
         <div class="wrapper">
             <ul>
-                <li><a href="">HOME</a></li>
-                <li><a href="#">LOGIN</a></li>
+                <li><a href="#">HOME</a></li>
                 <li><a href="#">SERVICES</a></li>
-                <li><a href="#">RESERVATION</a></li>
+                <li><a href="reservation">RESERVATION</a></li>
                 <li><a href="#">CONTACT</a></li>
                 <li><a href="login">LOGOUT</a></li>
             </ul>
@@ -60,13 +60,20 @@
                         <th>Date</th>
                         <th>Status</th>
                     </tr>
-                    <tr>
-                        <td>Keith C.</td>
-                        <td>Massage</td>
-                        <td>60mins</td>
-                        <td>02/18/2023</td>
-                        <td>Confirmed</td>
-                    </tr>
+                    <c:forEach items="${appointment}" var="appointment">
+                        <tr>
+                            <td>${account.fullName}</td>
+                            <td>${appointment.service.serviceType}</td>
+                            <td>60mins</td>
+                            <td>${appointment.appointmentDate}</td>
+                            <td id="status">
+                                <c:choose>
+                                    <c:when test="${appointment.status == true}">Confirmed</c:when>
+                                    <c:otherwise>Pending</c:otherwise>
+                                </c:choose> 
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </table>
             </div>
         </div>
