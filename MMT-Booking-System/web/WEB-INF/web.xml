@@ -32,6 +32,10 @@
         <servlet-name>LandingPageServlet</servlet-name>
         <servlet-class>servlets.LandingPageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ContactServlet</servlet-name>
+        <servlet-class>servlets.ContactServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>LandingPageServlet</servlet-name>
         <url-pattern>/MMT</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContactServlet</servlet-name>
+        <url-pattern>/contact</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
