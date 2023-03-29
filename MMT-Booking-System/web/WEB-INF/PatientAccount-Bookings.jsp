@@ -31,10 +31,10 @@
         <label for="active" class="close"></label>
         <div class="wrapper">
             <ul>
-                <li><a href="#">HOME</a></li>
+                <li><a href="MMT">HOME</a></li>
                 <li><a href="#">SERVICES</a></li>
                 <li><a href="reservation">RESERVATION</a></li>
-                <li><a href="#">CONTACT</a></li>
+                <li><a href="contact">CONTACT</a></li>
                 <li><a href="login">LOGOUT</a></li>
             </ul>
         </div>

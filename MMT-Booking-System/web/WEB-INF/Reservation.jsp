@@ -29,12 +29,12 @@
             <label for="active" class="close"></label>
             <div class="wrapper stack-top">
                 <ul>
-                    <li><a href="account">HOME</a></li>
+                    <li><a href="MMT">HOME</a></li>
                     <li><a href="login">LOGIN</a></li>
                     <li><a href="#">SERVICES</a></li>
                     <li><a href="reservation">RESERVATION</a></li>
-                    <li><a href="#">CONTACT</a></li>
-                    <li><a href="#">LOGOUT</a></li>
+                    <li><a href="contact">CONTACT</a></li>
+                    <li><a href="logout">LOGOUT</a></li>
                 </ul>
             </div>
         </header>

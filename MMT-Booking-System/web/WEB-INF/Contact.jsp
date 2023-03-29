@@ -22,7 +22,7 @@
                 <li><a href="MMT">HOME</a></li>
                 <li><a href="login">LOGIN</a></li>
                 <li><a href="#">SERVICES</a></li>
-                <li><a href="booking">RESERVATION</a></li>
+                <li><a href="reservation">RESERVATION</a></li>
                 <li><a href="contact">CONTACT</a></li>
             </ul>
         </div>
@@ -50,7 +50,7 @@
                     <p>Sat: 10:00am - 7:00pm</p>
                     <p>Sun: Closed</p>
                 </div>
-                <p><a href="Reservation.jsp">Book Now!</a></p>
+                <p><a href="booking">Book Now!</a></p>
             </div>
         </main>
         <footer>
