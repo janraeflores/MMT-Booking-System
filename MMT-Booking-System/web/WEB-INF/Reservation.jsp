@@ -92,8 +92,8 @@
                                     <select name="s-duration" id="s-duration">
                                         <option value="0">Session Duration</option>
                                         <option value="60">60 Mins (1 hr)</option>
-                                        <option value="90">90 Mins (1.5 hrs)</option>
-                                        <option value="120">120 Mins (2 hrs)</option>
+<!--                                        <option value="90">90 Mins (1.5 hrs)</option>
+                                        <option value="120">120 Mins (2 hrs)</option>-->
                                     </select>
                                 </div>
                                 
