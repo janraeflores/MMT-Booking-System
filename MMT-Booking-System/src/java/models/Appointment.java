@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package models;
 
 import java.io.Serializable;
@@ -30,10 +35,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Appointment.findByAppointmentId", query = "SELECT a FROM Appointment a WHERE a.appointmentId = :appointmentId")
     , @NamedQuery(name = "Appointment.findByAppointmentAddress", query = "SELECT a FROM Appointment a WHERE a.appointmentAddress = :appointmentAddress")
     , @NamedQuery(name = "Appointment.findByAppointmentDate", query = "SELECT a FROM Appointment a WHERE a.appointmentDate = :appointmentDate")
-    , @NamedQuery(name = "Appointment.findByStartTime", query = "SELECT a FROM Appointment a WHERE a.startTime = :startTime")
-    , @NamedQuery(name = "Appointment.findByEndTime", query = "SELECT a FROM Appointment a WHERE a.endTime = :endTime")
     , @NamedQuery(name = "Appointment.findByStatus", query = "SELECT a FROM Appointment a WHERE a.status = :status")
-    , @NamedQuery(name = "Appointment.findByAdditionalInfo", query = "SELECT a FROM Appointment a WHERE a.additionalInfo = :additionalInfo")})
+    , @NamedQuery(name = "Appointment.findByAdditionalInfo", query = "SELECT a FROM Appointment a WHERE a.additionalInfo = :additionalInfo")
+    , @NamedQuery(name = "Appointment.findByDuration", query = "SELECT a FROM Appointment a WHERE a.duration = :duration")})
 public class Appointment implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,21 +51,16 @@ public class Appointment implements Serializable {
     private String appointmentAddress;
     @Basic(optional = false)
     @Column(name = "appointment_date")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date appointmentDate;
-    @Basic(optional = false)
-    @Column(name = "start_time")
-    @Temporal(TemporalType.TIME)
-    private Date startTime;
-    @Basic(optional = false)
-    @Column(name = "end_time")
-    @Temporal(TemporalType.TIME)
-    private Date endTime;
     @Basic(optional = false)
     @Column(name = "status")
     private boolean status;
     @Column(name = "additional_info")
     private String additionalInfo;
+    @Basic(optional = false)
+    @Column(name = "duration")
+    private int duration;
     @JoinColumn(name = "account", referencedColumnName = "username")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Account account;
@@ -76,13 +75,12 @@ public class Appointment implements Serializable {
         this.appointmentId = appointmentId;
     }
 
-    public Appointment(Integer appointmentId, String appointmentAddress, Date appointmentDate, Date startTime, Date endTime, boolean status) {
+    public Appointment(Integer appointmentId, String appointmentAddress, Date appointmentDate, boolean status, int duration) {
         this.appointmentId = appointmentId;
         this.appointmentAddress = appointmentAddress;
         this.appointmentDate = appointmentDate;
-        this.startTime = startTime;
-        this.endTime = endTime;
         this.status = status;
+        this.duration = duration;
     }
 
     public Integer getAppointmentId() {
@@ -109,22 +107,6 @@ public class Appointment implements Serializable {
         this.appointmentDate = appointmentDate;
     }
 
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public boolean getStatus() {
         return status;
     }
@@ -139,6 +121,14 @@ public class Appointment implements Serializable {
 
     public void setAdditionalInfo(String additionalInfo) {
         this.additionalInfo = additionalInfo;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public Account getAccount() {
