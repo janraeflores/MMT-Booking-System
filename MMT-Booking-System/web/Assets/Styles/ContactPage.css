@@ -1,0 +1,119 @@
+/* 
+    Created on : 30-Mar-2023, 1:24:42 PM
+    Author     : roker
+*/
+
+@import url("https://css.gg/css");
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Josefin+Slab:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+body {
+    margin: 0;
+    background-image: url('../Images/Login-BG.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 1000px;
+}
+
+.wrapper {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100%;
+    width: 100%;
+    background: rgba(105, 114, 104, 1);
+    transition: all 0.5s ease-in-out;
+}
+
+.inquirydisplay {
+    position: relative;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex: 1 1 auto;
+    
+}
+
+.inquirymessage {
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0, 0.4); 
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+}
+
+.contactimage {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    height: 20%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hours {
+  padding-top: 30px;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: rgba(105, 114, 104, 1);
+}
+
+.bookbutton {
+  background-color: rgba(105, 114, 104, 1);
+  margin: auto;
+  width: 20%;
+  padding: 10px;
+  font-size: 40px;
+  text-align: center;
+}
+
+footer {
+    background: #1a1a1a;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-top: 200px;
+}
+
+.footer-basic {
+    background-color: #ffffff;
+    color: rgba(105, 114, 104, 1);
+}
+
+.footer-basic ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.footer-basic li {
+    padding: 0 10px;
+}
+
+.footer-basic ul a {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.footer-basic ul a:hover {
+    opacity: 1;
+}
+
+.footer-basic .copyright {
+    margin-top: 15px;
+    text-align: center;
+}
+

@@ -10,6 +10,9 @@
     <head>
         <meta charset="UTF-8">
         <title>MMT - Contact Us</title>
+        
+        <!-- Stylesheet -->
+        <link rel="stylesheet" type="text/css" href="Assets/Styles/ContactPage.css">
 
     </head>
 
@@ -30,16 +33,14 @@
     <body>
         <main>
             <div class="inquirycontain">
+                <div class ="inquirydisplay">
+                    <img class="contactimage" src="./Assets/Images/hans-vivek-UiMkBvDQSAA-unsplash.jpg">
                 <div class="inquirymessage">
                     <h1>For Booking Or Any Questions, Please Feel Free To Contact Us</h1>
-                </div>
-                <div class="phonenumber">
                     <h1>Phone Number: 587-889-2061</h1>
+                    <h1>Address: 58 Fredson Drive Southeast Calgary, AB T2H 1E1 Canada </h1>
                 </div>
-                <div class="address">
-                    <h1>Address: </h1>
-                    <p>58 Fredson Drive Southeast Calgary, AB T2H 1E1 Canada</p>
-                </div>
+                    </div>
                 <div class="hours">
                     <h1>Business Hours: </h1>
                     <p>Mon: 10:00am - 7:00pm</p>
@@ -50,9 +51,12 @@
                     <p>Sat: 10:00am - 7:00pm</p>
                     <p>Sun: Closed</p>
                 </div>
-                <p><a href="booking">Book Now!</a></p>
+                <div class="bookbutton">
+                    <p><a href="booking">Book Now!</a></p>
+                </div>
             </div>
         </main>
+        <div class="footer-basic">
         <footer>
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="#">Home</a></li>
@@ -60,7 +64,8 @@
                 <li class="list-inline-item"><a href="#">Reservations</a></li>
                 <li class="list-inline-item"><a href="#">Contact</a></li>
             </ul>
-            <p class="copyright">Massage Master Therapy Â© ?YEAR?</p>
+            <p class="copyright">Massage Master Therapy © ?YEAR?</p>
         </footer>
+    </div>
     </body>
 </html>
