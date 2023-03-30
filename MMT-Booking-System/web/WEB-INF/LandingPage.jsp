@@ -13,7 +13,7 @@
         <title>MMT</title>
 
         <!-- Stylesheet -->
-        <link rel="stylesheet" type="text/css" href="Assets/Styles/LoginPage.css">
+        <link rel="stylesheet" type="text/css" href="Assets/Styles/LandingPage.css">
     </head>
 
     <header>
@@ -31,16 +31,89 @@
         </div>
     </header>
 
-    <div class="footer-basic">
-        <footer>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Home</a></li>
-                <li class="list-inline-item"><a href="#">Services</a></li>
-                <li class="list-inline-item"><a href="#">Reservations</a></li>
-                <li class="list-inline-item"><a href="#">Contact</a></li>
-            </ul>
-            <p class="copyright">Massage Master Therapy © ?YEAR?</p>
-        </footer>
-    </div>
+    <body>
+        <div class="sectionA">
+            <div id="background-img"></div>
+        </div>
 
+        <div class="sectionB">
+            <h2>Services & Reservations</h2>
+
+            <div class="float-container">
+                <a href="#">
+                    <div class="float-child1">
+                        <div class="masssage">
+                            <P>MASSAGE</P>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="float-child2">
+                        <div class="spec-massage">
+                            <p>SPECIAL</p>
+                            <p>MASSAGE</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="float-child3">
+                        <div class="box teeth-white">
+                            <p>TEETH</p>
+                            <p>WHITENING</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="float-child4">
+                        <div class="box facial-etc">
+                            <p>FACIAL,</p>
+                            <p>ETC</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="sectionC">
+            <figure class="portrait">
+                <div>
+                    <img src="./Assets/Images/hans-vivek-UiMkBvDQSAA-unsplash.jpg" alt="">
+                </div>
+            </figure>
+            <div class="c-description">
+                <h3>EXPERIENCES RENEWED</h3>
+                <h2>MASSAGE MASTER THERAPY</h2>
+                <p>OFFERING A RANGE OF SERVICES TO HELP CLIENTS RELAX AND REJUVENATE. OUR GOAL IS TO MAKE YOU FEEL LIKE A
+                    BRAND NEW PERSON.</p>
+                <p>FROM MASSAGES (RELAXATION, DEEP TISSUE, LYMPHATIC, OR THERAPEUTIC), CUPPING THERAPY, FACIAL'S, AND EVEN
+                    TEETH WHITENING, OUR SERVICES ARE CATERED TO YOUR SPECIFIC NEEDS.</p>
+                <p>WITH A GUARANTEED UNPARALLELED EXPERIENCE YOU CAN BE SURE THAT YOUR TIME WILL BE UNFORGETTABLE.</p>
+                <p>- MMT</p>
+            </div>
+        </div>
+
+        <div class="sectionD">
+            <p>SOLVING THE WORLD'S PROBLEMS, ONE MASSAGE AT A TIME.</p>
+            <hr>
+        </div>
+
+        <div class="sectionE">
+
+        </div>
+
+        <div class="footer-basic">
+            <footer>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Home</a></li>
+                    <li class="list-inline-item"><a href="#">Services</a></li>
+                    <li class="list-inline-item"><a href="#">Reservations</a></li>
+                    <li class="list-inline-item"><a href="#">Contact</a></li>
+                </ul>
+                <p class="copyright">Massage Master Therapy © ?YEAR?</p>
+            </footer>
+        </div>
+    </body>
 </html>
