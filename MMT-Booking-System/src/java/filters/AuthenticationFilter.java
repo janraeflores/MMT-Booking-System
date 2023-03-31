@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package filters;
 
 import java.io.IOException;
@@ -18,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Account;
+
 import services.AccountService;
 
 /**
@@ -26,6 +22,7 @@ import services.AccountService;
  */
 public class AuthenticationFilter implements Filter {
     
+
     /**
      *
      * @param request The servlet request we are processing
@@ -39,31 +36,26 @@ public class AuthenticationFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-//        HttpServletRequest httpRequest = (HttpServletRequest) request;
-//        HttpServletResponse httpResponse = (HttpServletResponse) response;
-//        HttpSession session = httpRequest.getSession();
-//        AccountService as = new AccountService();
-//        
-//        try {
-//            String username = (String) session.getAttribute("username");
-//            Account account = as.get(username);
-//
-//            if (account == null) {
-//                httpResponse.sendRedirect("login");
-//                return;
-//            }
-//            int validRole = account.getRole().getRoleId();
-//            if (validRole != 1 || validRole != 2) {
-//                httpResponse.sendRedirect("login");
-//                return;
-//            }
-//            
-//            chain.doFilter(request, response);
-//        } catch (IOException | ServletException ex) {
-//            Logger.getLogger(AuthenticationFilter.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (Exception ex) {
-//            Logger.getLogger(AuthenticationFilter.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        HttpSession session = httpRequest.getSession();
+        AccountService as = new AccountService();
+        
+        try {
+            String username = (String) session.getAttribute("username");
+            Account account = as.get(username);
+
+            if (account == null) {
+                httpResponse.sendRedirect("login");
+                return;
+            }
+
+            chain.doFilter(request, response);
+        } catch (IOException | ServletException ex) {
+            Logger.getLogger(AuthenticationFilter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(AuthenticationFilter.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
   
     /**
