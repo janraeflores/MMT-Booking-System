@@ -247,225 +247,51 @@ main {
     min-height: 500px;
 }
 
-.email-container {
+.form-container p {
+    text-align: left;
+    margin: 15px 0 5px 0;
+}
+
+.email-container, .username-container, .fullName-container, .phone-container, .address-container, .password-container {
     align-items: center;
     display: inline-block;
     gap: 35px;
     height: 45px;
     width: 400px;
     padding: 5px 5px;
-    margin: auto;
+    margin: 15px auto;
     font-family: "josefin slab";
     font-weight: 600;
-    font-size: 25px;
+    font-size: 20px;
     color: rgba(105, 114, 104, 1);
 }
 
-.username-container {
-    align-items: center;
-    display: inline-block;
-    gap: 35px;
-    height: 45px;
-    width: 400px;
-    padding: 5px 5px;
-    margin: auto;
-    font-family: "josefin slab";
-    font-weight: 600;
-    font-size: 25px;
-    color: rgba(105, 114, 104, 1);
+.email, .username, .fullName, .phone, .address, .password  {
+    letter-spacing: 0;
+    line-height: 20px;
+    min-width: 84px;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 8px;
 }
 
-.fullName-container {
-    align-items: center;
-    display: inline-block;
-    gap: 35px;
-    height: 45px;
-    width: 400px;
-    padding: 5px 5px;
-    margin: auto;
-    font-family: "josefin slab";
-    font-weight: 600;
-    font-size: 25px;
+#email-input, #username-input, #full_name-input, #phone-input, #address-input, #pass-input  {
+    background-color:rgba(249, 251, 253, 1);
     color: rgba(105, 114, 104, 1);
-}
-
-.telephone-container {
-    align-items: center;
-    display: inline-block;
-    gap: 35px;
+    font-size: 20px;
+    border: none;
+    outline: none;
     height: 45px;
-    width: 400px;
-    padding: 5px 5px;
-    margin: auto;
-    font-family: "josefin slab";
-    font-weight: 600;
-    font-size: 25px;
-    color: rgba(105, 114, 104, 1);
-}
-
-.address-container {
-    align-items: center;
-    display: inline-block;
-    gap: 35px;
-    height: 45px;
-    width: 400px;
-    padding: 5px 5px;
-    margin: auto;
-    font-family: "josefin slab";
-    font-weight: 600;
-    font-size: 25px;
-    color: rgba(105, 114, 104, 1);
-}
-
-.password-container {
-    align-items: center;
-    display: block;
-    gap: 35px;
-    height: 45px;
-    width: 400px;
-    padding: 5px 5px;
-    margin: auto;
-    font-family: "josefin slab";
-    font-weight: 600;
-    font-size: 25px;
-    padding-bottom: 80px;
-    color: rgba(105, 114, 104, 1);
+    width: 325px;
+    transition: height 1s;
+    padding-left: 70px;
+    border-radius: 8px;
 }
 
 .button-container {
     display: block;
     margin-top: 100px;
     margin-bottom: 20px;
-}
-
-.email {
-    letter-spacing: 0;
-    line-height: 20px;
-    min-width: 84px;
-    text-align: center;
-    white-space: nowrap;
-    border-radius: 8px;
-}
-
-#email-input {
-    background-color:rgba(249, 251, 253, 1);
-    color: rgba(105, 114, 104, 1);
-    font-size: 20px;
-    border: none;
-    outline: none;
-    height: 45px;
-    width: 325px;
-    transition: height 1s;
-    padding-left: 70px;
-    border-radius: 8px;
-}
-
-.username {
-    letter-spacing: 0;
-    line-height: 20px;
-    min-width: 84px;
-    text-align: center;
-    white-space: nowrap;
-}
-
-#username-input {
-    background-color:rgba(249, 251, 253, 1);
-    color: rgba(105, 114, 104, 1);
-    padding-left: 70px;
-    border-radius: 8px;
-    font-size: 20px;
-    border: none;
-    outline: none;
-    height: 45px;
-    width: 325px;
-    transition: height 1s;
-}
-
-.fullName {
-    letter-spacing: 0;
-    line-height: 20px;
-    min-width: 84px;
-    text-align: center;
-    white-space: nowrap;
-}
-
-#fullName-input {
-    background-color:rgba(249, 251, 253, 1);
-    color: rgba(105, 114, 104, 1);
-    padding-left: 70px;
-    border-radius: 8px;
-    font-size: 20px;
-    border: none;
-    outline: none;
-    height: 45px;
-    width: 325px;
-    transition: height 1s;
-}
-
-.telephone {
-    letter-spacing: 0;
-    line-height: 20px;
-    min-width: 84px;
-    text-align: center;
-    white-space: nowrap;
-}
-
-#tel-input {
-    background-color:rgba(249, 251, 253, 1);
-    color: rgba(105, 114, 104, 1);
-    padding-left: 70px;
-    border-radius: 8px;
-    font-size: 20px;
-    border: none;
-    outline: none;
-    height: 45px;
-    width: 325px;
-    transition: height 1s;
-}
-
-.address {
-    letter-spacing: 0;
-    line-height: 20px;
-    min-width: 84px;
-    text-align: center;
-    white-space: nowrap;
-}
-
-#address-input {
-    background-color:rgba(249, 251, 253, 1);
-    color: rgba(105, 114, 104, 1);
-    padding-left: 70px;
-    border-radius: 8px;
-    font-size: 20px;
-    border: none;
-    outline: none;
-    height: 45px;
-    width: 325px;
-    transition: height 1s;
-}
-
-.password {
-    letter-spacing: 0;
-    line-height: 20px;
-    min-width: 84px;
-    text-align: center;
-    white-space: nowrap;
-}
-
-#pass-input {
-    background-color:rgba(249, 251, 253, 1);
-    color: rgba(105, 114, 104, 1);
-    padding-left: 70px;
-    border-radius: 8px;
-    font-size: 20px;
-    border: none;
-    outline: none;
-    height: 45px;
-    width: 325px;
-    transition: height 1s;
-}
-
-.button-container {
     background-color: rgba(188, 211, 156, 1);
     gap: 10px;
     margin-top: 43px;
