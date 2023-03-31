@@ -29,7 +29,6 @@
                 <li><a href="MMT">HOME</a></li>
                 <li><a href="login">LOGIN</a></li>
                 <li><a href="#">SERVICES</a></li>
-                <li><a href="reservation">RESERVATION</a></li>
                 <li><a href="contact">CONTACT</a></li>
             </ul>
         </div>

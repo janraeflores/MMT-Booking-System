@@ -5,6 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,6 +33,7 @@
         <div class="wrapper">
             <ul>
                 <li><a href="MMT">HOME</a></li>
+                <li><a href="account">ACCOUNT</a></li>
                 <li><a href="#">SERVICES</a></li>
                 <li><a href="reservation">RESERVATION</a></li>
                 <li><a href="contact">CONTACT</a></li>
@@ -64,8 +66,10 @@
                         <tr>
                             <td>${account.fullName}</td>
                             <td>${appointment.service.serviceType}</td>
-                            <td>60mins</td>
-                            <td>${appointment.appointmentDate}</td>
+                            <td>${appointment.duration}</td>
+                            <td>
+                                <fmt:formatDate pattern="MM dd, yyyy hh:mm a" timeZone="America/Denver"  value="${appointment.appointmentDate}"/>
+                            </td>
                             <td id="status">
                                 <c:choose>
                                     <c:when test="${appointment.status == true}">Confirmed</c:when>

@@ -69,7 +69,8 @@ public class ReservationServlet extends HttpServlet {
             String selectedDate = request.getParameter("selected-date");
             String timeSlot = request.getParameter("t-slot");
             String address = request.getParameter("u-address");
-
+            
+            String appointmentDate = selectedDate + " " + timeSlot;
             
             if (serviceType == 0) {
                 if (serviceDuration == 0) {
@@ -81,8 +82,8 @@ public class ReservationServlet extends HttpServlet {
                 getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
                 return;
             }
-
-            apptserv.insert(serviceType, account, address, convertToDate(selectedDate + " " + timeSlot), serviceDuration);
+            
+            apptserv.insert(serviceType, account, address, convertToDate(appointmentDate), serviceDuration);
 
             // gets results of the appointment newly made 
             int length = apptserv.getAll(username).size();
@@ -107,7 +108,7 @@ public class ReservationServlet extends HttpServlet {
         // creates a formatter that matches 'selectedDate' format
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("d MMMM, yyyy h:mm a");
         
-        // selected date is converted to 'yyyy-mm-dd' format
+        // selected date is converted to 'yyyy-mm-dd h:mm a' format
         LocalDate ld = LocalDate.parse(selectedDate, dateFormat);
         
         // converts LocalDate to Date

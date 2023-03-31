@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
             if (role.getRoleId() == 1) {
                 response.sendRedirect("");
             } else {
-                response.sendRedirect("account");
+                response.sendRedirect("booking");
             }
         }
     }

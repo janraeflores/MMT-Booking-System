@@ -5,9 +5,10 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
-
+    
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +17,6 @@
         <title>MMT - Reservations</title>
         <link rel="stylesheet" type="text/css" href="Assets/Styles/Reservation.css">
     </head>
-
     <body>
         <header>
             <div class="mmt-logo">
@@ -30,7 +30,7 @@
             <div class="wrapper stack-top">
                 <ul>
                     <li><a href="MMT">HOME</a></li>
-                    <li><a href="login">LOGIN</a></li>
+                    <li><a href="account">ACCOUNT</a></li>
                     <li><a href="#">SERVICES</a></li>
                     <li><a href="reservation">RESERVATION</a></li>
                     <li><a href="contact">CONTACT</a></li>
@@ -92,8 +92,8 @@
                                     <select name="s-duration" id="s-duration">
                                         <option value="0">Session Duration</option>
                                         <option value="60">60 Mins (1 hr)</option>
-<!--                                        <option value="90">90 Mins (1.5 hrs)</option>
-                                        <option value="120">120 Mins (2 hrs)</option>-->
+                                        <option value="90">90 Mins (1.5 hrs)</option>
+                                        <option value="120">120 Mins (2 hrs)</option>
                                     </select>
                                 </div>
                                 
@@ -116,8 +116,8 @@
                                 <div class="patient-info">
                                     <table>
                                         <tbody>
-                                            <tr>
-                                        <p>INFORMATION</p>
+                                        <tr>
+                                            <p>INFORMATION</p>
                                         </tr>
                                         <tr>
                                             <td>NAME:</td>
@@ -125,7 +125,10 @@
                                         </tr>
                                         <tr>
                                             <td>PHONE:</td>
-                                            <td><input type="tel" name="u-tel" id="u-tel" value="${account.phone}"></td>
+                                            <td>                                           
+                                                <fmt:setLocale value="en_US" />
+                                                <input type="text" name="u-tel" id="u-tel" value="${account.phone}">
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>EMAIL:</td>
@@ -143,12 +146,6 @@
                                     </div>
                                     <div class="reserve-container">
                                         <button id="reserve" type="submit">BOOK</button>
-                                        
-                                        <p>Client: ${appointment.account.fullName}</p>             
-                                        <p>Service: ${appointment.service.serviceType}</p>  
-                                        <p>Length: ${duration} mins</p>
-                                        <p>Appointment Date: ${appointment.appointmentDate}</p>   
-                                        <p>Appointment Address: ${appointment.appointmentAddress}</p>   
                                     </div>
                                     <div id="message">${message}</div>
                                 </div>

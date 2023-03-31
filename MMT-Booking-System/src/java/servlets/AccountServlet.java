@@ -13,6 +13,7 @@ import models.Account;
 import models.EmergencyContact;
 import services.AccountService;
 import services.EmergencyContactService;
+import services.Validate;
 
 /**
  *
@@ -67,7 +68,13 @@ public class AccountServlet extends HttpServlet {
                 String ecName = request.getParameter("ec_name");
                 String ecPhone = request.getParameter("ec_phone");
                 String ecEmail = request.getParameter("ec_email");
-
+                
+                if (Validate.isEmpty(new String[]{fullName, email, phone, address, password})) {
+                    request.setAttribute("message", "Changes not saved.");
+                    getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
+                    return;
+                }
+                
                 if (ec == null) {
                     ecs.insert(ecName, ecPhone, ecEmail);
                 } else {
@@ -76,6 +83,8 @@ public class AccountServlet extends HttpServlet {
 
                 as.update(fullName, email, active, userName, password, phone, role, address, ec);
                 request.setAttribute("message", "Account has been updated successfully!");
+                //getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
+                
             }
         } catch (Exception e) {
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, e);

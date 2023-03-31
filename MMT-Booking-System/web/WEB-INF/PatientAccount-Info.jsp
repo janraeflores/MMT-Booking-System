@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +33,7 @@
             <div class="wrapper">
                 <ul>
                     <li><a href="MMT">HOME</a></li>
-                    <li><a href="login">LOGIN</a></li>
+                    <li><a href="account">ACCOUNT</a></li>
                     <li><a href="#">SERVICES</a></li>
                     <li><a href="reservation">RESERVATION</a></li>
                     <li><a href="contact">CONTACT</a></li>
@@ -75,7 +75,8 @@
                                 <tr>
                                     <td class="left-table">PHONE NUMBER</td>
                                     <td class="right-table">
-                                        <input type="text" class="right-table-input" name="phone" value="${account.phone}">
+                               
+                                        <input type="text" class="right-table-input" name="phone" value="${account.phone}"/>
                                     </td>
                                 </tr>
                                 <tr>
