@@ -39,6 +39,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Account.findByMedicalInfo", query = "SELECT a FROM Account a WHERE a.medicalInfo = :medicalInfo")})
 public class Account implements Serializable {
 
+   
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -50,15 +52,15 @@ public class Account implements Serializable {
     @Basic(optional = false)
     @Column(name = "email")
     private String email;
+     @Basic(optional = false)
+    @Column(name = "phone")
+    private int phone;
     @Basic(optional = false)
     @Column(name = "active")
     private boolean active;
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
-    @Basic(optional = false)
-    @Column(name = "phone")
-    private String phone;
     @Column(name = "birthdate")
     @Temporal(TemporalType.DATE)
     private Date birthdate;
@@ -83,7 +85,7 @@ public class Account implements Serializable {
         this.username = username;
     }
 
-    public Account(String username, String fullName, String email, boolean active, String password, String phone, String address) {
+    public Account(String username, String fullName, String email, boolean active, String password, int phone, String address) {
         this.username = username;
         this.fullName = fullName;
         this.email = email;
@@ -133,14 +135,6 @@ public class Account implements Serializable {
         this.password = password;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public Date getBirthdate() {
         return birthdate;
     }
@@ -179,6 +173,14 @@ public class Account implements Serializable {
     public void setEcContact(EmergencyContact ecContact) {
         this.ecContact = ecContact;
     }
+    
+     public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
 
     public Role getRole() {
         return role;
@@ -212,5 +214,6 @@ public class Account implements Serializable {
     public String toString() {
         return "models.Account[ username=" + username + " ]";
     }
-    
+
+   
 }

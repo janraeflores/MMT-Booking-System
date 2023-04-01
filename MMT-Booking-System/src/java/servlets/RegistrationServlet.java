@@ -36,7 +36,7 @@ public class RegistrationServlet extends HttpServlet {
         String email = request.getParameter("email-input");
         String username = request.getParameter("username-input");
         String password = request.getParameter("pass-input");
-        String phone = request.getParameter("phone-input");
+        int phone = Integer.parseInt(request.getParameter("phone-input"));
         String address = request.getParameter("address-input");
 
         String action = request.getParameter("action");
@@ -45,7 +45,7 @@ public class RegistrationServlet extends HttpServlet {
             if (action != null) {
                 switch (action) {
                     case "register":
-                        if (Validate.isEmpty(new String[]{email, username, password, fullName, phone, address})) {
+                        if (Validate.isEmpty(new String[]{email, username, password, fullName, Integer.toString(phone), address})) {
                             
                             request.setAttribute("message", "Please fill out all fields.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);

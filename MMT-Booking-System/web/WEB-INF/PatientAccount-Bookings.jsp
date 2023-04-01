@@ -66,9 +66,9 @@
                         <tr>
                             <td>${account.fullName}</td>
                             <td>${appointment.service.serviceType}</td>
-                            <td>${appointment.duration}</td>
+                            <td>${appointment.duration} mins</td>
                             <td>
-                                <fmt:formatDate pattern="MM dd, yyyy hh:mm a" timeZone="America/Denver"  value="${appointment.appointmentDate}"/>
+                                <fmt:formatDate pattern="MMM dd, yyyy hh:mm a z" timeZone="America/Denver"  value="${appointment.appointmentDate}"/>
                             </td>
                             <td id="status">
                                 <c:choose>

@@ -89,13 +89,6 @@
                         <!-- <input type="hidden" name="action" value="register"> -->
                     </div>
                 </form>
-                <form action="" method="POST">
-                    <div class="button-container">
-                        <input type="submit" class="button" value="CANCEL">
-                        <input type="hidden" name="action" value="cancel">
-                    </div>
-                </form>
-
             </div>
         </div>
 

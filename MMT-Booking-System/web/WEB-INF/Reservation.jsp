@@ -125,9 +125,10 @@
                                         </tr>
                                         <tr>
                                             <td>PHONE:</td>
-                                            <td>                                           
-                                                <fmt:setLocale value="en_US" />
-                                                <input type="text" name="u-tel" id="u-tel" value="${account.phone}">
+                                            <td>
+                                                <fmt:formatNumber pattern='###-###-####' type='number' value='${account.phone}' var='accountPhone' />"
+                                                <input type="text" name="u-tel" id="u-tel" 
+                                                       value="<fmt:formatNumber pattern='NNN-NNN-NNNN' value='${accountPhone}'/>">
                                             </td>
                                         </tr>
                                         <tr>

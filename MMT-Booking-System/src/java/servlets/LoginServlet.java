@@ -38,6 +38,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         AccountService as = new AccountService();
+        
         Account account = as.login(username, password);
         
         if (Validate.isEmpty(new String[]{username, password})) {
@@ -52,9 +53,9 @@ public class LoginServlet extends HttpServlet {
         }
 
         session.setAttribute("username", username);
-
+        
         boolean isActive = account.getActive();
-
+        
         if (isActive == true) {
             Role role = account.getRole();
 
@@ -64,5 +65,6 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("booking");
             }
         }
+       
     }
 }

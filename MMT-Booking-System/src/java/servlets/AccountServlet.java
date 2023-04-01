@@ -60,16 +60,16 @@ public class AccountServlet extends HttpServlet {
 
                 String fullName = request.getParameter("full_name");
                 String email = request.getParameter("email");
-                String phone = request.getParameter("phone");
+                int phone = Integer.parseInt(request.getParameter("phone"));
                 String address = request.getParameter("address");
                 String userName = request.getParameter("user_name");
                 String password = request.getParameter("password");
                 boolean active = true;
                 String ecName = request.getParameter("ec_name");
-                String ecPhone = request.getParameter("ec_phone");
+                int ecPhone = Integer.parseInt(request.getParameter("ec_phone"));
                 String ecEmail = request.getParameter("ec_email");
                 
-                if (Validate.isEmpty(new String[]{fullName, email, phone, address, password})) {
+                if (Validate.isEmpty(new String[]{fullName, email, Integer.toString(phone), address, password})) {
                     request.setAttribute("message", "Changes not saved.");
                     getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
                     return;
@@ -83,8 +83,7 @@ public class AccountServlet extends HttpServlet {
 
                 as.update(fullName, email, active, userName, password, phone, role, address, ec);
                 request.setAttribute("message", "Account has been updated successfully!");
-                //getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
-                
+                request.setAttribute("account", as.get(userName));
             }
         } catch (Exception e) {
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, e);

@@ -38,11 +38,11 @@ public class EmergencyContact implements Serializable {
     @Basic(optional = false)
     @Column(name = "ec_name")
     private String ecName;
-    @Basic(optional = false)
-    @Column(name = "ec_phone")
-    private String ecPhone;
     @Column(name = "ec_email")
     private String ecEmail;
+    @Basic(optional = false)
+    @Column(name = "ec_phone")
+    private int ecPhone;
     @OneToMany(mappedBy = "ecContact", fetch = FetchType.EAGER)
     private List<Account> accountList;
 
@@ -53,7 +53,7 @@ public class EmergencyContact implements Serializable {
         this.ecName = ecName;
     }
 
-    public EmergencyContact(String ecName, String ecPhone) {
+    public EmergencyContact(String ecName, int ecPhone) {
         this.ecName = ecName;
         this.ecPhone = ecPhone;
     }
@@ -66,11 +66,11 @@ public class EmergencyContact implements Serializable {
         this.ecName = ecName;
     }
 
-    public String getEcPhone() {
+    public int getEcPhone() {
         return ecPhone;
     }
 
-    public void setEcPhone(String ecPhone) {
+    public void setEcPhone(int ecPhone) {
         this.ecPhone = ecPhone;
     }
 
@@ -115,5 +115,4 @@ public class EmergencyContact implements Serializable {
     public String toString() {
         return "models.EmergencyContact[ ecName=" + ecName + " ]";
     }
-    
 }

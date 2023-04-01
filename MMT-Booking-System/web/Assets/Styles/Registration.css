@@ -249,7 +249,7 @@ main {
 
 .form-container p {
     text-align: left;
-    margin: 15px 0 5px 0;
+    margin: 15px 0 5px 25px;
 }
 
 .email-container, .username-container, .fullName-container, .phone-container, .address-container, .password-container {
@@ -266,7 +266,7 @@ main {
     color: rgba(105, 114, 104, 1);
 }
 
-.email, .username, .fullName, .phone, .address, .password  {
+.email, .username, .fullName, .phone, .address, .password {
     letter-spacing: 0;
     line-height: 20px;
     min-width: 84px;
@@ -275,7 +275,7 @@ main {
     border-radius: 8px;
 }
 
-#email-input, #username-input, #full_name-input, #phone-input, #address-input, #pass-input  {
+#email-input, #username-input, #full_name-input, #phone-input, #address-input, #pass-input {
     background-color:rgba(249, 251, 253, 1);
     color: rgba(105, 114, 104, 1);
     font-size: 20px;
@@ -284,7 +284,7 @@ main {
     height: 45px;
     width: 325px;
     transition: height 1s;
-    padding-left: 70px;
+    padding-left: 20px;
     border-radius: 8px;
 }
 
