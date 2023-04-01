@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -106,16 +107,17 @@ public class ReservationServlet extends HttpServlet {
     private Date convertToDate(String selectedDate) {
         
         // creates a formatter that matches 'selectedDate' format
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("d MMMM, yyyy h:mm a");
+        DateTimeFormatter selectedDateFormat = DateTimeFormatter.ofPattern("d MMMM, yyyy h:mm a");
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         
-        // selected date is converted to 'yyyy-mm-dd h:mm a' format
-        LocalDate ld = LocalDate.parse(selectedDate, dateFormat);
+        // selected date is converted to '' format
+        LocalDateTime ldt = LocalDateTime.parse(selectedDate, selectedDateFormat);
+        
+        String formattedSelectedDate = ldt.format(dateFormat);
         
         // converts LocalDate to Date
-        Date date = Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date date = Date.from(LocalDateTime.parse(formattedSelectedDate, dateFormat).atZone(ZoneId.systemDefault()).toInstant());
         
         return date;
     }
-    
-
 }
