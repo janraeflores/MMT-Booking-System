@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`role` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mmtdb`.`emergency_contact` (
   `ec_name` VARCHAR(40) NOT NULL,
-  `ec_phone` VARCHAR(10) NOT NULL,
+  `ec_phone` INT(10) NOT NULL,
   `ec_email` VARCHAR(40),
   PRIMARY KEY (`ec_name`));
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`account` (
   `email` VARCHAR(40) NOT NULL,
   `active` TINYINT(1) NOT NULL DEFAULT '1',
   `password` VARCHAR(30) NOT NULL,
-  `phone` VARCHAR(10) NOT NULL,
+  `phone` INT(10) NOT NULL,
   `role` INT(11) NOT NULL,
   `birthdate` DATE,
   `address` VARCHAR(50) NOT NULL,
