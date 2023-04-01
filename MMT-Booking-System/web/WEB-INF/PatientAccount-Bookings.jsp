@@ -60,6 +60,7 @@
                         <th>Service</th>
                         <th>Duration</th>
                         <th>Date</th>
+                        <th>Location</th>
                         <th>Status</th>
                     </tr>
                     <c:forEach items="${appointment}" var="appointment">
@@ -68,8 +69,9 @@
                             <td>${appointment.service.serviceType}</td>
                             <td>${appointment.duration} mins</td>
                             <td>
-                                <fmt:formatDate pattern="MMM dd, yyyy hh:mm a z" timeZone="America/Denver"  value="${appointment.appointmentDate}"/>
+                                <fmt:formatDate pattern="MMM dd, yyyy hh:mm a z" timeZone="America/Denver" value="${appointment.appointmentDate}"/>
                             </td>
+                            <td>${account.address}</td>
                             <td id="status">
                                 <c:choose>
                                     <c:when test="${appointment.status == true}">Confirmed</c:when>
