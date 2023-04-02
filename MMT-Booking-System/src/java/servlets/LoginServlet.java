@@ -23,8 +23,14 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        session.invalidate();
 
+        String logout = request.getParameter("logout");
+
+        if (logout != null) {
+            session.invalidate();
+            request.setAttribute("message", "You have successfully logged out!");
+            
+        }
         getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
     }
 
@@ -42,12 +48,12 @@ public class LoginServlet extends HttpServlet {
         Account account = as.login(username, password);
         
         if (Validate.isEmpty(new String[]{username, password})) {
-            request.setAttribute("message", "Please provide a valid username or password.");
+            request.setAttribute("errorMessage", "Please provide a valid username or password.");
             getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
             return;
         }
         if (account == null) {
-            request.setAttribute("message", "Your credentials cannot be verified.");
+            request.setAttribute("errorMessage", "Your credentials cannot be verified.");
             getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
             return;
         }
@@ -60,7 +66,7 @@ public class LoginServlet extends HttpServlet {
             Role role = account.getRole();
 
             if (role.getRoleId() == 1) {
-                response.sendRedirect("");
+                response.sendRedirect("admin");
             } else {
                 response.sendRedirect("booking");
             }
