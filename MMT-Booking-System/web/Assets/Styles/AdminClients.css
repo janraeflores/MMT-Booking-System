@@ -1,0 +1,281 @@
+/* 
+    Created on : 30-Mar-2023, 11:48:28 AM
+    Author     : User
+*/
+
+@import url("https://css.gg/css");
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Josefin+Slab:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gafata&display=swap');
+/*menu button stuff*/
+
+body {
+    margin: 0;
+    background-color: rgba(249, 251, 253, 1);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    font-family: 'Gafata', sans-serif;
+}
+
+.wrapper {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100%;
+    width: 100%;
+    background: rgba(105, 114, 104, 1);
+    transition: all 0.5s ease-in-out;
+}
+
+#active:checked~.wrapper {
+    right: 0;
+}
+
+.menu-btn {
+    position: absolute;
+    z-index: 2;
+    right: 20px;
+    top: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.menu-btn span,
+.menu-btn:before,
+.menu-btn:after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 30%;
+    width: 40%;
+    border-bottom: 2px solid #000;
+    transition: transform .3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.menu-btn:before {
+    transform: translateY(-8px);
+}
+
+.menu-btn:after {
+    transform: translateY(8px);
+}
+
+.close {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transition: background .3s;
+}
+
+#active:checked+.menu-btn span {
+    transform: scaleX(0);
+}
+
+#active:checked+.menu-btn:before {
+    transform: rotate(45deg);
+    border-color: rgba(249, 251, 253, 1);
+}
+
+#active:checked+.menu-btn:after {
+    transform: rotate(-45deg);
+    border-color: rgba(249, 251, 253, 1);
+}
+
+.wrapper ul {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    height: 90%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    text-align: center;
+}
+
+.wrapper ul li {
+    height: 10%;
+    margin: 15px 0;
+}
+
+.wrapper ul li a {
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 500;
+    padding: 5px 30px;
+    color: rgba(249, 251, 253, 1);
+    border-radius: 50px;
+    position: absolute;
+    line-height: 50px;
+    margin: 5px 30px;
+    opacity: 0;
+    transition: all 0.5s ease;
+    transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.wrapper ul li a:after {
+    position: absolute;
+    content: "";
+    background: rgba(249, 251, 253, 1);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 50px;
+    transform: scaleY(0);
+    z-index: -1;
+    transition: transform 0.5s ease;
+}
+
+.wrapper ul li a:hover:after {
+    transform: scaleY(1);
+}
+
+.wrapper ul li a:hover {
+    color: rgba(105, 114, 104, 1);
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+#active:checked~.wrapper ul li a {
+    opacity: 1;
+}
+
+.wrapper ul li a {
+    transition: opacity 0.5s, transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translateX(100px);
+}
+
+#active:checked~.wrapper ul li a {
+    transform: none;
+    transition-timing-function: ease, cubic-bezier(.1, 1.3, .3, 1);
+    transition-delay: 0.5s;
+    transform: translateX(-100px);
+}
+
+/*relocate admin pages*/
+div.clientList{
+    float: left;
+    width: 20%;
+    height: auto;
+    overflow: auto;
+    background-color: rgba(188, 211, 156, 0.7);
+    text-align: center;
+    height: 100vh;
+}
+
+.clientInfo{
+    float:right;
+    width: 80%;
+    background-color: white;
+    overflow:scroll;
+    height: 100vh;
+}
+.clientInfo h1{
+    text-align: center;
+    color: #697268;
+    font-size: 300%;
+    font-weight: lighter;
+    margin: 2%;
+    padding-bottom: 5%;
+}
+button.saveButt{
+    border: none;
+    border-radius: 15%;
+    margin-right: 2%;
+    padding: 1% 2%;
+    font-family: 'Gafata', sans-serif;
+    font-size: 40%;
+    background-color: rgba(43, 78, 39, 0.7);
+    color: white;
+}
+button.deleteButt{
+    border: none;
+    border-radius: 15%;
+    margin-right: 2%;
+    padding: 1% 2%;
+    font-family: 'Gafata', sans-serif;
+    font-size: 40%;
+    background-color: rgba(152, 71, 62, 0.7);
+    color: white;
+}
+button.editButt:hover{
+    background-color: rgba(43, 78, 39, 0.9);
+}
+button.deleteButt:hover{
+    background-color: rgba(152, 71, 62, 0.9);
+}
+
+.info{
+    margin: 0% 5%;
+}
+.info h3{
+    color: #7FA0CA;
+    font-weight: lighter;
+    font-size: 170%;
+}
+input{
+    border: none;
+    font-family: 'Gafata', sans-serif;
+    color: rgba(105, 114, 104, 1);
+    font-size: 130%;
+}
+input.text{
+    width: 100%;
+}
+.emergency p{
+    color: #3b5a82;
+    font-size: 120%;
+}
+textarea.textBig{
+    font-family: 'Gafata', sans-serif;
+    width: 100%;
+    height:500px;
+    margin-bottom: 5%;
+    color: rgba(105, 114, 104, 1);
+    font-size: 110%;
+    line-height: 150%;
+}
+
+.clientInfo h2{
+    text-align: center;
+    color: #7FA0CA;
+    font-size: 600%;
+    font-weight: lighter;
+}
+
+h2.clients-head{
+    padding-bottom: 0;
+    margin-bottom: 0;
+    padding-top: 2%;
+    margin-top: 2%;    
+    font-weight: lighter;
+}
+.clientHead{
+    color: white;
+    font-size: 200%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.client{
+    font-family: 'Gafata', sans-serif;
+    font-size: 160%;
+    color: #697268;
+    /*    background-color: rgba(188, 211, 156, 0.7);*/
+    background: none;
+    border: none;
+    width:100%;
+    text-align: left;
+    padding-bottom: 5%;
+    padding-top: 5%;
+}
+.client:hover{
+    background-color: rgba(188, 211, 156, 0.7);
+}
