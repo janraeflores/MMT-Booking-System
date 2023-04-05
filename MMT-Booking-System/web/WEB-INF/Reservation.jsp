@@ -126,7 +126,7 @@
                                         <tr>
                                             <td>PHONE:</td>
                                             <td>
-                                                <fmt:formatNumber pattern='###-###-####' type='number' value='${account.phone}' var='accountPhone' />"
+                                                <fmt:formatNumber pattern='###-###-####' type='number' value='${account.phone}' var='accountPhone' />
                                                 <input type="text" name="u-tel" id="u-tel" 
                                                        value="<fmt:formatNumber pattern='NNN-NNN-NNNN' value='${accountPhone}'/>">
                                             </td>

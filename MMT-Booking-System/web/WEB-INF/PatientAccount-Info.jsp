@@ -75,7 +75,7 @@
                                 <tr>
                                     <td class="left-table">PHONE NUMBER</td>
                                     <td class="right-table">
-                                        <fmt:formatNumber pattern='###-###-####' type='number' value='${account.phone}' var='accountPhone' />"
+                                        <fmt:formatNumber pattern='###-###-####' type='number' value='${account.phone}' var='accountPhone' />
                                         <input type="text" class="right-table-input" name="phone" 
                                                value="${accountPhone}">
                                     </td>
@@ -137,10 +137,10 @@
         <div class="footer-basic">
             <footer>
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a href="#">Home</a></li>
+                    <li class="list-inline-item"><a href="MMT">Home</a></li>
                     <li class="list-inline-item"><a href="#">Services</a></li>
-                    <li class="list-inline-item"><a href="#">Reservations</a></li>
-                    <li class="list-inline-item"><a href="#">Contact</a></li>
+                    <li class="list-inline-item"><a href="reservation">Reservations</a></li>
+                    <li class="list-inline-item"><a href="contact">Contact</a></li>
                 </ul>
                 <p class="copyright">Massage Master Therapy © ?YEAR?</p>
             </footer>

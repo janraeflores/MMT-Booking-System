@@ -1,12 +1,14 @@
 package servlets;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -82,6 +84,21 @@ public class ReservationServlet extends HttpServlet {
                 request.setAttribute("message", "Please select a massage type.");
                 getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
                 return;
+            }
+            
+            //Checks if appointment timeslot is available
+            AppointmentService appts = new AppointmentService();
+            List<Appointment> appointments = appts.getAll();
+            
+            for (Appointment appt: appointments) {
+                
+                Date date = convertToDate(appointmentDate);
+                
+                if (date.compareTo(appt.getAppointmentDate()) == 0) {
+                    request.setAttribute("message", "Time slot already taken, please select a different time.");
+                    getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
+                    return;
+                }
             }
             
             apptserv.insert(serviceType, account, address, convertToDate(appointmentDate), serviceDuration);
