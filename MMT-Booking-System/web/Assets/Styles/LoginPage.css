@@ -170,21 +170,23 @@ input[type="checkbox"] {
     padding-top: 75px;
 }
 
-#error-message {
-    display: flex;
-    justify-content: center;
-    margin: 0 230px 5px 0;
-    font-family: 'Josefin Sans';
-    color: rgba(229, 31, 31, 1);
-}
-
 #message {
     display: flex;
     justify-content: center;
     margin: 0 230px 5px 0;
     font-family: 'Josefin Sans';
-    color: rgba(249, 251, 253, 1);
+    color: #e51f1f;
 }
+
+input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px rgb(234, 237, 233) inset; 
+    -webkit-text-fill-color: #333;
+}
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 50px rgb(234, 237, 233) inset;
+    -webkit-text-fill-color: #333;
+} 
 
 .user-container {
     align-items: center;
@@ -291,17 +293,17 @@ button {
     transition: 0.4s;
 }
 
+.login {
+    color: rgba(105, 114, 104, 1);
+    background-color: rgba(188, 211, 156, 1);
+    border: 5px solid rgba(188, 211, 156, 1);
+}
+
 button:hover {
     color: rgba(249, 251, 253, 1);
     width: 150px;
     background-color: rgba(188, 210, 238, 1);
     border: 1px;
-}
-
-.login {
-    color: rgba(105, 114, 104, 1);
-    background-color: rgba(188, 211, 156, 1);
-    border: 5px solid rgba(188, 211, 156, 1);
 }
 
 .forgot-password {

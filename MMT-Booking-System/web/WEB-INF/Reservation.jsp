@@ -1,10 +1,10 @@
-<%-- 
+<!-- <%-- 
     Document   : Reservation
     Created on : 10-Feb-2023, 6:07:32 PM
     Author     : Flores
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +34,7 @@
                     <li><a href="#">SERVICES</a></li>
                     <li><a href="reservation">RESERVATION</a></li>
                     <li><a href="contact">CONTACT</a></li>
-                    <li><a href="logout">LOGOUT</a></li>
+                    <li><a href="login?logout">LOGOUT</a></li>
                 </ul>
             </div>
         </header>
@@ -112,7 +112,8 @@
                                         <option value="5:00 PM">5:00 PM</option>
                                         <option value="6:00 PM">6:00 PM</option>
                                     </select>
-                                </div>                                    
+                                </div>       
+                                
                                 <div class="patient-info">
                                     <table>
                                         <tbody>
@@ -120,35 +121,38 @@
                                             <p>INFORMATION</p>
                                         </tr>
                                         <tr>
-                                            <td>NAME:</td>
+                                            <td>Full Name</td>
                                             <td><input type="text" name="u-name" id="u-name" value="${account.fullName}"></td>
                                         </tr>
                                         <tr>
-                                            <td>PHONE:</td>
+                                            <td>Phone Number</td>
                                             <td>
-                                                <fmt:formatNumber pattern='###-###-####' type='number' value='${account.phone}' var='accountPhone' />
+
                                                 <input type="text" name="u-tel" id="u-tel" 
-                                                       value="<fmt:formatNumber pattern='NNN-NNN-NNNN' value='${accountPhone}'/>">
+                                                        value="<fmt:formatNumber pattern='###-###-####' type='number' value='${account.phone}'/>">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>EMAIL:</td>
-                                            <td><input type="email" name="u-email" id="u-email" value="${account.email}"></td>
+                                            <td>Email</td>
+                                            <td><input type="text" name="u-email" id="u-email" value="${account.email}"></td>
                                         </tr>
                                         <tr>
-                                            <td>ADDRESS:</td>
-                                            <td><input type="text" name="u-address" id="u-address" value="${account.address}"></td>
+                                            <td>Location</td>
+                                            <td>
+                                                <input type="text" name="u-address" id="u-address" value="${account.address}">
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
                                     <div class="medical-concerns">
-                                        <p>MEDICAL CONCERNS:</p>
-                                        <textarea rows="5" cols="30" name="med-concerns" id="med-concerns"></textarea>
-                                    </div>
-                                    <div class="reserve-container">
-                                        <button id="reserve" type="submit">BOOK</button>
+                                        <p>MEDICAL CONCERNS</p>
+                                        <textarea type="text" rows="4" cols="41" placeholder="(Optional)" name="med-concerns" id="med-concerns"></textarea>
                                     </div>
                                     <div id="message">${message}</div>
+                                    <div class="reserve-container">
+                                        <button id="reserve" type="submit">Book Appointment</button>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </form>

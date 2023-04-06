@@ -1,11 +1,11 @@
-<%-- 
+<!-- <%-- 
     Document   : PatientAccount-Info
     Created on : 6-Feb-2023, 5:48:21 PM
     Author     : janraeSAIT
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +37,7 @@
                     <li><a href="#">SERVICES</a></li>
                     <li><a href="reservation">RESERVATION</a></li>
                     <li><a href="contact">CONTACT</a></li>
-                    <li><a href="logout">LOGOUT</a></li>
+                    <li><a href="login?logout">LOGOUT</a></li>
                 </ul>
             </div>
         </header>
@@ -75,9 +75,9 @@
                                 <tr>
                                     <td class="left-table">PHONE NUMBER</td>
                                     <td class="right-table">
-                                        <fmt:formatNumber pattern='###-###-####' type='number' value='${account.phone}' var='accountPhone' />
+
                                         <input type="text" class="right-table-input" name="phone" 
-                                               value="${accountPhone}">
+                                               value="<fmt:formatNumber pattern='###-###-####' type='number' value='${account.phone}'/>">
                                     </td>
                                 </tr>
                                 <tr>
@@ -123,12 +123,12 @@
                             </tr>
                             </tbody>
                         </table>
-
+                        <div id="message">${message}</div>
                         <div class="save-container">
                             <button class="save">SAVE</button>
                             <input type="hidden" name="action" value="updateAccount">
                         </div>
-                        <div id="message">${message}</div>
+                        
                     </div>
                 </form>
             </div>

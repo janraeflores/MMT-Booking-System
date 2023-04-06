@@ -407,6 +407,72 @@ header h1 {
     color: rgba(105, 114, 104, 1);
 }
 
+form div {
+    font-family: 'Josefin Sans';
+    
+}
+.patient-info input[type=text] {
+    background-color: rgb(255, 255, 255);
+    padding: 5px 10px;
+    font-family: 'Josefin Sans';
+    font-size: 14px;
+    width: 200px;
+    border: 2px white solid;
+    border-radius: 4px;
+    transition: height 1s;
+}
+.patient-info input[type=text]:focus {
+    background-color: rgb(253, 253, 253);
+    border: 2px #697268 solid;
+}
+
+#med-concerns {
+    resize: none;
+}
+
+#message {
+    display: flex;
+    justify-content: center;
+    margin: 10px 5px;
+    font-family: 'Josefin Sans';
+    color: #e51f1f;
+}
+
+.reserve-container {
+    background-color: rgba(188, 211, 156, 1);
+    display: flex;
+    gap: 10px;
+    margin-top: 43px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+#reserve {
+    color: rgba(105, 114, 104, 1);
+    background-color: #bcd2ee;
+    border: 5px solid #bcd2ee;
+}
+
+#reserve:hover {
+    color: rgba(249, 251, 253, 1);
+    width: 150px;
+    background-color: #bcd2ee;
+    border: 1px;
+    box-shadow: 0 0 20px rgba(249, 251, 253, 1);
+}
+button {
+    cursor: pointer;
+    border: 0;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0px;
+    width: 200px;
+    padding: 8px 0px;
+
+    transition: 0.4s;
+}
+
 @media screen and (max-width: 1000px) {
     body {
         align-items: flex-start;
@@ -459,3 +525,4 @@ header h1 {
             padding: 20px;
         }
     }
+}
