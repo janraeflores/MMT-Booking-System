@@ -17,7 +17,7 @@
         <title>MMT - Reservations</title>
         <link rel="stylesheet" type="text/css" href="Assets/Styles/Reservation.css">
     </head>
-    <body>
+    <body onload="">
         <header>
             <div class="mmt-logo">
                 <img src="./Assets/Images/white-logo-tp.png" alt="">
@@ -80,9 +80,10 @@
                             
                             <div id="services" class="services hide">
                                 <p>SERVICES</p>
+                                
                                 <div class="service-select">
                                     <select name="s-type" id="s-type">
-                                        <option value="0">Massage Options</option>
+                                        <option value="0">Select Service</option>
                                         <c:forEach items="${service}" var="service">
                                             <option value="${service.serviceId}">${service.serviceType}</option>    
                                         </c:forEach>
@@ -128,8 +129,7 @@
                                             <td>Phone Number</td>
                                             <td>
 
-                                                <input type="text" name="u-tel" id="u-tel" 
-                                                        value="<fmt:formatNumber pattern='###-###-####' type='number' value='${account.phone}'/>">
+                                                <input type="text" name="u-tel" id="u-tel" value="${account.phone}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -137,7 +137,7 @@
                                             <td><input type="text" name="u-email" id="u-email" value="${account.email}"></td>
                                         </tr>
                                         <tr>
-                                            <td>Location</td>
+                                            <td>Address</td>
                                             <td>
                                                 <input type="text" name="u-address" id="u-address" value="${account.address}">
                                             </td>

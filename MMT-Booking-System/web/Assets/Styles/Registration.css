@@ -247,6 +247,13 @@ main {
     min-height: 500px;
 }
 
+#message {
+    padding: 15px;
+    font-family: 'Josefin Sans';
+    font-size: 15pt;
+    color: #e51f1f;    
+}
+
 .form-container p {
     text-align: left;
     margin: 15px 0 5px 25px;

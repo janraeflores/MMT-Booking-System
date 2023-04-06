@@ -36,16 +36,19 @@ public class RegistrationServlet extends HttpServlet {
         String email = request.getParameter("email-input");
         String username = request.getParameter("username-input");
         String password = request.getParameter("pass-input");
-        int phone = Integer.parseInt(request.getParameter("phone-input"));
+        String phone = request.getParameter("phone-input");
         String address = request.getParameter("address-input");
 
         String action = request.getParameter("action");
+        
+        // removes dashes from phone number
+        phone = phone.replaceAll("-","");
 
         try {
             if (action != null) {
                 switch (action) {
                     case "register":
-                        if (Validate.isEmpty(new String[]{email, username, password, fullName, Integer.toString(phone), address})) {
+                        if (Validate.isEmpty(new String[]{email, username, password, fullName, phone, address})) {
                             
                             request.setAttribute("message", "Please fill out all fields.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
@@ -53,9 +56,16 @@ public class RegistrationServlet extends HttpServlet {
 
                             request.setAttribute("message", "Your email must be valid.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
-                        } else {
+                        } else if (as.get(username) != null) {
+                            request.setAttribute("message", "This username is taken, please try again.");
+                            getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
+                        } else if (Validate.passwordRequirement(password)) {
+                            request.setAttribute("message", "Password have 8 or more characters.");
+                            getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
+                        }
+                        else {
                             Role role = rs.get(2);
-                            as.insert(username, fullName, email, true, password, phone, role, address); 
+                            as.insert(username, fullName, email, true, password, Integer.parseInt(phone), role, address); 
                             
                             session.setAttribute("account", as.get(username));
                             response.sendRedirect("booking"); 

@@ -76,8 +76,7 @@
                                     <td class="left-table">PHONE NUMBER</td>
                                     <td class="right-table">
 
-                                        <input type="text" class="right-table-input" name="phone" 
-                                               value="<fmt:formatNumber pattern='###-###-####' type='number' value='${account.phone}'/>">
+                                        <input type="text" class="right-table-input" name="phone" value="${account.phone}">
                                     </td>
                                 </tr>
                                 <tr>

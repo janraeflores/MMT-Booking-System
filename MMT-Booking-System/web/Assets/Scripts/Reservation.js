@@ -217,20 +217,5 @@ function getCurrentDate(date) {
     // selected date is assigned to value of hidden input
     document.getElementById("selected-date").value = selectedDate;
     
-    /*
-    // Grab selected date here and push to java???
-    
-
-    let ajax = new XMLHttpRequest();
-    ajax.open("GET", "<URL>?selectedDate" + selectedDate, true)
-    ajax.send();
-
-    // Then in Java we do something like this???
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String selectedDate = request.getParameter("selectedDate");
-        // process the selected date as needed...
-    }
-    */
 }
-
 

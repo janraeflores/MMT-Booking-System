@@ -65,10 +65,6 @@
         <url-pattern>/booking</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>LandingPageServlet</servlet-name>
         <url-pattern>/MMT</url-pattern>
     </servlet-mapping>

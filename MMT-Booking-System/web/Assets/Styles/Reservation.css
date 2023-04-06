@@ -409,8 +409,18 @@ header h1 {
 
 form div {
     font-family: 'Josefin Sans';
-    
 }
+
+form select #s-type {
+    background-color: rgb(255, 255, 255);
+    padding: 5px 10px;
+    font-family: 'Josefin Sans';
+    font-size: 14px;
+    width: 200px;
+    border: 2px white solid;
+    border-radius: 4px;
+}
+
 .patient-info input[type=text] {
     background-color: rgb(255, 255, 255);
     padding: 5px 10px;
