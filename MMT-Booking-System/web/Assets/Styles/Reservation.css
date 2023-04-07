@@ -409,79 +409,111 @@ header h1 {
 
 form div {
     font-family: 'Josefin Sans';
+    font-size: 16px;
 }
 
-form select #s-type {
-    background-color: rgb(255, 255, 255);
-    padding: 5px 10px;
+form select {
+    margin-bottom: 20px;
+    padding: 10px;
     font-family: 'Josefin Sans';
-    font-size: 14px;
-    width: 200px;
-    border: 2px white solid;
+    font-size: 12pt;
+    cursor: pointer;
+    border: 2px solid rgb(255, 255, 255);
     border-radius: 4px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+    outline: none;
+    width: 200px;
 }
 
-.patient-info input[type=text] {
-    background-color: rgb(255, 255, 255);
-    padding: 5px 10px;
+form select option:checked {
+    box-shadow: 0 0 10px 100px #ad2727 inset;
+}
+
+form p {
+    color:rgba(105, 114, 104, 1);
+    margin: 5px 0;
+}
+
+.patient-info p {
+    margin: 20px 0 10px 0;
+    font-size: 15pt;
+    font-weight: 500;
+}
+.patient-info td {
+    font-size: 12pt;
+    margin: 10px 0 0 20px;
+}
+
+.patient-info input {
+    background-color: #ffffff;
+    margin: 5px 0 0 20px;
+    outline: none;
+    padding: 10px;
     font-family: 'Josefin Sans';
-    font-size: 14px;
+    font-size: 15px;
     width: 200px;
-    border: 2px white solid;
+    border: 2px rgb(105, 115, 104) solid;
     border-radius: 4px;
     transition: height 1s;
 }
-.patient-info input[type=text]:focus {
-    background-color: rgb(253, 253, 253);
-    border: 2px #697268 solid;
+.patient-info input:focus {
+    background-color: #fdfdfd;
 }
 
 #med-concerns {
     resize: none;
+    font-family: 'Josefin Sans';
+    font-size: 11pt;
+    border: 2px rgb(105, 115, 104) solid;
+    border-radius: 4px;
+    outline: none;
 }
 
 #message {
-    display: flex;
-    justify-content: center;
-    margin: 10px 5px;
+    margin: 10px;
+    padding: 10px 0 15px 0;
     font-family: 'Josefin Sans';
-    color: #e51f1f;
+    font-size: 12pt;
+    font-weight: 400;
+    color: #202020;
+    text-align: center;
 }
 
 .reserve-container {
-    background-color: rgba(188, 211, 156, 1);
     display: flex;
+    justify-content: center;
+    margin: 14px 0 0 0;
     gap: 10px;
-    margin-top: 43px;
-    margin-left: auto;
-    margin-right: auto;
     width: fit-content;
-}
-#reserve {
-    color: rgba(105, 114, 104, 1);
-    background-color: #bcd2ee;
-    border: 5px solid #bcd2ee;
-}
-
-#reserve:hover {
-    color: rgba(249, 251, 253, 1);
-    width: 150px;
-    background-color: #bcd2ee;
-    border: 1px;
-    box-shadow: 0 0 20px rgba(249, 251, 253, 1);
+    
 }
 button {
+    margin: 0 50px;
     cursor: pointer;
     border: 0;
     border-radius: 4px;
-    font-size: 15px;
-    font-weight: 600;
-    margin: 0 0px;
-    width: 200px;
-    padding: 8px 0px;
-
+    font-family: 'Josefin Sans';
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    width: 300px;
+    padding: 10px;
+    letter-spacing: 2px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
     transition: 0.4s;
 }
+#reserve {
+    background-color: rgba(105, 114, 104, 1);
+    color: rgba(249, 251, 253, 1);
+    border-radius: 4px;
+}
+
+#reserve:hover {
+    background-color: rgba(188, 210, 238, 1);
+    width: 290px;
+    color: rgba(249, 251, 253, 1);
+}
+
 
 @media screen and (max-width: 1000px) {
     body {

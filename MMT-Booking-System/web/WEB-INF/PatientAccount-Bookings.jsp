@@ -18,6 +18,8 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" type="text/css" href="Assets/Styles/PatientAccount-Bookings.css">
+    <link rel="stylesheet" type="text/css" href="Assets/Styles/NavigationBar.css">
+    <link rel="stylesheet" type="text/css" href="Assets/Styles/Footer.css">
 </head>
 
 <body>
@@ -50,7 +52,7 @@
 
         <div class="flex-container">
             <div class="left-column">
-                <p><a href="#">BOOKINGS</a></p>
+                <p><a id="current" href="#">BOOKINGS</a></p>
                 <p><a href="account">PERSONAL INFO</a></p>
             </div>
             <div class="right-column-container">

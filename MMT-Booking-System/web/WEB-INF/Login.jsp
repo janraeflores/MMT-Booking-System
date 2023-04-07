@@ -14,6 +14,8 @@
 
         <!-- Stylesheet -->
         <link rel="stylesheet" type="text/css" href="Assets/Styles/LoginPage.css">
+        <link rel="stylesheet" type="text/css" href="Assets/Styles/NavigationBar.css">
+        <link rel="stylesheet" type="text/css" href="Assets/Styles/Footer.css">
     </head>
 
     <header>
@@ -36,6 +38,7 @@
                 <img class="mmt-logo" src="./Assets/Images/white-logo-tp.png" />
                 <form class="form" action="login" method="POST">
                     <div id="message">${message}</div>
+                    <div id="error-message">${errorMessage}</div>
                     <div class="user-container">
                         <i class="gg-user"></i>
                         <div class="username">
@@ -55,7 +58,7 @@
                     <div class="forgot-password"><a href="#">Forgot Password?</a></div>
                 </form>
                 <div class="register-container">
-                    New here? Register an account here: <a href="registration">Register!</a>
+                    New here? Register an account <a href="registration">here</a>
                 </div>
             </div>
         </main>

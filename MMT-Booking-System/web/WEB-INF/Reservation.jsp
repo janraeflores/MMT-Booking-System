@@ -13,11 +13,14 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        
         <title>MMT - Reservations</title>
         <link rel="stylesheet" type="text/css" href="Assets/Styles/Reservation.css">
+        <link rel="stylesheet" type="text/css" href="Assets/Styles/Footer.css">
+        
     </head>
-    <body onload="">
+    
+    <body>
         <header>
             <div class="mmt-logo">
                 <img src="./Assets/Images/white-logo-tp.png" alt="">
@@ -128,7 +131,6 @@
                                         <tr>
                                             <td>Phone Number</td>
                                             <td>
-
                                                 <input type="text" name="u-tel" id="u-tel" value="${account.phone}">
                                             </td>
                                         </tr>
@@ -151,19 +153,14 @@
                                     <div id="message">${message}</div>
                                     <div class="reserve-container">
                                         <button id="reserve" type="submit">Book Appointment</button>
-                                    </div>
-                                    
+                                    </div>   
                                 </div>
                             </div>
                         </form>
                     </div>                       
                 </div>
             </div>
-        </main>
-
-
-
-        <script src="Assets/Scripts/Reservation.js"></script>
+        </main>                                     
     </body>
-
+    <script src="Assets/Scripts/Reservation.js"></script>
 </html>

@@ -1,15 +1,6 @@
 @import url("https://css.gg/css");
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Josefin+Slab:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-
-body {
-    margin: 0;
-    background-image: url('../Images/Login-BG.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    min-height: 1000px;
-}
-
 .wrapper {
     position: fixed;
     top: 0;
