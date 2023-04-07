@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Account;
 import services.AccountService;
 import services.AppointmentService;
 
@@ -22,10 +23,12 @@ public class BookingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
+        Account account = (Account) session.getAttribute("account");
         
         AccountService as = new AccountService();
         AppointmentService apptserv = new AppointmentService();
+        
+        String username = account.getUsername();
         
         try {
             request.setAttribute("account", as.get(username));

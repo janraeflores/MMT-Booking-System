@@ -34,7 +34,7 @@ public class AccountService {
         return accounts;
     }
                       
-    public void insert(String username, String fullName, String email, boolean active, String password, int phone, Role role, String address) throws Exception {
+    public void insert(String username, String fullName, String email, boolean active, String password, String phone, Role role, String address) throws Exception {
         Account account = new Account(username, fullName, email, active, password, phone, address);
         account.setRole(role);
         
@@ -42,9 +42,11 @@ public class AccountService {
         accountDB.insert(account);
     }
     
-    public void update(String fullName, String email, boolean active, String username, String password, int phone, Role role, String address, EmergencyContact ec) throws Exception {
+    public void update(String fullName, String email, boolean active, String username, String password, String phone, Role role, String address, EmergencyContact ec) throws Exception {
         AccountDB accountDB = new AccountDB();
         Account account = accountDB.get(username);
+        
+        account.setFullName(fullName);
         account.setEmail(email);
         account.setActive(active);
         account.setPassword(password);

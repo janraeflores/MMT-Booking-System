@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package models;
 
 import java.io.Serializable;
@@ -12,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -31,6 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "EmergencyContact.findByEcName", query = "SELECT e FROM EmergencyContact e WHERE e.ecName = :ecName")
     , @NamedQuery(name = "EmergencyContact.findByEcPhone", query = "SELECT e FROM EmergencyContact e WHERE e.ecPhone = :ecPhone")
     , @NamedQuery(name = "EmergencyContact.findByEcEmail", query = "SELECT e FROM EmergencyContact e WHERE e.ecEmail = :ecEmail")})
+
 public class EmergencyContact implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,13 +36,16 @@ public class EmergencyContact implements Serializable {
     @Basic(optional = false)
     @Column(name = "ec_name")
     private String ecName;
-    @Column(name = "ec_email")
-    private String ecEmail;
     @Basic(optional = false)
     @Column(name = "ec_phone")
-    private int ecPhone;
+    private String ecPhone;
+    @Column(name = "ec_email")
+    private String ecEmail;
     @OneToMany(mappedBy = "ecContact", fetch = FetchType.EAGER)
     private List<Account> accountList;
+     @JoinColumn(name = "account_username", referencedColumnName = "username")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Account accountUsername;
 
     public EmergencyContact() {
     }
@@ -53,7 +54,7 @@ public class EmergencyContact implements Serializable {
         this.ecName = ecName;
     }
 
-    public EmergencyContact(String ecName, int ecPhone) {
+    public EmergencyContact(String ecName, String ecPhone) {
         this.ecName = ecName;
         this.ecPhone = ecPhone;
     }
@@ -66,11 +67,11 @@ public class EmergencyContact implements Serializable {
         this.ecName = ecName;
     }
 
-    public int getEcPhone() {
+    public String getEcPhone() {
         return ecPhone;
     }
 
-    public void setEcPhone(int ecPhone) {
+    public void setEcPhone(String ecPhone) {
         this.ecPhone = ecPhone;
     }
 
@@ -80,6 +81,14 @@ public class EmergencyContact implements Serializable {
 
     public void setEcEmail(String ecEmail) {
         this.ecEmail = ecEmail;
+    }
+    
+    public Account getAccountUsername() {
+        return accountUsername;
+    }
+
+    public void setAccountUsername(Account accountUsername) {
+        this.accountUsername = accountUsername;
     }
 
     @XmlTransient
@@ -115,4 +124,5 @@ public class EmergencyContact implements Serializable {
     public String toString() {
         return "models.EmergencyContact[ ecName=" + ecName + " ]";
     }
+
 }

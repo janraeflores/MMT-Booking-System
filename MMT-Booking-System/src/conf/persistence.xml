@@ -4,7 +4,6 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <non-jta-data-source>java:/comp/env/jdbc/mmtdb</non-jta-data-source>
     <class>models.Service</class>
-    <class>models.Client</class>
     <class>models.Appointment</class>
     <class>models.EmergencyContact</class>
     <class>models.Role</class>

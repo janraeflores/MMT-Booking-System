@@ -21,14 +21,16 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`role` (
   `role_name` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`role_id`));
 
+
 -- -----------------------------------------------------
 -- Table `mmtdb`.`emergency_contact`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mmtdb`.`emergency_contact` (
   `ec_name` VARCHAR(40) NOT NULL,
-  `ec_phone` BIGINT(11) NOT NULL,
+  `ec_phone` VARCHAR(13) NOT NULL,
   `ec_email` VARCHAR(40),
   PRIMARY KEY (`ec_name`));
+
 
 -- -----------------------------------------------------
 -- Table `mmtdb`.`account`
@@ -39,19 +41,17 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`account` (
   `email` VARCHAR(40) NOT NULL,
   `active` TINYINT(1) NOT NULL DEFAULT '1',
   `password` VARCHAR(30) NOT NULL,
-  `phone` BIGINT(11) NOT NULL,
+  `phone` VARCHAR(13) NOT NULL,
   `role` INT(11) NOT NULL,
-  `birthdate` DATE,
+  `birthdate` DATETIME,
   `address` VARCHAR(50) NOT NULL,
-  `ec_contact` VARCHAR(40),
+  `ec_contact` VARCHAR(40) DEFAULT NULL,
   `medical_info` VARCHAR(100),
   PRIMARY KEY (`username`),
   CONSTRAINT `fk_account_role`
     FOREIGN KEY (`role`)
-    REFERENCES `mmtdb`.`role` (`role_id`),
-  CONSTRAINT `fk_account_ec`
-    FOREIGN KEY (`ec_contact`)
-    REFERENCES `mmtdb`.`emergency_contact` (`ec_name`));
+    REFERENCES `mmtdb`.`role` (`role_id`));
+
 
 -- -----------------------------------------------------
 -- Table `mmtdb`.`appointment`
@@ -72,6 +72,19 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`appointment` (
   CONSTRAINT `fk_appointment_service`
     FOREIGN KEY (`service`)
     REFERENCES `mmtdb`.`service` (`service_id`));
+
+ALTER TABLE `mmtdb`.`account`
+  ADD CONSTRAINT `fk_account_ec`
+    FOREIGN KEY (`ec_contact`) REFERENCES `mmtdb`.`emergency_contact` (`ec_name`);
+
+ALTER TABLE `mmtdb`.`emergency_contact`
+  ADD COLUMN `account_username` VARCHAR(20) AFTER `ec_name`;
+
+ALTER TABLE `mmtdb`.`emergency_contact`
+  ADD CONSTRAINT `fk_ec_account_username`
+    FOREIGN KEY (`account_username`) REFERENCES `mmtdb`.`account` (`username`);
+
+
 
 -- ------------
 -- CREATE ROLES
@@ -96,9 +109,11 @@ INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
   VALUES ('Facial','A facial is a cosmetic treatment for the face that is designed to cleanse, exfoliate, and nourish the skin.',0.00);
 
 INSERT INTO `emergency_contact` (`ec_name`, `ec_phone`, `ec_email`)
-    VALUES ('Bobby Vance', 9998887777, 'Bobby@gmail.com');
+  VALUES ('Bobby Vance', '9998887777', 'Bobby@gmail.com');
 
 INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `phone`, `role`, `birthdate`, `address`, `ec_contact`)
-  VALUES ('bob vance', 'bob@gmail.com', true, 'bob', 'password', 4037779999, 2, '1997-03-25', '808 Sumwhere St Bobtown, BOB', 'Bobby Vance');
-INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `role`, `phone`, `address`)
-  VALUES ('admin one', 'admin@gmail.com', true,'admin', 'password', 1, 1110002222, '58 Fredson Dr SE Calgary, AB T2H 1E1');
+  VALUES ('bob vance', 'bob@gmail.com', true, 'bob', 'password', '4037779999', 2, '1997-03-25', '808 Sumwhere St Bobtown, BOB', 'Bobby Vance');
+INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `phone`, `role`, `address`)
+  VALUES ('admin one', 'admin@gmail.com', true, 'admin', 'password', '1110002222', 1, '58 Fredson Dr SE Calgary, AB T2H 1E1');
+
+

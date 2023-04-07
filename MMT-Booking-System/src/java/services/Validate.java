@@ -15,16 +15,12 @@ public class Validate {
      * @return true if any of the fields contained in the array are empty, otherwise, returns false
      */
     public static boolean isEmpty(String[] input) {
-        try {
-            for (String s : input) {
-                if (!s.equals("")) {
-                    return false;
-                }
+        for (String s : input) {
+            if (s.equals("") || s == null) {
+                return true;
             }
-        } catch (NullPointerException e) {
-            return false;
         }
-        return true;
+        return false;
     }
     /**
      * Validates a password, on registration, that meets the requirements expressed in the regex pattern, PASSWORD_PATTERN

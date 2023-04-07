@@ -1,10 +1,7 @@
 package servlets;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -75,6 +72,12 @@ public class ReservationServlet extends HttpServlet {
             
             String appointmentDate = selectedDate + " " + timeSlot;
             
+            if (selectedDate == null) {
+                request.setAttribute("message", "Please select a date.");
+                getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
+                return;
+            }
+            
             if (serviceType == 0) {
                 if (serviceDuration == 0) {
                     request.setAttribute("message", "Please select a massage type and duration.");
@@ -103,36 +106,26 @@ public class ReservationServlet extends HttpServlet {
             
             apptserv.insert(serviceType, account, address, convertToDate(appointmentDate), serviceDuration);
 
-            // gets results of the appointment newly made 
-            int length = apptserv.getAll(username).size();
-            Appointment appt = apptserv.getAll(username).get(length - 1);
-            
-            request.setAttribute("appointment", appt);
             request.setAttribute("duration", serviceDuration);
-            
         } catch (Exception ex) {
             Logger.getLogger(ReservationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         response.sendRedirect("booking");
-        
     }
     /**
-     * Converts a selectedDate, that includes the day and time, as a String to a Date object
+     * Converts a selectedDate, that includes the date and time, as a String to a Date object
      * @param selectedDate
      * @return 
      */
     private Date convertToDate(String selectedDate) {
         
-        // creates a formatter that matches 'selectedDate' format
         DateTimeFormatter selectedDateFormat = DateTimeFormatter.ofPattern("d MMMM, yyyy h:mm a");
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         
-        // selected date is converted to '' format
         LocalDateTime ldt = LocalDateTime.parse(selectedDate, selectedDateFormat);
         
         String formattedSelectedDate = ldt.format(dateFormat);
         
-        // converts LocalDate to Date
         Date date = Date.from(LocalDateTime.parse(formattedSelectedDate, dateFormat).atZone(ZoneId.systemDefault()).toInstant());
         
         return date;

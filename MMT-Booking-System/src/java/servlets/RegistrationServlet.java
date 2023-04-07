@@ -40,9 +40,6 @@ public class RegistrationServlet extends HttpServlet {
         String address = request.getParameter("address-input");
 
         String action = request.getParameter("action");
-        
-        // removes dashes from phone number
-        phone = phone.replaceAll("-","");
 
         try {
             if (action != null) {
@@ -65,7 +62,7 @@ public class RegistrationServlet extends HttpServlet {
                         }
                         else {
                             Role role = rs.get(2);
-                            as.insert(username, fullName, email, true, password, Integer.parseInt(phone), role, address); 
+                            as.insert(username, fullName, email, true, password, phone, role, address); 
                             
                             session.setAttribute("account", as.get(username));
                             response.sendRedirect("booking"); 

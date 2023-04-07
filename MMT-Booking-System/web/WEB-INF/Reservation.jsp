@@ -17,7 +17,6 @@
         <title>MMT - Reservations</title>
         <link rel="stylesheet" type="text/css" href="Assets/Styles/Reservation.css">
         <link rel="stylesheet" type="text/css" href="Assets/Styles/Footer.css">
-        
     </head>
     
     <body>
@@ -160,7 +159,7 @@
                     </div>                       
                 </div>
             </div>
-        </main>                                     
+        </main>      
+        <script src="Assets/Scripts/Reservation.js"></script>
     </body>
-    <script src="Assets/Scripts/Reservation.js"></script>
 </html>

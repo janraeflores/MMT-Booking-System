@@ -24,14 +24,13 @@ public class AccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
-
-        AccountService as = new AccountService();
+        Account account = (Account) session.getAttribute("account");
+        
         EmergencyContactService ecs = new EmergencyContactService();
 
         try {
-            Account account = as.get(username);
             request.setAttribute("account", account);
 
             EmergencyContact ec = ecs.get(account.getEcContact().getEcName());
@@ -46,48 +45,56 @@ public class AccountServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
+        Account account = (Account) session.getAttribute("account");
 
         AccountService as = new AccountService();
         EmergencyContactService ecs = new EmergencyContactService();
         String action = request.getParameter("action");
 
-        try {
-            if (action.equalsIgnoreCase("updateAccount")) {
-                Account account = as.get(username);
-                Role role = account.getRole();
-                EmergencyContact ec = account.getEcContact();
+        String username = account.getUsername();
+        String ecName = account.getEcContact().getEcName();
+        
+        String fullName = request.getParameter("full_name");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+        String password = request.getParameter("password");
+        boolean active = true;
+        String ecNameInput = request.getParameter("ec_name");
+        String ecPhone = request.getParameter("ec_phone");
+        String ecEmail = request.getParameter("ec_email");
+        
+        if (action.equalsIgnoreCase("updateAccount")) {
+            if (!Validate.isEmpty(new String[]{fullName, email, phone, address, password, ecNameInput, ecPhone})) {
+                try {
+                    Role role = account.getRole();
+                    EmergencyContact ec = account.getEcContact();
 
-                String fullName = request.getParameter("full_name");
-                String email = request.getParameter("email");
-                int phone = Integer.parseInt(request.getParameter("phone"));
-                String address = request.getParameter("address");
-                String userName = request.getParameter("user_name");
-                String password = request.getParameter("password");
-                boolean active = true;
-                String ecName = request.getParameter("ec_name");
-                int ecPhone = Integer.parseInt(request.getParameter("ec_phone"));
-                String ecEmail = request.getParameter("ec_email");
-                
-                if (Validate.isEmpty(new String[]{fullName, email, Integer.toString(phone), address, password})) {
-                    request.setAttribute("message", "Changes not saved.");
+                    if (ec == null) {
+                        ecs.insert(as.get(username), ecName, ecPhone, ecEmail);
+                    } else {
+                        ecs.update(as.get(username), ecName, ecPhone, ecEmail);
+                    }
+
+                    as.update(fullName, email, active, username, password, phone, role, address, ec);
+                    
+                    request.setAttribute("message", "Account has been updated successfully!");
+                    request.setAttribute("account", as.get(username));
+
                     getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
-                    return;
+                    
+                } catch (Exception e) {
+                    Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, e);
                 }
-                
-                if (ec == null) {
-                    ecs.insert(ecName, ecPhone, ecEmail);
-                } else {
-                    ecs.update(ecName, ecPhone, ecEmail);
+            } else {
+                try {
+                    request.setAttribute("account", as.get(username));
+                    request.setAttribute("message", "Fields must not be empty.");
+                    getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
+                } catch (Exception ex) {
+                    Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-                as.update(fullName, email, active, userName, password, phone, role, address, ec);
-                request.setAttribute("message", "Account has been updated successfully!");
-                request.setAttribute("account", as.get(userName));
             }
-        } catch (Exception e) {
-            Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, e);
         }
-        response.sendRedirect("account");
     }
 }

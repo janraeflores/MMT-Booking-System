@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package services;
 
 import dataaccess.EmergencyContactDB;
 import java.util.List;
+import models.Account;
 import models.EmergencyContact;
 
 /**
@@ -29,22 +26,25 @@ public class EmergencyContactService {
         return ecs;
     }
     
-    public void insert(String ecName, int phone, String email) throws Exception {
+    public void insert(Account account, String ecName, String phone, String email) throws Exception {
+
         EmergencyContact ec = new EmergencyContact(ecName, phone);
         
         ec.setEcEmail(email);
+        ec.setAccountUsername(account);
         
         EmergencyContactDB ecDB = new EmergencyContactDB();
         ecDB.insert(ec);
     }
     
-    public void update(String ecName, int phone, String email) throws Exception {
+    public void update(Account account, String ecName, String phone, String email) throws Exception {
         EmergencyContactDB ecDB = new EmergencyContactDB();
         EmergencyContact ec = ecDB.get(ecName);
         
         ec.setEcName(ecName);
         ec.setEcPhone(phone);
         ec.setEcEmail(email);
+        ec.setAccountUsername(account);
         
         ecDB.update(ec);
     }

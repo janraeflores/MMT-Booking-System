@@ -81,7 +81,7 @@ main {
     transition: ease-in-out 0.2s;
 }
 .title-container a:hover {
-    color: #BCD39C;
+    color: #697268;
     text-decoration: underline;
 }
 
@@ -113,7 +113,6 @@ main {
 }
 
 #message {
-    background-color: #ffd0d0;
     padding: 15px;
     font-family: 'Josefin Sans';
     font-size: 12pt;
@@ -187,7 +186,7 @@ input.button {
 }
 
 .button {
-    background-color: rgb(72, 77, 71);
+    background-color: rgba(105, 114, 104, 1);
     border: 5px solid;
     color: rgba(249, 251, 253, 1);
 }

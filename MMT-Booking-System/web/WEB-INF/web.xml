@@ -21,10 +21,6 @@
         <servlet-class>servlets.BookingServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>servlets.LogoutServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LandingPageServlet</servlet-name>
         <servlet-class>servlets.LandingPageServlet</servlet-class>
     </servlet>

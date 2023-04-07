@@ -2,6 +2,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,39 +40,42 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
-
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        AccountService as = new AccountService();
-        
-        Account account = as.login(username, password);
-        
-        if (Validate.isEmpty(new String[]{username, password})) {
-            request.setAttribute("errorMessage", "Please provide a valid username or password.");
-            getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
-            return;
-        }
-        if (account == null) {
-            request.setAttribute("errorMessage", "Your credentials cannot be verified.");
-            getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
-            return;
-        }
-
-        session.setAttribute("username", username);
-        
-        boolean isActive = account.getActive();
-        
-        if (isActive == true) {
-            Role role = account.getRole();
-
-            if (role.getRoleId() == 1) {
-                response.sendRedirect("admin");
-            } else {
-                response.sendRedirect("booking");
+        try {
+            HttpSession session = request.getSession();
+            
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            
+            AccountService as = new AccountService();
+            
+            Account account = as.login(username, password);
+            
+            if (Validate.isEmpty(new String[]{username, password})) {
+                request.setAttribute("errorMessage", "Please provide a valid username or password.");
+                getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
+                return;
             }
+            if (account == null) {
+                request.setAttribute("errorMessage", "Your credentials cannot be verified.");
+                getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
+                return;
+            }
+            
+            session.setAttribute("account", as.get(username));
+            
+            boolean isActive = account.getActive();
+            
+            if (isActive == true) {
+                Role role = account.getRole();
+                
+                if (role.getRoleId() == 1) {
+                    response.sendRedirect("admin");
+                } else {
+                    response.sendRedirect("booking");
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
     }
 }
