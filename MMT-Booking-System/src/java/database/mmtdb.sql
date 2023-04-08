@@ -27,8 +27,9 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`role` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mmtdb`.`emergency_contact` (
   `ec_name` VARCHAR(40) NOT NULL,
-  `ec_phone` VARCHAR(13) NOT NULL,
+  `ec_phone` VARCHAR(16) NOT NULL,
   `ec_email` VARCHAR(40),
+  `ec_relation` VARCHAR(30),
   PRIMARY KEY (`ec_name`));
 
 
@@ -41,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`account` (
   `email` VARCHAR(40) NOT NULL,
   `active` TINYINT(1) NOT NULL DEFAULT '1',
   `password` VARCHAR(30) NOT NULL,
-  `phone` VARCHAR(13) NOT NULL,
+  `phone` VARCHAR(16) NOT NULL,
   `role` INT(11) NOT NULL,
   `birthdate` DATETIME,
   `address` VARCHAR(50) NOT NULL,
@@ -108,12 +109,12 @@ INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
 INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
   VALUES ('Facial','A facial is a cosmetic treatment for the face that is designed to cleanse, exfoliate, and nourish the skin.',0.00);
 
-INSERT INTO `emergency_contact` (`ec_name`, `ec_phone`, `ec_email`)
-  VALUES ('Bobby Vance', '9998887777', 'Bobby@gmail.com');
+INSERT INTO `emergency_contact` (`ec_name`, `ec_phone`, `ec_email`, `ec_relation`)
+  VALUES ('Bobby Vance', '(999) 888-7777', 'Bobby@gmail.com', 'Sibling');
 
 INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `phone`, `role`, `birthdate`, `address`, `ec_contact`)
-  VALUES ('bob vance', 'bob@gmail.com', true, 'bob', 'password', '4037779999', 2, '1997-03-25', '808 Sumwhere St Bobtown, BOB', 'Bobby Vance');
+  VALUES ('bob vance', 'bob@gmail.com', true, 'bob', 'password', '(403) 777-9999', 2, '1997-03-25', '808 Sumwhere St Bobtown, BOB', 'Bobby Vance');
 INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `phone`, `role`, `address`)
-  VALUES ('admin one', 'admin@gmail.com', true, 'admin', 'password', '1110002222', 1, '58 Fredson Dr SE Calgary, AB T2H 1E1');
+  VALUES ('admin one', 'admin@gmail.com', true, 'admin', 'password', '(111) 000-2222', 1, '58 Fredson Dr SE Calgary, AB T2H 1E1');
 
 

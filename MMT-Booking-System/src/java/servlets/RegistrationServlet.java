@@ -49,18 +49,21 @@ public class RegistrationServlet extends HttpServlet {
                             
                             request.setAttribute("message", "Please fill out all fields.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
-                        } else if (!email.contains("@") && !email.contains(".com")) {
-
+                        } 
+                        else if (!email.contains("@") && !email.contains(".com")) {
                             request.setAttribute("message", "Your email must be valid.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
-                        } else if (as.get(username) != null) {
+                        } 
+                        else if (as.get(username) != null) {
                             request.setAttribute("message", "This username is taken, please try again.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
-                        } else if (Validate.passwordRequirement(password)) {
+                        } 
+                        else if (Validate.passwordRequirement(password)) {
                             request.setAttribute("message", "Password have 8 or more characters.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
                         }
                         else {
+                            phone = formatPhoneNumber(phone);
                             Role role = rs.get(2);
                             as.insert(username, fullName, email, true, password, phone, role, address); 
                             
@@ -76,5 +79,14 @@ public class RegistrationServlet extends HttpServlet {
         } catch (Exception e) {
             Logger.getLogger(RegistrationServlet.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+    
+    /**
+     * Method for formatting phone numbers in a (###) ###-#### format
+     * @param phoneNumber
+     * @return a formatted phone number
+     */
+    private String formatPhoneNumber(String phoneNumber) {
+        return String.format("(%s) %s-%s", phoneNumber.substring(0,3), phoneNumber.substring(3,6), phoneNumber.substring(6));
     }
 }

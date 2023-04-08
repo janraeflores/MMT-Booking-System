@@ -218,4 +218,3 @@ function getCurrentDate(date) {
     document.getElementById("selected-date").value = selectedDate;
     
 }
-

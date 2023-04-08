@@ -20,6 +20,8 @@ body {
     height: 100%;
     width: 100%;
     background: rgba(105, 114, 104, 1);
+    font-family: 'Josefin Sans';
+    font-weight: 300;
     transition: all 0.5s ease-in-out;
 }
 
@@ -213,6 +215,7 @@ header h1 {
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
+    font-family: 'Josefin Sans';
     color: black;
     background-color: rgba(249, 251, 253, 1);
     border-radius: 5px;
@@ -227,7 +230,7 @@ header h1 {
     justify-content: space-between;
     padding: 0 50px;
     font-size: 35px;
-    font-weight: 200;
+    font-weight: 300;
     color: rgba(105, 114, 104, 1);
     text-transform: capitalize;
 }
@@ -249,7 +252,7 @@ header h1 {
     justify-content: space-between;
     padding: 0 20px;
     font-size: 25px;
-    font-weight: 200;
+    font-weight: 300;
     color: rgba(105, 114, 104, 1);
     text-transform: uppercase;
 }
@@ -269,7 +272,7 @@ header h1 {
     justify-content: space-between;
     padding: 0 10px;
     font-size: 25px;
-    font-weight: 500;
+    font-weight: 300;
     color: rgba(105, 114, 104, 1);
     margin-bottom: 20px;
 }
@@ -512,6 +515,15 @@ button {
     background-color: rgba(188, 210, 238, 1);
     width: 290px;
     color: rgba(249, 251, 253, 1);
+}
+
+button.today-btn {
+    margin: 0;
+}
+
+button.goto-btn {
+    margin: 0;
+    width: 200px;
 }
 
 

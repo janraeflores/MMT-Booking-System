@@ -110,6 +110,12 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td class="left-table-sub">Relationship</td>
+                                <td class="right-table">
+                                    <input type="text" name="ec_relation" value="${account.ecContact.ecRelation}">
+                                </td>
+                            </tr>
+                            <tr>
                                 <td class="left-table-sub">Phone Number</td>
                                 <td class="right-table">
                                     <input type="text" name="ec_phone" value="${account.ecContact.ecPhone}">

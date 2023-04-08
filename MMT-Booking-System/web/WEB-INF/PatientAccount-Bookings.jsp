@@ -76,8 +76,8 @@
                             <td>${account.address}</td>
                             <td id="status">
                                 <c:choose>
-                                    <c:when test="${appointment.status == true}">Confirmed</c:when>
-                                    <c:otherwise>Pending</c:otherwise>
+                                    <c:when test="${appointment.status == false}">Pending</c:when>
+                                    <c:otherwise>Confirmed</c:otherwise>
                                 </c:choose> 
                             </td>
                         </tr>

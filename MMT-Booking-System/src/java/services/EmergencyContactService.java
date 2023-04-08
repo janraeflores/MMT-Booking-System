@@ -26,18 +26,19 @@ public class EmergencyContactService {
         return ecs;
     }
     
-    public void insert(Account account, String ecName, String phone, String email) throws Exception {
+    public void insert(Account account, String ecName, String phone, String email, String relation) throws Exception {
 
         EmergencyContact ec = new EmergencyContact(ecName, phone);
         
         ec.setEcEmail(email);
         ec.setAccountUsername(account);
+        ec.setEcRelation(relation);
         
         EmergencyContactDB ecDB = new EmergencyContactDB();
         ecDB.insert(ec);
     }
     
-    public void update(Account account, String ecName, String phone, String email) throws Exception {
+    public void update(Account account, String ecName, String phone, String email, String relation) throws Exception {
         EmergencyContactDB ecDB = new EmergencyContactDB();
         EmergencyContact ec = ecDB.get(ecName);
         
@@ -45,6 +46,7 @@ public class EmergencyContactService {
         ec.setEcPhone(phone);
         ec.setEcEmail(email);
         ec.setAccountUsername(account);
+        ec.setEcRelation(relation);
         
         ecDB.update(ec);
     }

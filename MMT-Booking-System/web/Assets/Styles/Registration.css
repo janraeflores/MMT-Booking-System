@@ -128,14 +128,14 @@ main {
 .email-container, .username-container, .fullName-container, .phone-container, .address-container, .password-container {
     display: inline-block;
     margin: 15px auto;
-    padding: 5px 5px;
+    padding: 5px;
     align-items: center;
     gap: 35px;
-    height: 45px;
+    height: 40px;
     width: 400px;
     font-family: "josefin sans";
     font-weight: 400;
-    font-size: 15px;
+    font-size: 18px;
     color: rgba(105, 114, 104, 1);
 }
 
@@ -149,10 +149,10 @@ main {
 
 #email-input, #username-input, #full_name-input, #phone-input, #address-input, #pass-input {
     background-color:rgb(254, 255, 255);
-    height: 45px;
+    height: 35px;
     width: 325px;
     color: rgba(105, 114, 104, 1);
-    font-size: 15px;
+    font-size: 16px;
     outline: none;
     transition: height 1s;
     padding-left: 20px;

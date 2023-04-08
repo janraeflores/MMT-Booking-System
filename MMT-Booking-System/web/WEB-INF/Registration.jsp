@@ -75,7 +75,7 @@
                     <div class="phone-container">
                         <p>Phone Number:</p>
                         <div class="phone">
-                            <input type="text" name="phone-input" id="phone-input"> 
+                            <input placeholder="123-456-789" type="text" name="phone-input" id="phone-input"> 
                         </div>
                     </div>
                     <div class="address-container">

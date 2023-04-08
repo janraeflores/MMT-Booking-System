@@ -30,16 +30,15 @@ public class ReservationServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
+        Account account = (Account) session.getAttribute("account");
         
         AccountService as = new AccountService();
         MassageService ms = new MassageService();
         
         try {
-            Account account = as.get(username);
             
             request.setAttribute("service", ms.getAll());
-            request.setAttribute("account", account);
+            request.setAttribute("account", as.get(account.getUsername()));
             
         } catch (Exception ex) {
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -52,16 +51,14 @@ public class ReservationServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
+        Account account = (Account) session.getAttribute("account");
             
         AccountService as = new AccountService();
         AppointmentService apptserv = new AppointmentService();
         MassageService ms = new MassageService();
        
         try {
-            Account account = as.get(username);
-            
-            request.setAttribute("account", account);
+            request.setAttribute("account", as.get(account.getUsername()));
             request.setAttribute("service", ms.getAll());
             
             int serviceType = Integer.parseInt(request.getParameter("s-type"));
@@ -69,10 +66,11 @@ public class ReservationServlet extends HttpServlet {
             String selectedDate = request.getParameter("selected-date");
             String timeSlot = request.getParameter("t-slot");
             String address = request.getParameter("u-address");
+            String additionalInfo = request.getParameter("med-concerns");
             
             String appointmentDate = selectedDate + " " + timeSlot;
             
-            if (selectedDate == null) {
+            if (selectedDate.equals("")) {
                 request.setAttribute("message", "Please select a date.");
                 getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
                 return;
@@ -90,8 +88,7 @@ public class ReservationServlet extends HttpServlet {
             }
             
             //Checks if appointment timeslot is available
-            AppointmentService appts = new AppointmentService();
-            List<Appointment> appointments = appts.getAll();
+            List<Appointment> appointments = apptserv.getAll();
             
             for (Appointment appt: appointments) {
                 
@@ -105,13 +102,25 @@ public class ReservationServlet extends HttpServlet {
             }
             
             apptserv.insert(serviceType, account, address, convertToDate(appointmentDate), serviceDuration);
+            
+            String username = account.getUsername();
+            int currentAppointment = apptserv.getAll(username).size() - 1;
+            
+            if (additionalInfo.equals("")) {
+                apptserv.update(currentAppointment, convertToDate(appointmentDate), address, additionalInfo);
+            }
 
             request.setAttribute("duration", serviceDuration);
         } catch (Exception ex) {
+            request.setAttribute("message", "Please fill in all fields.");
+            getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
+            
             Logger.getLogger(ReservationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         response.sendRedirect("booking");
     }
+    
+    
     /**
      * Converts a selectedDate, that includes the date and time, as a String to a Date object
      * @param selectedDate

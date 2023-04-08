@@ -59,24 +59,24 @@ public class AccountServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
         String password = request.getParameter("password");
-        boolean active = true;
         String ecNameInput = request.getParameter("ec_name");
+        String ecRelation = request.getParameter("ec_relation");
         String ecPhone = request.getParameter("ec_phone");
         String ecEmail = request.getParameter("ec_email");
         
         if (action.equalsIgnoreCase("updateAccount")) {
-            if (!Validate.isEmpty(new String[]{fullName, email, phone, address, password, ecNameInput, ecPhone})) {
+            if (!Validate.isEmpty(new String[]{fullName, email, phone, address, password, ecNameInput, ecRelation, ecPhone})) {
                 try {
                     Role role = account.getRole();
                     EmergencyContact ec = account.getEcContact();
 
                     if (ec == null) {
-                        ecs.insert(as.get(username), ecName, ecPhone, ecEmail);
+                        ecs.insert(as.get(username), ecName, ecPhone, ecEmail, ecRelation);
                     } else {
-                        ecs.update(as.get(username), ecName, ecPhone, ecEmail);
+                        ecs.update(as.get(username), ecName, ecPhone, ecEmail, ecRelation);
                     }
 
-                    as.update(fullName, email, active, username, password, phone, role, address, ec);
+                    as.update(fullName, email, true, username, password, phone, role, address, ec);
                     
                     request.setAttribute("message", "Account has been updated successfully!");
                     request.setAttribute("account", as.get(username));

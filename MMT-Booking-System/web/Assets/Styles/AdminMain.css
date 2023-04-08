@@ -25,7 +25,6 @@ body {
     width: 100%;
     background: rgba(105, 114, 104, 1);
     transition: all 0.5s ease-in-out;
-    
 }
 
 .stack-top {
@@ -67,13 +66,11 @@ body {
 .menu-btn:before {
     transform: translateY(-8px);
     z-index: 100;
-
 }
 
 .menu-btn:after {
     transform: translateY(8px);
     z-index: 100;
-
 }
 
 .close {

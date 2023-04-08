@@ -31,6 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
 
 public class EmergencyContact implements Serializable {
 
+   
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -41,6 +43,8 @@ public class EmergencyContact implements Serializable {
     private String ecPhone;
     @Column(name = "ec_email")
     private String ecEmail;
+    @Column(name = "ec_relation")
+    private String ecRelation;
     @OneToMany(mappedBy = "ecContact", fetch = FetchType.EAGER)
     private List<Account> accountList;
      @JoinColumn(name = "account_username", referencedColumnName = "username")
@@ -83,6 +87,14 @@ public class EmergencyContact implements Serializable {
         this.ecEmail = ecEmail;
     }
     
+    public String getEcRelation() {
+        return ecRelation;
+    }
+
+    public void setEcRelation(String ecRelation) {
+        this.ecRelation = ecRelation;
+    }
+
     public Account getAccountUsername() {
         return accountUsername;
     }
@@ -125,4 +137,5 @@ public class EmergencyContact implements Serializable {
         return "models.EmergencyContact[ ecName=" + ecName + " ]";
     }
 
+   
 }

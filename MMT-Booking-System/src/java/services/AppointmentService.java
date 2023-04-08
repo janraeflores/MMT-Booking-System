@@ -32,7 +32,7 @@ public class AppointmentService {
         AppointmentDB apptdb = new AppointmentDB();
      
         Service service = servdb.get(serviceId);
-        Appointment appt = new Appointment(0, appointmentAddress, appointmentDate, true, duration);
+        Appointment appt = new Appointment(0, appointmentAddress, appointmentDate, false, duration);
         
         appt.setAccount(account);
         appt.setAppointmentDate(appointmentDate);
@@ -47,12 +47,13 @@ public class AppointmentService {
         apptdb.delete(appt);
     }
     
-    public void update(int appointmentId, Date appointmentDate, String address) throws Exception {
+    public void update(int appointmentId, Date appointmentDate, String address, String additionalInfo) throws Exception {
         AppointmentDB apptdb = new AppointmentDB();
         Appointment appt = apptdb.get(appointmentId);
         
         appt.setAppointmentDate(appointmentDate);
         appt.setAppointmentAddress(address);
+        appt.setAdditionalInfo(additionalInfo);
         
         apptdb.update(appt);
     }

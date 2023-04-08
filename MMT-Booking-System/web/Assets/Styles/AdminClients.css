@@ -14,7 +14,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
-    font-family: 'Gafata', sans-serif;
+    font-family: 'Josefin Sans';
 }
 
 .wrapper {
@@ -24,6 +24,8 @@ body {
     height: 100%;
     width: 100%;
     background: rgba(105, 114, 104, 1);
+    font-family: 'Josefin Sans';
+    font-weight: 300;
     transition: all 0.5s ease-in-out;
 }
 
@@ -170,112 +172,154 @@ div.clientList{
     text-align: center;
     height: 100vh;
 }
-
-.clientInfo{
-    float:right;
-    width: 80%;
-    background-color: white;
-    overflow:scroll;
-    height: 100vh;
-}
-.clientInfo h1{
-    text-align: center;
+.clientHead .clients-head{
+    margin: 0;
+    padding: 20px 0;
+    font-family: 'Josefin Slab';
+    font-weight: 500;
+    font-size: 30pt;
     color: #697268;
-    font-size: 300%;
-    font-weight: lighter;
-    margin: 2%;
-    padding-bottom: 5%;
-}
-button.saveButt{
-    border: none;
-    border-radius: 15%;
-    margin-right: 2%;
-    padding: 1% 2%;
-    font-family: 'Gafata', sans-serif;
-    font-size: 40%;
-    background-color: rgba(43, 78, 39, 0.7);
-    color: white;
-}
-button.deleteButt{
-    border: none;
-    border-radius: 15%;
-    margin-right: 2%;
-    padding: 1% 2%;
-    font-family: 'Gafata', sans-serif;
-    font-size: 40%;
-    background-color: rgba(152, 71, 62, 0.7);
-    color: white;
-}
-button.editButt:hover{
-    background-color: rgba(43, 78, 39, 0.9);
-}
-button.deleteButt:hover{
-    background-color: rgba(152, 71, 62, 0.9);
-}
 
-.info{
-    margin: 0% 5%;
-}
-.info h3{
-    color: #7FA0CA;
-    font-weight: lighter;
-    font-size: 170%;
-}
-input{
-    border: none;
-    font-family: 'Gafata', sans-serif;
-    color: rgba(105, 114, 104, 1);
-    font-size: 130%;
-}
-input.text{
-    width: 100%;
-}
-.emergency p{
-    color: #3b5a82;
-    font-size: 120%;
-}
-textarea.textBig{
-    font-family: 'Gafata', sans-serif;
-    width: 100%;
-    height:500px;
-    margin-bottom: 5%;
-    color: rgba(105, 114, 104, 1);
-    font-size: 110%;
-    line-height: 150%;
-}
-
-.clientInfo h2{
-    text-align: center;
-    color: #7FA0CA;
-    font-size: 600%;
-    font-weight: lighter;
-}
-
-h2.clients-head{
-    padding-bottom: 0;
-    margin-bottom: 0;
-    padding-top: 2%;
-    margin-top: 2%;    
-    font-weight: lighter;
-}
-.clientHead{
-    color: white;
-    font-size: 200%;
-    padding-bottom: 0;
-    margin-bottom: 0;
 }
 .client{
+    margin: 0;
     font-family: 'Gafata', sans-serif;
-    font-size: 160%;
     color: #697268;
-    /*    background-color: rgba(188, 211, 156, 0.7);*/
     background: none;
     border: none;
     width:100%;
     text-align: left;
     padding-bottom: 5%;
     padding-top: 5%;
+    transition: ease-in-out 0.2s;
 }
 .client:hover{
-    background-color: rgba(188, 211, 156, 0.7);
+    background-color: rgba(168, 189, 140, 0.7);
+}
+.clientList a {
+    text-decoration: none;
+    font-size: 18pt;
+    padding: 10px 65px;
+}
+
+.client-container{
+    float:right;
+    width: 80%;
+    background-color: white;
+    overflow:scroll;
+    height: 100vh;
+}
+.client-container h1{
+    text-align: center;
+    color: #697268;
+    font-family: 'Josefin Slab';
+    font-size: 35pt;
+    font-weight: 500;
+    margin: 2% 0 0 0;
+    padding-bottom: 5%;
+}
+#emergency, #medical-info {
+    color: #7FA0CA;
+    font-weight: 500;
+    font-size: 18pt;
+    margin: 50px 0 5px 50px;
+}
+#name{
+    margin: 0 0 0 50px;
+    color:#3b5a82;
+    font-weight: 400;
+    font-size: 24pt;
+}
+
+#subheading {
+    margin: 30px 0 0 50px;
+}
+
+table {
+    margin: 0;
+}
+table.info {
+    margin-top: 10px;
+}
+table.emergency-contact {
+    margin-top: 0;
+}
+table p {
+    display: inline-block;
+    margin: 10px 0 5px 50px;
+    color: #3b5a82;
+    font-size: 15pt;
+}
+table input {
+    margin: 0 0 0 50px;
+    font-size: 14pt;
+    color: rgba(105, 114, 104, 1);
+    border: none;
+    font-family: 'Gafata', sans-serif;
+}
+
+.emergency-contact, .medical-info {
+    margin-top: 50px;
+}
+
+.emergency {
+    color: #3b5a82;
+    font-size: 16pt;
+    margin: 15px 0 5px 50px;
+}
+.emergency input {
+    margin: 0;
+    font-size: 16pt;
+}
+textarea.textBig{
+    font-family: 'Gafata', sans-serif;
+    width: 80%;
+    height:200px;
+    margin: 10px 0 0 50px;
+    color: rgba(105, 114, 104, 1);
+    border: 2px solid #697268;
+    border-radius: 4px;
+    font-size: 110%;
+    line-height: 150%;
+    resize: none;
+}
+
+.clientHead{
+    color: white;
+    font-size: 200%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+div.buttons {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 050px;
+}
+input.saveButt, input.deleteButt {
+    width: 200px;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    font-family: 'Josefin Sans';
+    font-size: 16pt;
+    font-weight: 500;
+    letter-spacing: 1pt;
+    background-color: rgba(43, 78, 39, 0.7);
+    color: white;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+    transition: ease-in-out 0.2s;
+}
+input.deleteButt{
+    margin-left: 20px;
+    background-color: rgba(152, 71, 62, 0.7);
+}
+input.saveButt:hover{
+    width: 190px;
+    cursor: pointer;
+    background-color: rgba(43, 78, 39, 0.9);
+}
+input.deleteButt:hover{
+    width: 190px;
+    cursor: pointer;
+    background-color: rgba(152, 71, 62, 0.9);
 }

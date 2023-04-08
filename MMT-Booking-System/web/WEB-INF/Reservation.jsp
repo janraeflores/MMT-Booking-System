@@ -125,22 +125,22 @@
                                         </tr>
                                         <tr>
                                             <td>Full Name</td>
-                                            <td><input type="text" name="u-name" id="u-name" value="${account.fullName}"></td>
+                                            <td><input type="text" name="u-name" id="u-name" value="${account.fullName}" readonly></td>
                                         </tr>
                                         <tr>
                                             <td>Phone Number</td>
                                             <td>
-                                                <input type="text" name="u-tel" id="u-tel" value="${account.phone}">
+                                                <input type="text" name="u-tel" id="u-tel" value="${account.phone}" readonly>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Email</td>
-                                            <td><input type="text" name="u-email" id="u-email" value="${account.email}"></td>
+                                            <td><input type="text" name="u-email" id="u-email" value="${account.email}" readonly></td>
                                         </tr>
                                         <tr>
                                             <td>Address</td>
                                             <td>
-                                                <input type="text" name="u-address" id="u-address" value="${account.address}">
+                                                <input type="text" name="u-address" id="u-address" value="${account.address}" readonly>
                                             </td>
                                         </tr>
                                         </tbody>
