@@ -38,31 +38,34 @@
                 <div class="clientHead">
                     <h2 class="clients-head">Clients</h2>
                 </div>
-
-                <c:forEach items="${accounts}" var="account">
-                    <!--Excludes any user that is an admin -->
-                    <c:if test="${account.role.roleName eq 'client'}"> 
-                        <a id="client-info" class="client" 
-                                href="<c:url value='/clients?action=display'>
-                                         <c:param name='username' value='${account.username}'></c:param>
-                                     </c:url>"
-                        ${account.fullName}
-                        </a>
-                    </c:if>
-                </c:forEach>
+                <div class="list">
+                    <c:forEach items="${accounts}" var="account">
+                        
+                        <!--Excludes any user that is an admin -->
+                        <c:if test="${account.role.roleName eq 'client'}"> 
+                            <a id="client-info" class="client" 
+                                    href="<c:url value='/clients?action=display'>
+                                             <c:param name='username' value='${account.username}'></c:param>
+                                         </c:url>">${account.fullName}        
+                            </a>
+                        </c:if>
+                    </c:forEach>
+                </div>
             </div>
 
 
             <div id="client-container" class="client-container">
                 <h1>Client Information</h1>
-                    <!--<h2>No client selected</h2>-->
-
                 
-                <%--<c:if test="${display eq true}">--%>
+                <c:if test="${display eq false}">
+                    <h2>No client selected</h2>
+                </c:if>
+             
+                <c:if test="${display eq true}">
                     <form action="clients" method="post">
                         <div class="buttons">
                             <input type="hidden" name="username" value="${account.username}">
-                            <input type="submit" class="saveButt" value="Save changes">
+                            <input type="submit" class="saveButt" value="Save">
                             <input type="hidden" name="action" value="edit">
                             
                             <input type="submit" class="deleteButt" value="Remove client">
@@ -116,7 +119,7 @@
                             <textarea id="med-info" name="med-info" class="textBig">${account.medicalInfo}</textarea>
                         </div>
                     </form>
-                <%--</c:if>--%>
+                </c:if>
             </div>
         </main>
     </body>

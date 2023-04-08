@@ -21,33 +21,40 @@ public class AdminClientsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("display", false);
         
         AccountService as = new AccountService();
+        
+        try {
+            request.setAttribute("accounts", as.getAll());
+        } catch (Exception ex) {
+            Logger.getLogger(AdminClientsServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         String accountUsername = request.getParameter("username");
         String action = request.getParameter("action");
         action = action == null ? "" : action;
         
+        
         try {
+            Account selectedAccount = as.get(accountUsername);
             switch (action) {
                 case "display":
-                    request.setAttribute("displayClient", true);
-                    Account selectedAccount = as.get(accountUsername);
+                    request.setAttribute("display", true);
                     request.setAttribute("account", selectedAccount);
                     
                     break;
                 case "delete":
-                    as.delete(accountUsername);
-                    
+                    as.delete(selectedAccount.getUsername());
+                    response.sendRedirect("clients");
                     break;
             }
-            request.setAttribute("accounts", as.getAll());
-            getServletContext().getRequestDispatcher("/WEB-INF/AdminClients.jsp").forward(request, response);
-
+            
+           
         } catch (Exception ex) {
             Logger.getLogger(AdminClientsServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        getServletContext().getRequestDispatcher("/WEB-INF/AdminClients.jsp").forward(request, response);
     }
 
     @Override
