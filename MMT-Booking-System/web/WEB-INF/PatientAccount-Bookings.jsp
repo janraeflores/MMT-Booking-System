@@ -36,7 +36,7 @@
             <ul>
                 <li><a href="MMT">HOME</a></li>
                 <li><a href="account">ACCOUNT</a></li>
-                <li><a href="#">SERVICES</a></li>
+                <li><a href="service">SERVICES</a></li>
                 <li><a href="reservation">RESERVATION</a></li>
                 <li><a href="contact">CONTACT</a></li>
                 <li><a href="login">LOGOUT</a></li>
@@ -91,7 +91,7 @@
         <footer>
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="MMT">Home</a></li>
-                <li class="list-inline-item"><a href="#">Services</a></li>
+                <li class="list-inline-item"><a href="service">Services</a></li>
                 <li class="list-inline-item"><a href="reservation">Reservations</a></li>
                 <li class="list-inline-item"><a href="contact">Contact</a></li>
             </ul>

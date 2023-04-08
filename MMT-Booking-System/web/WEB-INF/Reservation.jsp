@@ -33,7 +33,7 @@
                 <ul>
                     <li><a href="MMT">HOME</a></li>
                     <li><a href="account">ACCOUNT</a></li>
-                    <li><a href="#">SERVICES</a></li>
+                    <li><a href="service">SERVICES</a></li>
                     <li><a href="reservation">RESERVATION</a></li>
                     <li><a href="contact">CONTACT</a></li>
                     <li><a href="login?logout">LOGOUT</a></li>
