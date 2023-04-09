@@ -1,6 +1,10 @@
 package servlets;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -55,17 +59,19 @@ public class AccountServlet extends HttpServlet {
         String ecName = account.getEcContact().getEcName();
         
         String fullName = request.getParameter("full_name");
+        String birthdate = request.getParameter("birthdate");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
         String password = request.getParameter("password");
+        
         String ecNameInput = request.getParameter("ec_name");
         String ecRelation = request.getParameter("ec_relation");
         String ecPhone = request.getParameter("ec_phone");
         String ecEmail = request.getParameter("ec_email");
         
         if (action.equalsIgnoreCase("updateAccount")) {
-            if (!Validate.isEmpty(new String[]{fullName, email, phone, address, password, ecNameInput, ecRelation, ecPhone})) {
+            if (!Validate.isEmpty(new String[]{fullName, email, phone, address, birthdate, password, ecNameInput, ecRelation, ecPhone})) {
                 try {
                     Role role = account.getRole();
                     EmergencyContact ec = account.getEcContact();
@@ -75,8 +81,8 @@ public class AccountServlet extends HttpServlet {
                     } else {
                         ecs.update(as.get(username), ecName, ecPhone, ecEmail, ecRelation);
                     }
-
-                    as.update(fullName, email, true, username, password, phone, role, address, ec);
+                    
+                    as.update(fullName, email, true, username, password, phone, role, convertBirthday(birthdate), address, ec);
                     
                     request.setAttribute("message", "Account has been updated successfully!");
                     request.setAttribute("account", as.get(username));
@@ -96,5 +102,20 @@ public class AccountServlet extends HttpServlet {
                 }
             }
         }
+    }
+    
+    /**
+     * Converts a birthdate to a Date object in yyyy-MM-dd format
+     * @param birthdate to be converted, as a String
+     * @return the birthdate converted to a Date object
+     */
+    private Date convertBirthday(String birthdate) {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        LocalDateTime ldt = LocalDateTime.parse(birthdate, dateFormat);
+
+        Date date = Date.from(ldt.atZone(java.time.ZoneId.systemDefault()).toInstant());
+        
+        return date;
     }
 }
