@@ -62,6 +62,10 @@ public class RegistrationServlet extends HttpServlet {
                             request.setAttribute("message", "Password have 8 or more characters.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
                         }
+                        else if (phone.matches(".*[a-zA-Z]+.*") || phone.length() < 10 || phone.length() > 10) {
+                            request.setAttribute("message", "Phone number is invalid. Please try again.");
+                            getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
+                        }
                         else {
                             phone = formatPhoneNumber(phone);
                             Role role = rs.get(2);
@@ -87,6 +91,7 @@ public class RegistrationServlet extends HttpServlet {
      * @return a formatted phone number
      */
     private String formatPhoneNumber(String phoneNumber) {
+        phoneNumber = phoneNumber.replaceAll("[^\\d]", "");
         return String.format("(%s) %s-%s", phoneNumber.substring(0,3), phoneNumber.substring(3,6), phoneNumber.substring(6));
     }
 }

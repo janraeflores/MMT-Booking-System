@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dataaccess;
 
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import models.Account;
+
 import models.EmergencyContact;
 
 /**
@@ -26,12 +23,22 @@ public class EmergencyContactDB {
             em.close();
         }
     }
-    
-    public EmergencyContact get(String ecName) throws Exception {
+    public List<EmergencyContact> getAll(String username) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
 
         try {
-            EmergencyContact ec = em.find(EmergencyContact.class, ecName);
+           Account account = em.find(Account.class, username);
+            return account.getEmergencyContactList();
+        } finally {
+            em.close();
+        }
+    }
+    
+    public EmergencyContact get(int ecId) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+
+        try {
+            EmergencyContact ec = em.find(EmergencyContact.class, ecId);
             return ec;
         } finally {
             em.close();

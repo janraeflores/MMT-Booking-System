@@ -159,6 +159,10 @@ main {
     border: 2px solid rgba(105, 114, 104, 1);
     border-radius: 4px;
 }
+#phone-input::placeholder {
+    font-style: italic;
+    color: #c4c0c0;
+}
 
 .button-container {
     display: block;

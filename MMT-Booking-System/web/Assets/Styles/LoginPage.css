@@ -40,14 +40,13 @@ input:-webkit-autofill:focus {
 #message {
     display: flex;
     justify-content: center;
-    margin: 0 230px 10px 0;
     font-family: 'Josefin Sans';
     color: rgba(105, 114, 104, 1);
+    text-align: center;
 }
 #error-message {
     display: flex;
     justify-content: center;
-    margin: 0 230px 10px 0;
     font-family: 'Josefin Sans';
     color: #e51f1f;
 }

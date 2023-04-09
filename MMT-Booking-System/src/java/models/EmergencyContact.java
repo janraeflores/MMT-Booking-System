@@ -1,66 +1,68 @@
+
 package models;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Keith
+ * @author Joanna
  */
 @Entity
 @Table(name = "emergency_contact")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EmergencyContact.findAll", query = "SELECT e FROM EmergencyContact e")
+    , @NamedQuery(name = "EmergencyContact.findByEcId", query = "SELECT e FROM EmergencyContact e WHERE e.ecId = :ecId")
     , @NamedQuery(name = "EmergencyContact.findByEcName", query = "SELECT e FROM EmergencyContact e WHERE e.ecName = :ecName")
     , @NamedQuery(name = "EmergencyContact.findByEcPhone", query = "SELECT e FROM EmergencyContact e WHERE e.ecPhone = :ecPhone")
-    , @NamedQuery(name = "EmergencyContact.findByEcEmail", query = "SELECT e FROM EmergencyContact e WHERE e.ecEmail = :ecEmail")})
-
+    , @NamedQuery(name = "EmergencyContact.findByEcEmail", query = "SELECT e FROM EmergencyContact e WHERE e.ecEmail = :ecEmail")
+    , @NamedQuery(name = "EmergencyContact.findByEcRelation", query = "SELECT e FROM EmergencyContact e WHERE e.ecRelation = :ecRelation")})
 public class EmergencyContact implements Serializable {
-
-   
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @Column(name = "ec_id")
+    private Integer ecId;
     @Column(name = "ec_name")
     private String ecName;
-    @Basic(optional = false)
     @Column(name = "ec_phone")
     private String ecPhone;
     @Column(name = "ec_email")
     private String ecEmail;
     @Column(name = "ec_relation")
     private String ecRelation;
-    @OneToMany(mappedBy = "ecContact", fetch = FetchType.EAGER)
-    private List<Account> accountList;
-     @JoinColumn(name = "account_username", referencedColumnName = "username")
+    @JoinColumn(name = "fk_account", referencedColumnName = "username")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Account accountUsername;
+    private Account fkAccount;
 
     public EmergencyContact() {
     }
 
-    public EmergencyContact(String ecName) {
-        this.ecName = ecName;
+    public EmergencyContact(Integer ecId) {
+        this.ecId = ecId;
     }
 
-    public EmergencyContact(String ecName, String ecPhone) {
-        this.ecName = ecName;
-        this.ecPhone = ecPhone;
+    public Integer getEcId() {
+        return ecId;
+    }
+
+    public void setEcId(Integer ecId) {
+        this.ecId = ecId;
     }
 
     public String getEcName() {
@@ -86,7 +88,7 @@ public class EmergencyContact implements Serializable {
     public void setEcEmail(String ecEmail) {
         this.ecEmail = ecEmail;
     }
-    
+
     public String getEcRelation() {
         return ecRelation;
     }
@@ -95,27 +97,18 @@ public class EmergencyContact implements Serializable {
         this.ecRelation = ecRelation;
     }
 
-    public Account getAccountUsername() {
-        return accountUsername;
+    public Account getFkAccount() {
+        return fkAccount;
     }
 
-    public void setAccountUsername(Account accountUsername) {
-        this.accountUsername = accountUsername;
-    }
-
-    @XmlTransient
-    public List<Account> getAccountList() {
-        return accountList;
-    }
-
-    public void setAccountList(List<Account> accountList) {
-        this.accountList = accountList;
+    public void setFkAccount(Account fkAccount) {
+        this.fkAccount = fkAccount;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (ecName != null ? ecName.hashCode() : 0);
+        hash += (ecId != null ? ecId.hashCode() : 0);
         return hash;
     }
 
@@ -126,7 +119,7 @@ public class EmergencyContact implements Serializable {
             return false;
         }
         EmergencyContact other = (EmergencyContact) object;
-        if ((this.ecName == null && other.ecName != null) || (this.ecName != null && !this.ecName.equals(other.ecName))) {
+        if ((this.ecId == null && other.ecId != null) || (this.ecId != null && !this.ecId.equals(other.ecId))) {
             return false;
         }
         return true;
@@ -134,8 +127,7 @@ public class EmergencyContact implements Serializable {
 
     @Override
     public String toString() {
-        return "models.EmergencyContact[ ecName=" + ecName + " ]";
+        return "models.EmergencyContact[ ecId=" + ecId + " ]";
     }
-
-   
+    
 }

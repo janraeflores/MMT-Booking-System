@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -33,12 +34,11 @@ public class AccountServlet extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
         
         EmergencyContactService ecs = new EmergencyContactService();
-
+        
         try {
             request.setAttribute("account", account);
+            request.setAttribute("emergencyContact", ecs.getAll(account.getUsername()));
 
-            EmergencyContact ec = ecs.get(account.getEcContact().getEcName());
-            request.setAttribute("ec", ec);
         } catch (Exception ex) {
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,7 +56,6 @@ public class AccountServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         String username = account.getUsername();
-        String ecName = account.getEcContact().getEcName();
         
         String fullName = request.getParameter("full_name");
         String birthdate = request.getParameter("birthdate");
@@ -65,32 +64,38 @@ public class AccountServlet extends HttpServlet {
         String address = request.getParameter("address");
         String password = request.getParameter("password");
         
-        String ecNameInput = request.getParameter("ec_name");
+        String ecIdString = request.getParameter("ec_id");
+        String ecName = request.getParameter("ec_name");
         String ecRelation = request.getParameter("ec_relation");
         String ecPhone = request.getParameter("ec_phone");
         String ecEmail = request.getParameter("ec_email");
         
         if (action.equalsIgnoreCase("updateAccount")) {
-            if (!Validate.isEmpty(new String[]{fullName, email, phone, address, birthdate, password, ecNameInput, ecRelation, ecPhone})) {
+            if (!Validate.isEmpty(new String[]{fullName, email, phone, address, password})) {
                 try {
                     Role role = account.getRole();
-                    EmergencyContact ec = account.getEcContact();
-
-                    if (ec == null) {
-                        ecs.insert(as.get(username), ecName, ecPhone, ecEmail, ecRelation);
-                    } else {
-                        ecs.update(as.get(username), ecName, ecPhone, ecEmail, ecRelation);
+                    
+                    if (!ecs.getAll(username).isEmpty()) {
+                        int ecId = Integer.parseInt(ecIdString);
+                        ecs.update(ecId, ecName, ecRelation, ecPhone, ecEmail);
                     }
                     
-                    as.update(fullName, email, true, username, password, phone, role, convertBirthday(birthdate), address, ec);
-                    
+                    if (birthdate.equals("")) {
+                        as.update(username, fullName, email, password, phone, address);
+                    }
+                     
+                    as.update(fullName, email, true, username, password, phone, role, convertBirthday(birthdate), address);
+
                     request.setAttribute("message", "Account has been updated successfully!");
                     request.setAttribute("account", as.get(username));
+                    request.setAttribute("emergencyContact", ecs.getAll(username));
 
                     getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
                     
-                } catch (Exception e) {
-                    Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, e);
+                } catch (Exception ex) {
+                    request.setAttribute("message", "An error occured.");
+                    getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
+                    Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 try {
@@ -98,6 +103,8 @@ public class AccountServlet extends HttpServlet {
                     request.setAttribute("message", "Fields must not be empty.");
                     getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
                 } catch (Exception ex) {
+                    request.setAttribute("message", "An error occured.");
+                    getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
                     Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -105,17 +112,21 @@ public class AccountServlet extends HttpServlet {
     }
     
     /**
-     * Converts a birthdate to a Date object in yyyy-MM-dd format
-     * @param birthdate to be converted, as a String
+     * Converts a birthdate to a Date object that can be stored in the database as DATETIME
+     * @param birthdate to be converted
      * @return the birthdate converted to a Date object
      */
     private Date convertBirthday(String birthdate) {
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        LocalDateTime ldt = LocalDateTime.parse(birthdate, dateFormat);
-
-        Date date = Date.from(ldt.atZone(java.time.ZoneId.systemDefault()).toInstant());
+        DateTimeFormatter birthdateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         
-        return date;
+        LocalDate ld = LocalDate.parse(birthdate, birthdateFormat);
+        LocalDateTime ldt = ld.atStartOfDay();
+        
+        String formattedBirthdate = ldt.format(dateFormat);
+
+        Date birthday = Date.from(LocalDateTime.parse(formattedBirthdate, dateFormat).atZone(ZoneId.systemDefault()).toInstant());
+        
+        return birthday;
     }
 }

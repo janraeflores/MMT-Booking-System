@@ -3,7 +3,6 @@ package services;
 
 import dataaccess.EmergencyContactDB;
 import java.util.List;
-import models.Account;
 import models.EmergencyContact;
 
 /**
@@ -12,10 +11,11 @@ import models.EmergencyContact;
  */
 public class EmergencyContactService {
     
-    public EmergencyContact get(String ecName) throws Exception {
+
+    public EmergencyContact get(int ecId) throws Exception {
         EmergencyContactDB ecDB = new EmergencyContactDB();
-        EmergencyContact ec = ecDB.get(ecName);
         
+        EmergencyContact ec = ecDB.get(ecId);
         return ec;
     }
     
@@ -25,35 +25,40 @@ public class EmergencyContactService {
         
         return ecs;
     }
-    
-    public void insert(Account account, String ecName, String phone, String email, String relation) throws Exception {
-
-        EmergencyContact ec = new EmergencyContact(ecName, phone);
-        
-        ec.setEcEmail(email);
-        ec.setAccountUsername(account);
-        ec.setEcRelation(relation);
-        
+    public List<EmergencyContact> getAll(String username) throws Exception {
         EmergencyContactDB ecDB = new EmergencyContactDB();
-        ecDB.insert(ec);
+        List<EmergencyContact> ecs = ecDB.getAll(username);
+        
+        return ecs;
     }
     
-    public void update(Account account, String ecName, String phone, String email, String relation) throws Exception {
+    public void insert(String ecName, String ecPhone, String ecEmail, String ecRelation) throws Exception {
         EmergencyContactDB ecDB = new EmergencyContactDB();
-        EmergencyContact ec = ecDB.get(ecName);
+        EmergencyContact ec = new EmergencyContact(0);
         
+        ec.setEcEmail(ecEmail);
         ec.setEcName(ecName);
-        ec.setEcPhone(phone);
-        ec.setEcEmail(email);
-        ec.setAccountUsername(account);
-        ec.setEcRelation(relation);
+        ec.setEcPhone(ecPhone);
+        ec.setEcRelation(ecRelation);
+
+        ecDB.insert(ec);
+    }
+    public void update(int ecId, String ecName, String ecRelation, String ecPhone, String ecEmail) throws Exception {
+        EmergencyContactDB ecDB = new EmergencyContactDB();
+        EmergencyContact ec = ecDB.get(ecId);
+        
+        ec.setEcEmail(ecEmail);
+        ec.setEcName(ecName);
+        ec.setEcPhone(ecPhone);
+        ec.setEcRelation(ecRelation);
         
         ecDB.update(ec);
     }
-    
-    public void delete(String ecName) throws Exception {
+  
+   
+    public void delete(int ecId) throws Exception {
         EmergencyContactDB ecDB = new EmergencyContactDB();
-        EmergencyContact ec = ecDB.get(ecName);
+        EmergencyContact ec = ecDB.get(ecId);
         
         ecDB.delete(ec);
     }

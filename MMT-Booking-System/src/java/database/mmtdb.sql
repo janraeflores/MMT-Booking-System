@@ -23,17 +23,6 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`role` (
 
 
 -- -----------------------------------------------------
--- Table `mmtdb`.`emergency_contact`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mmtdb`.`emergency_contact` (
-  `ec_name` VARCHAR(40) NOT NULL,
-  `ec_phone` VARCHAR(16) NOT NULL,
-  `ec_email` VARCHAR(40),
-  `ec_relation` VARCHAR(30),
-  PRIMARY KEY (`ec_name`));
-
-
--- -----------------------------------------------------
 -- Table `mmtdb`.`account`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mmtdb`.`account` (
@@ -46,12 +35,25 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`account` (
   `role` INT(11) NOT NULL,
   `birthdate` DATETIME,
   `address` VARCHAR(50) NOT NULL,
-  `ec_contact` VARCHAR(40) DEFAULT NULL,
   `medical_info` VARCHAR(100),
   PRIMARY KEY (`username`),
   CONSTRAINT `fk_account_role`
     FOREIGN KEY (`role`)
     REFERENCES `mmtdb`.`role` (`role_id`));
+
+-- -----------------------------------------------------
+-- Table `mmtdb`.`emergency_contact`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mmtdb`.`emergency_contact` (
+  `ec_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `ec_name` VARCHAR(40),
+  `ec_phone` VARCHAR(16),
+  `ec_email` VARCHAR(40),
+  `ec_relation` VARCHAR(30),
+  `fk_account` VARCHAR(20),
+  PRIMARY KEY (`ec_id`),
+  CONSTRAINT `fk_account_ec`
+    FOREIGN KEY (`fk_account`) REFERENCES `mmtdb`.`account` (`username`));
 
 
 -- -----------------------------------------------------
@@ -73,19 +75,6 @@ CREATE TABLE IF NOT EXISTS `mmtdb`.`appointment` (
   CONSTRAINT `fk_appointment_service`
     FOREIGN KEY (`service`)
     REFERENCES `mmtdb`.`service` (`service_id`));
-
-ALTER TABLE `mmtdb`.`account`
-  ADD CONSTRAINT `fk_account_ec`
-    FOREIGN KEY (`ec_contact`) REFERENCES `mmtdb`.`emergency_contact` (`ec_name`);
-
-ALTER TABLE `mmtdb`.`emergency_contact`
-  ADD COLUMN `account_username` VARCHAR(20) AFTER `ec_name`;
-
-ALTER TABLE `mmtdb`.`emergency_contact`
-  ADD CONSTRAINT `fk_ec_account_username`
-    FOREIGN KEY (`account_username`) REFERENCES `mmtdb`.`account` (`username`);
-
-
 
 -- ------------
 -- CREATE ROLES
@@ -109,12 +98,13 @@ INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
 INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
   VALUES ('Facial','A facial is a cosmetic treatment for the face that is designed to cleanse, exfoliate, and nourish the skin.',0.00);
 
-INSERT INTO `emergency_contact` (`ec_name`, `ec_phone`, `ec_email`, `ec_relation`)
-  VALUES ('Bobby Vance', '(999) 888-7777', 'Bobby@gmail.com', 'Sibling');
 
-INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `phone`, `role`, `birthdate`, `address`, `ec_contact`)
-  VALUES ('bob vance', 'bob@gmail.com', true, 'bob', 'password', '(403) 777-9999', 2, '1997-03-25', '808 Sumwhere St Bobtown, BOB', 'Bobby Vance');
+
+INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `phone`, `role`, `birthdate`, `address`)
+  VALUES ('bob vance', 'bob@gmail.com', true, 'bob', 'password', '(403) 777-9999', 2, '1997-03-25', '808 Sumwhere St Bobtown, BOB');
 INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `phone`, `role`, `address`)
   VALUES ('admin one', 'admin@gmail.com', true, 'admin', 'password', '(111) 000-2222', 1, '58 Fredson Dr SE Calgary, AB T2H 1E1');
 
+INSERT INTO `emergency_contact` (`ec_name`, `ec_phone`, `ec_email`, `ec_relation`, `fk_account`)
+  VALUES ('Bobby Vance', '(999) 888-7777', 'Bobby@gmail.com', 'Sibling', 'bob');
 

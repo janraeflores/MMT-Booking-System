@@ -138,6 +138,14 @@ form {
     color: rgba(249, 251, 253, 1);
     letter-spacing: 2px;
 }
+.right-column #emergency-contact {
+    background: none;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgba(105, 114, 104, 1);
+    letter-spacing: 2px;
+    font-family: "josefin sans";
+}
 
 table {
     font-family: "josefin sans";
@@ -154,9 +162,12 @@ table tbody tr .left-table, .left-table-sub {
     padding-bottom: 5px;
 }
 
-#emergency-contact {
+#emergency-contact-heading {
    padding-top: 30px;
+   font-family: 'Josefin Sans';
    font-size: 20px;
+   background: none;
+   color:rgba(105, 114, 104, 1);
 }
 
 table tbody tr input {
@@ -170,6 +181,43 @@ table tbody tr input {
     border-radius: 4px;
     font-size: 12pt;
     outline: none;
+}
+
+table tbody tr input:focus {
+    background-color: rgb(242, 242, 242);
+}
+
+#emergency-contact {
+    text-align: left;
+}
+#no-contacts {
+    text-align: center;
+    font-size: 15pt;
+    color:#202020;
+    background: none;
+    font-family: 'Josefin Sans';
+    font-weight: 400;
+    margin: 0;
+}
+
+#emergency-contact table{
+    border-collapse: collapse;
+    font-size: 10pt;
+    color:#202020;
+    text-align: left;
+    margin: 10px auto;
+    border: none;
+}
+#emergency-contact table th {
+    padding: 5px;
+}
+#emergency-contact table input {
+    border: none;
+    padding: 5px;
+    font-size: 10pt;
+    width: 70%;
+    margin: 0;
+    font-family: 'Josefin Sans';
 }
 
 #message {

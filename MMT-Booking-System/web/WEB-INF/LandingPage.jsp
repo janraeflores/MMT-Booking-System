@@ -14,6 +14,9 @@
 
         <!-- Stylesheet -->
         <link rel="stylesheet" type="text/css" href="Assets/Styles/LandingPage.css">
+        <link rel="stylesheet" type="text/css" href="Assets/Styles/NavigationBar.css">
+        <link rel="stylesheet" type="text/css" href="Assets/Styles/Footer.css">
+        
     </head>
 
     <header>

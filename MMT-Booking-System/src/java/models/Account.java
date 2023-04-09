@@ -1,3 +1,4 @@
+
 package models;
 
 import java.io.Serializable;
@@ -19,6 +20,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+
 /**
  *
  * @author Joanna
@@ -60,25 +62,21 @@ public class Account implements Serializable {
     @Column(name = "phone")
     private String phone;
     @Column(name = "birthdate")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date birthdate;
     @Basic(optional = false)
     @Column(name = "address")
     private String address;
     @Column(name = "medical_info")
     private String medicalInfo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account", fetch = FetchType.EAGER)
-    private List<Appointment> appointmentList;
-    @JoinColumn(name = "ec_contact", referencedColumnName = "ec_name")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private EmergencyContact ecContact;
     @JoinColumn(name = "role", referencedColumnName = "role_id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Role role;
-    @OneToMany(mappedBy = "accountUsername", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "fkAccount", fetch = FetchType.EAGER)
     private List<EmergencyContact> emergencyContactList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account", fetch = FetchType.EAGER)
+    private List<Appointment> appointmentList;
 
-    
     public Account() {
     }
 
@@ -136,6 +134,14 @@ public class Account implements Serializable {
         this.password = password;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public Date getBirthdate() {
         return birthdate;
     }
@@ -159,6 +165,15 @@ public class Account implements Serializable {
     public void setMedicalInfo(String medicalInfo) {
         this.medicalInfo = medicalInfo;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @XmlTransient
     public List<Appointment> getAppointmentList() {
         return appointmentList;
@@ -167,30 +182,6 @@ public class Account implements Serializable {
     public void setAppointmentList(List<Appointment> appointmentList) {
         this.appointmentList = appointmentList;
     }
-    public EmergencyContact getEcContact() {
-        return ecContact;
-    }
-
-    public void setEcContact(EmergencyContact ecContact) {
-        this.ecContact = ecContact;
-    }
-    
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-    
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     @XmlTransient
     public List<EmergencyContact> getEmergencyContactList() {
         return emergencyContactList;
@@ -199,7 +190,6 @@ public class Account implements Serializable {
     public void setEmergencyContactList(List<EmergencyContact> emergencyContactList) {
         this.emergencyContactList = emergencyContactList;
     }
-
 
     @Override
     public int hashCode() {
@@ -225,7 +215,5 @@ public class Account implements Serializable {
     public String toString() {
         return "models.Account[ username=" + username + " ]";
     }
-
-
-   
+    
 }

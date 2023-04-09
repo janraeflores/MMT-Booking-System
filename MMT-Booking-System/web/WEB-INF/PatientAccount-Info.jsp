@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- <%-- 
     Document   : PatientAccount-Info
     Created on : 6-Feb-2023, 5:48:21 PM
@@ -87,6 +88,13 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td class="left-table">Birthday</td>
+                                    <td class="right-table">
+                                        <input type="date" class="right-table-input" name="birthdate" 
+                                               value="<fmt:formatDate value='${account.birthdate}' pattern='yyyy-MM-dd' />">
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td class="left-table">Username</td>
                                     <td class="right-table">
                                         <input type="text" class="right-table-input" name="username" value="${account.username}" readonly>
@@ -99,43 +107,53 @@
                                     </td>
                                 </tr>
                             <br>
-                            <tr>
-                                <td id="emergency-contact" class="left-table">EMERGENCY CONTACT</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="left-table-sub">Full Name</td>
-                                <td class="right-table">
-                                    <input type="text" name="ec_name" value="${account.ecContact.ecName}">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="left-table-sub">Relationship</td>
-                                <td class="right-table">
-                                    <input type="text" name="ec_relation" value="${account.ecContact.ecRelation}">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="left-table-sub">Phone Number</td>
-                                <td class="right-table">
-                                    <input type="text" name="ec_phone" value="${account.ecContact.ecPhone}">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="left-table-sub">Email</td>
-                                <td class="right-table">
-                                    <input type="text" name="ec_email" value="${account.ecContact.ecEmail}">
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
+                        <div id="emergency-contact">
+                            <p id="emergency-contact-heading">EMERGENCY CONTACT</p>
+                            <a id="add-contact">+</a>
+                            <c:choose>
+                                <c:when test="${empty emergencyContact}">
+                                    <p id="no-contacts">No emergency contacts</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <table border="2">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Relationship</th>
+                                            <th>Phone Number</th>
+                                            <th>Email</th>
+                                        </tr>
+                                        <c:forEach items="${emergencyContact}" var="emergencyContact">
+                                            <tr>
+                                                <input type="hidden" name="ec_id" value="${emergencyContact.ecId}">
+                                                <td>
+                                                    <input type="text" name="ec_name" value="${emergencyContact.ecName}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="ec_relation" value="${emergencyContact.ecRelation}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="ec_phone" value="${emergencyContact.ecPhone}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="ec_email" value="${emergencyContact.ecEmail}">
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </table>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
                         <div id="message">${message}</div>
                         <div class="save-container">
                             <button class="save">SAVE</button>
                             <input type="hidden" name="action" value="updateAccount">
                         </div>
-                        
                     </div>
+                </form>
+                <form action="" method="post">
+
                 </form>
             </div>
         </main>
