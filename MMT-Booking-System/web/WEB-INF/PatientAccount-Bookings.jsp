@@ -55,35 +55,39 @@
                 <p><a id="current" href="#">BOOKINGS</a></p>
                 <p><a href="account">PERSONAL INFO</a></p>
             </div>
-            <div class="right-column-container">
-                <table id="booking-details">
-                    <tr>
-                        <th>Name</th>
-                        <th>Service</th>
-                        <th>Duration</th>
-                        <th>Date</th>
-                        <th>Location</th>
-                        <th>Status</th>
-                    </tr>
-                    <c:forEach items="${appointment}" var="appointment">
-                        <tr>
-                            <td>${account.fullName}</td>
-                            <td>${appointment.service.serviceType}</td>
-                            <td>${appointment.duration} mins</td>
-                            <td>
-                                <fmt:formatDate pattern="MMM dd, yyyy hh:mm a z" timeZone="America/Denver" value="${appointment.appointmentDate}"/>
-                            </td>
-                            <td>${account.address}</td>
-                            <td id="status">
-                                <c:choose>
-                                    <c:when test="${appointment.status == false}">Pending</c:when>
-                                    <c:otherwise>Confirmed</c:otherwise>
-                                </c:choose> 
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </div>
+            <c:choose>
+                <c:when test="${empty appointment}">
+                    <h3>Book an appointment to view your appointments.</h3>
+                </c:when>
+                <c:otherwise>
+                    <div class="right-column-container">
+                        <table id="booking-details">
+                            <tr>
+                                <th>Name</th>
+                                <th>Service</th>
+                                <th>Duration</th>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Status</th>
+                            </tr>
+                            <c:forEach items="${appointment}" var="appointment">
+                                <tr>
+                                    <td>${account.fullName}</td>
+                                    <td>${appointment.service.serviceType}</td>
+                                    <td>${appointment.duration} mins</td>
+                                    <td>
+                                        <fmt:formatDate pattern="MMM dd, yyyy hh:mm a z" timeZone="America/Denver" value="${appointment.appointmentDate}"/>
+                                    </td>
+                                    <td>${account.address}</td>
+                                    <td>
+                                        Confirmed
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </div>
     </main>
 
