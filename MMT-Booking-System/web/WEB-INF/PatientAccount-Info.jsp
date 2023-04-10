@@ -60,6 +60,7 @@
                     <div class="right-column">
                         <p>PROFILE</p>
                         <div class="line"></div>
+                        <div id="message">${message}</div>
                         <table>
                             <tbody>
                                 <tr>
@@ -77,7 +78,7 @@
                                 <tr>
                                     <td class="left-table">Phone Number</td>
                                     <td class="right-table">
-                                        
+
                                         <input type="text" class="right-table-input" name="phone" value="${account.phone}">
                                     </td>
                                 </tr>
@@ -111,7 +112,6 @@
                         </table>
                         <div id="emergency-contact">
                             <p id="emergency-contact-heading">EMERGENCY CONTACT</p>
-                            <a id="add-contact">+</a>
                             <c:choose>
                                 <c:when test="${empty emergencyContact}">
                                     <p id="no-contacts">No emergency contacts</p>
@@ -126,34 +126,31 @@
                                         </tr>
                                         <c:forEach items="${emergencyContact}" var="emergencyContact">
                                             <tr>
-                                                <input type="hidden" name="ec_id" value="${emergencyContact.ecId}">
-                                                <td>
-                                                    <input type="text" name="ec_name" value="${emergencyContact.ecName}">
-                                                </td>
-                                                <td>
-                                                    <input type="text" name="ec_relation" value="${emergencyContact.ecRelation}">
-                                                </td>
-                                                <td>
-                                                    <input type="text" name="ec_phone" value="${emergencyContact.ecPhone}">
-                                                </td>
-                                                <td>
-                                                    <input type="text" name="ec_email" value="${emergencyContact.ecEmail}">
-                                                </td>
+                                            <input type="hidden" name="ec_id" value="${emergencyContact.ecId}">
+                                            <td>
+                                                <input type="text" name="ec_name" value="${emergencyContact.ecName}">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="ec_relation" value="${emergencyContact.ecRelation}">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="ec_phone" value="${emergencyContact.ecPhone}">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="ec_email" value="${emergencyContact.ecEmail}">
+                                            </td>
                                             </tr>
                                         </c:forEach>
                                     </table>
                                 </c:otherwise>
                             </c:choose>
                         </div>
-                        <div id="message">${message}</div>
+
                         <div class="save-container">
                             <button class="save">SAVE</button>
                             <input type="hidden" name="action" value="updateAccount">
                         </div>
                     </div>
-                </form>
-                <form action="" method="post">
-
                 </form>
             </div>
         </main>
