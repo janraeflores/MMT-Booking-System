@@ -78,7 +78,6 @@
 
                         <form action="clients?username=${account.username}" method="post">
                             <div class="buttons">
-<!--                                <input type="hidden" value="${account.username}">-->
                                 <button type="submit" class="saveButt" name="action" value="update">Save changes</button> 
                             </div>
 

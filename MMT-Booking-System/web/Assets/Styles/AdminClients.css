@@ -42,7 +42,6 @@ body {
     border-top: 2px solid rgb(99, 103, 107);
 }
 .client-list-container {
-    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
