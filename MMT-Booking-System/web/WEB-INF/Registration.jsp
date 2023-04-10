@@ -49,37 +49,37 @@
                 
                 <form action="registration" method="POST">
                     <div class="email-container">
-                        <p>Email Address:</p>
+                        <p>Email Address</p>
                         <div class="email">
                             <input type="email" name="email-input" id="email-input">
                         </div>
                     </div>
                     <div class="username-container">
-                        <p>Username:</p>
+                        <p>Username</p>
                         <div class="username">
                             <input type="text" name="username-input" id="username-input">
                         </div>
                     </div>
                     <div class="password-container">
-                        <p>Password:</p>
+                        <p>Password</p>
                         <div class="password">
                             <input type="password" name="pass-input" id="pass-input">
                         </div>
                     </div>
                     <div class="fullName-container">
-                        <p>Full Name:</p>
+                        <p>Full Name</p>
                         <div class="full_name">
                             <input type="text" name="full_name-input" id="full_name-input">
                         </div>
                     </div>
                     <div class="phone-container">
-                        <p>Phone Number:</p>
+                        <p>Phone Number</p>
                         <div class="phone">
                             <input placeholder="123-456-789" type="text" name="phone-input" id="phone-input"> 
                         </div>
                     </div>
                     <div class="address-container">
-                        <p>Address:</p>
+                        <p>Address</p>
                         <div class="address">
                             <input type="text" name="address-input" id="address-input">
                         </div>

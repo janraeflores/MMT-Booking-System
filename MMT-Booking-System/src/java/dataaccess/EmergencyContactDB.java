@@ -28,7 +28,7 @@ public class EmergencyContactDB {
 
         try {
            Account account = em.find(Account.class, username);
-            return account.getEmergencyContactList();
+           return account.getEmergencyContactList();
         } finally {
             em.close();
         }
@@ -50,6 +50,9 @@ public class EmergencyContactDB {
         EntityTransaction et = em.getTransaction();
         
         try {
+            Account account = ec.getFkAccount();
+            account.getEmergencyContactList().add(ec);
+            
             et.begin();
             em.persist(ec);
             em.merge(ec);
@@ -64,10 +67,11 @@ public class EmergencyContactDB {
     public void delete(EmergencyContact ec) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction et = em.getTransaction();
-        
-        getAll().remove(ec);
-        
+  
         try {
+            Account account = ec.getFkAccount();
+            account.getEmergencyContactList().remove(ec);
+            
             et.begin();
             em.remove(em.merge(ec));
             et.commit();

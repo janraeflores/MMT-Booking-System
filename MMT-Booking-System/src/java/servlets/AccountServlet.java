@@ -15,10 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Role;
 import models.Account;
-import models.EmergencyContact;
 import services.AccountService;
 import services.EmergencyContactService;
-import services.Validate;
 
 /**
  *
@@ -38,16 +36,18 @@ public class AccountServlet extends HttpServlet {
         try {
             request.setAttribute("account", account);
             request.setAttribute("emergencyContact", ecs.getAll(account.getUsername()));
-
+            getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
         } catch (Exception ex) {
+            response.sendRedirect("login");
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
+        
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
 
@@ -71,7 +71,7 @@ public class AccountServlet extends HttpServlet {
         String ecEmail = request.getParameter("ec_email");
         
         if (action.equalsIgnoreCase("updateAccount")) {
-            if (!Validate.isEmpty(new String[]{fullName, email, phone, address, password})) {
+            if (!isEmpty(new String[]{fullName, email, phone, address, password})) {
                 try {
                     Role role = account.getRole();
                     
@@ -97,7 +97,8 @@ public class AccountServlet extends HttpServlet {
                     getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
                     Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else {
+            } 
+            else {
                 try {
                     request.setAttribute("account", as.get(username));
                     request.setAttribute("message", "Fields must not be empty.");
@@ -113,6 +114,7 @@ public class AccountServlet extends HttpServlet {
     
     /**
      * Converts a birthdate to a Date object that can be stored in the database as DATETIME
+     * 
      * @param birthdate to be converted
      * @return the birthdate converted to a Date object
      */
@@ -128,5 +130,19 @@ public class AccountServlet extends HttpServlet {
         Date birthday = Date.from(LocalDateTime.parse(formattedBirthdate, dateFormat).atZone(ZoneId.systemDefault()).toInstant());
         
         return birthday;
+    }
+    
+    /**
+     * Tests an array of input fields if an input is empty or null
+     * @param input as an array of inputs
+     * @return true if any of the fields contained in the array are empty, otherwise, returns false
+     */
+    public static boolean isEmpty(String[] input) {
+        for (String s : input) {
+            if (s.equals("") || s == null) {
+                return true;
+            }
+        }
+        return false;
     }
 }

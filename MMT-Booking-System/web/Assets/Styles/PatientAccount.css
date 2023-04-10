@@ -4,7 +4,7 @@
 */
 
 @import url("https://css.gg/css");
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Josefin+Slab:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Josefin+Slab:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 body {
     margin: 0;
@@ -84,7 +84,7 @@ main {
     color: rgba(105, 114, 104, 1);
     margin-top: 20px;
     margin-bottom: 40px;
-    font-family: 'Josefin Sans';
+    font-family: "Josefin Sans";
     letter-spacing: 2px;
 }
 
@@ -105,8 +105,12 @@ main {
     color: rgba(249, 251, 253, 1);
 }
 
-a:link { text-decoration: none; }
-a:visited { text-decoration: none; }
+a:link {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+}
 p a:hover {
     color: rgba(249, 251, 253, 1);
 }
@@ -114,7 +118,9 @@ a:hover {
     background-color: rgba(105, 114, 104, 1);
     color: rgba(249, 251, 253, 1);
 }
-a:active { text-decoration: none; }
+a:active {
+    text-decoration: none;
+}
 
 form {
     display: inline;
@@ -125,6 +131,7 @@ form {
     border: 2px solid rgba(105, 114, 104, 1);
     border-radius: 10px;
     min-height: 500px;
+    width: 100%;
 }
 
 .right-column p {
@@ -146,13 +153,17 @@ form {
     letter-spacing: 2px;
     font-family: "josefin sans";
 }
+#emergency-contact {
+    margin: 20px 40px;
+}
 
 table {
     font-family: "josefin sans";
     font-size: 18px;
 }
 
-table tbody tr .left-table, .left-table-sub {
+table tbody tr .left-table,
+.left-table-sub {
     margin-top: 20px;
     background-color: rgba(249, 251, 253, 1);
     width: 200px;
@@ -162,12 +173,13 @@ table tbody tr .left-table, .left-table-sub {
     padding-bottom: 5px;
 }
 
-#emergency-contact-heading {
-   padding-top: 30px;
-   font-family: 'Josefin Sans';
-   font-size: 20px;
-   background: none;
-   color:rgba(105, 114, 104, 1);
+p#emergency-contact-heading {
+    margin: 0;
+    padding: 20px 0;
+    font-family: "Josefin Sans";
+    font-size: 20px;
+    background: none;
+    color: rgba(105, 114, 104, 1);
 }
 
 table tbody tr input {
@@ -193,17 +205,17 @@ table tbody tr input:focus {
 #no-contacts {
     text-align: center;
     font-size: 15pt;
-    color:#202020;
+    color: #202020;
     background: none;
-    font-family: 'Josefin Sans';
+    font-family: "Josefin Sans";
     font-weight: 400;
     margin: 0;
 }
 
-#emergency-contact table{
+#emergency-contact table {
     border-collapse: collapse;
     font-size: 10pt;
-    color:#202020;
+    color: #202020;
     text-align: left;
     margin: 10px auto;
     border: none;
@@ -217,13 +229,12 @@ table tbody tr input:focus {
     font-size: 10pt;
     width: 70%;
     margin: 0;
-    font-family: 'Josefin Sans';
+    font-family: "Josefin Sans";
 }
-
 #message {
     margin-top: 25px;
     padding: 15px;
-    font-family: 'Josefin Sans';
+    font-family: "Josefin Sans";
     font-size: 12pt;
     font-weight: 400;
     color: #202020;
@@ -242,7 +253,7 @@ button {
     cursor: pointer;
     border: 0;
     border-radius: 4px;
-    font-family: 'Josefin Sans';
+    font-family: "Josefin Sans";
     font-weight: 500;
     font-size: 20px;
     letter-spacing: 2px;

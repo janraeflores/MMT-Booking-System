@@ -129,6 +129,13 @@ a:active {
     display: inline;
     width: 70%;
 }
+h3 {
+   margin: 20px 150px 0 50px;
+   font-family: 'Josefin Sans';
+   font-size: 15pt;
+   font-weight: 500;
+   color:rgb(119, 125, 119);
+}
 
 table {
     margin-top: 7px;

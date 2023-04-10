@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import models.Account;
 import models.Role;
 import services.AccountService;
-import services.Validate;
 
 /**
  *
@@ -50,11 +49,12 @@ public class LoginServlet extends HttpServlet {
             
             Account account = as.login(username, password);
             
-            if (Validate.isEmpty(new String[]{username, password})) {
+            if (isEmpty(new String[]{username, password})) {
                 request.setAttribute("errorMessage", "Please provide a valid username or password.");
                 getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
                 return;
             }
+            
             if (account == null) {
                 request.setAttribute("errorMessage", "Your credentials cannot be verified.");
                 getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
@@ -70,12 +70,31 @@ public class LoginServlet extends HttpServlet {
                 
                 if (role.getRoleId() == 1) {
                     response.sendRedirect("admin");
-                } else {
+                } 
+                else {
                     response.sendRedirect("booking");
                 }
+            } 
+            else {
+                request.setAttribute("errorMessage", "Your account has been deactivated. Please contact the admin to activate your account.");
+                getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
             }
         } catch (Exception ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    /**
+     * Tests an array of input fields if an input is empty or null
+     * @param input as an array of inputs
+     * @return true if any of the fields contained in the array are empty, otherwise, returns false
+     */
+    public static boolean isEmpty(String[] input) {
+        for (String s : input) {
+            if (s.equals("") || s == null) {
+                return true;
+            }
+        }
+        return false;
     }
 }

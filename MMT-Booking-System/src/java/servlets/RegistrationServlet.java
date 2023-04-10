@@ -8,10 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.Role;
 import services.AccountService;
-import services.RoleService;
-import services.Validate;
+
 
 /**
  *
@@ -29,9 +27,9 @@ public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        AccountService as = new AccountService();
-        RoleService rs = new RoleService();
         
+        AccountService as = new AccountService();
+
         String fullName = request.getParameter("full_name-input");
         String email = request.getParameter("email-input");
         String username = request.getParameter("username-input");
@@ -45,42 +43,51 @@ public class RegistrationServlet extends HttpServlet {
             if (action != null) {
                 switch (action) {
                     case "register":
-                        if (Validate.isEmpty(new String[]{email, username, password, fullName, phone, address})) {
-                            
+                        if (isEmpty(new String[]{email, username, password, fullName, phone, address})) {
                             request.setAttribute("message", "Please fill out all fields.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
+                            return;
                         } 
-                        else if (!email.contains("@") && !email.contains(".com")) {
+                        
+                        if (!email.contains("@") && !email.contains(".com")) {
                             request.setAttribute("message", "Your email must be valid.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
+                            return;
                         } 
-                        else if (as.get(username) != null) {
+                        
+                        if (as.get(username) != null) {
                             request.setAttribute("message", "This username is taken, please try again.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
+                            return;
                         } 
-                        else if (Validate.passwordRequirement(password)) {
+                        
+                        if (password.length() < 8) {
                             request.setAttribute("message", "Password have 8 or more characters.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
+                            return;
                         }
-                        else if (phone.matches(".*[a-zA-Z]+.*") || phone.length() < 10 || phone.length() > 10) {
+                        
+                        if (phone.matches(".*[a-zA-Z]+.*") || phone.length() < 10 || phone.length() > 10) {
                             request.setAttribute("message", "Phone number is invalid. Please try again.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
+                            return;
                         }
-                        else {
-                            phone = formatPhoneNumber(phone);
-                            Role role = rs.get(2);
-                            as.insert(username, fullName, email, true, password, phone, role, address); 
-                            
-                            session.setAttribute("account", as.get(username));
-                            response.sendRedirect("booking"); 
-                        }
+
+                        phone = formatPhoneNumber(phone);
+                        as.insert(username, fullName, email, password, phone, address); 
+
+                        session.setAttribute("account", as.get(username));
+                        response.sendRedirect("booking"); 
                         break;
+                        
                     case "cancel":
                         response.sendRedirect("login");
                         break;
                 }
             }
         } catch (Exception e) {
+            request.setAttribute("message", "An error occured. Please try again.");
+            getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
             Logger.getLogger(RegistrationServlet.class.getName()).log(Level.SEVERE, null, e);
         }
     }
@@ -93,5 +100,19 @@ public class RegistrationServlet extends HttpServlet {
     private String formatPhoneNumber(String phoneNumber) {
         phoneNumber = phoneNumber.replaceAll("[^\\d]", "");
         return String.format("(%s) %s-%s", phoneNumber.substring(0,3), phoneNumber.substring(3,6), phoneNumber.substring(6));
+    }
+    
+    /**
+     * Tests an array of input fields if an input is empty or null
+     * @param input as an array of inputs
+     * @return true if any of the fields contained in the array are empty, otherwise, returns false
+     */
+    public static boolean isEmpty(String[] input) {
+        for (String s : input) {
+            if (s.equals("") || s == null) {
+                return true;
+            }
+        }
+        return false;
     }
 }

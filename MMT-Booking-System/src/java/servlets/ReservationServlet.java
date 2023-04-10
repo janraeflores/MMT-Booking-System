@@ -70,7 +70,7 @@ public class ReservationServlet extends HttpServlet {
             
             String appointmentDate = selectedDate + " " + timeSlot;
             
-            if (selectedDate.equals("")) {
+            if (selectedDate.equals("") || selectedDate == null) {
                 request.setAttribute("message", "Please select a date.");
                 getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
                 return;

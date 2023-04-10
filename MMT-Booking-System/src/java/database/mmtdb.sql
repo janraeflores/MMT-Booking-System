@@ -101,9 +101,9 @@ INSERT INTO `service` (`service_type`,`service_desc`,`service_cost`)
 
 
 INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `phone`, `role`, `birthdate`, `address`)
-  VALUES ('bob vance', 'bob@gmail.com', true, 'bob', 'password', '(403) 777-9999', 2, '1997-03-25', '808 Sumwhere St Bobtown, BOB');
+  VALUES ('Bob Vance', 'bob@gmail.com', true, 'bob', 'password', '(403) 777-9999', 2, '1997-03-25', '808 Sumwhere St Bobtown, BOB');
 INSERT INTO `account` (`full_name`, `email`, `active` ,`username`, `password`, `phone`, `role`, `address`)
-  VALUES ('admin one', 'admin@gmail.com', true, 'admin', 'password', '(111) 000-2222', 1, '58 Fredson Dr SE Calgary, AB T2H 1E1');
+  VALUES ('Admin one', 'admin@gmail.com', true, 'admin', 'password', '(111) 000-2222', 1, '58 Fredson Dr SE Calgary, AB T2H 1E1');
 
 INSERT INTO `emergency_contact` (`ec_name`, `ec_phone`, `ec_email`, `ec_relation`, `fk_account`)
   VALUES ('Bobby Vance', '(999) 888-7777', 'Bobby@gmail.com', 'Sibling', 'bob');
