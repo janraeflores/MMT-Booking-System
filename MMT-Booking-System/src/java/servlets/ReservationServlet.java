@@ -32,6 +32,12 @@ public class ReservationServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
         
+        if (account == null) {
+            request.setAttribute("message", "Please log in to make a reservation.");
+            
+            getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
+        }
+        
         AccountService as = new AccountService();
         MassageService ms = new MassageService();
         
