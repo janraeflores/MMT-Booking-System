@@ -29,7 +29,7 @@
             <div class="wrapper">
                 <ul>
                     <li><a href="admin">MAIN</a></li>
-                    <li><a href="availability">AVAILABILITY</a></li>
+                    <li><a href="reservation">RESERVATION</a></li>
                     <li><a href="clients">CLIENTS</a></li>
                     <li><a href="login">LOGOUT</a></li>
                 </ul>
