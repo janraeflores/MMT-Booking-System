@@ -14,6 +14,8 @@
 <!--     Stylesheet -->
     <link rel="shortcut icon" href="">
     <link rel="stylesheet" type="text/css" href="Assets/Styles/Service.css">
+    <link rel="stylesheet" type="text/css" href="Assets/Styles/NavigationBar.css">
+    <link rel="stylesheet" type="text/css" href="Assets/Styles/Footer.css">
 </head>
 
 <header>
