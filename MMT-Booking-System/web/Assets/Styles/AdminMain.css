@@ -398,39 +398,18 @@ input.displaySymbol{
     background-color: transparent;
     color: #697268;
 }
-.appointment h2{
+.appointment h2 a{
     color: #697268;
     font-weight: lighter;
-    font-size: 200%;
+    text-decoration: none;
+    font-size: 160%;
     margin-bottom: 0;
     padding-right: 0%;
     margin-right: 0%;
 }
-button.acceptAppoint{
-    border: none;
-    border-radius: 5px;
-    background-color: rgba(43, 78, 39, 0.7);   
-    font-family: 'Gafata', sans-serif;
-    color: white;
-    font-size: 60%;
-}
-button.declineAppoint{
-    border: none;
-    border-radius: 5px;
-    background-color: rgba(152, 71, 62, 0.7);
-    font-family: 'Gafata', sans-serif;
-    color: white;
-    font-size: 60%;
-}
-button.acceptAppoint:hover{
-    background-color: rgba(43, 78, 39, 0.9);
-}
-button.declineAppoint:hover{
-    background-color: rgba(152, 71, 62, 0.9);
-}
-#appointInfo{
-        display: none;
+.appointment p{
     padding-left: 7%;
     padding-right: 2%;
     color: #2B4E27;
+    width: 100%;
 }

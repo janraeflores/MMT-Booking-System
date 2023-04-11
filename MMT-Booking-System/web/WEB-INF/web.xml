@@ -33,10 +33,6 @@
         <servlet-class>servlets.AdminMainServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminAvailabilityServlet</servlet-name>
-        <servlet-class>servlets.AdminAvailabilityServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AdminClientsServlet</servlet-name>
         <servlet-class>servlets.AdminClientsServlet</servlet-class>
     </servlet>
@@ -75,10 +71,6 @@
     <servlet-mapping>
         <servlet-name>AdminMain</servlet-name>
         <url-pattern>/admin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AdminAvailabilityServlet</servlet-name>
-        <url-pattern>/availability</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminClientsServlet</servlet-name>

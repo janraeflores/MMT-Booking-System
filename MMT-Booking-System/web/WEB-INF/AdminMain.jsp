@@ -4,6 +4,9 @@
     Author     : Taburada
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,7 +26,6 @@
         <div class="wrapper stack-top">
             <ul>
                 <li><a href="admin">MAIN</a></li>
-                <li><a href="availability">AVAILABILITY</a></li>
                 <li><a href="clients">CLIENTS</a></li>
                 <li><a href="login">LOGOUT</a></li>
             </ul>
@@ -73,77 +75,37 @@
                             <div class="event-date"></div>
                             <!-- figure out how to display appointments based on day selected-->
 
-                            <!--hardcoded for css-->
-                            <!-- I would say prolly change appointInfo1 with $/{somevalue} that way each button would correlate with the following appointment div-->
-
-                            <form action="" method="POST">
-                                <div class="appointment">
+                            <div class="appointment">
+                                <c:forEach items="${appointment}" var="appointment">
                                     <h2>
-                                        <input type="button" onclick="displayInfo()" id="displaySymbol" class="displaySymbol" value="˅">
-                                        <input type="hidden" id="appoint" name="appoint" value="appointInfo1">
-                                        11:30am - 1:00pm
-                                        <button class="acceptAppoint hidden">accept</button>
-                                        <button class="declineAppoint hidden">decline</button>
+                                        <a id="appointmentTime" 
+                                           href="<c:url value='/admin?action=displayAppoints'>
+                                               <c:param name='appointId' value='${appointment.appointmentId}'></c:param>
+                                           </c:url>">
+                                            <fmt:formatDate pattern="dd MMMM, yyyy hh:mm a" timeZone="America/Denver" value="${appointment.appointmentDate}"/>
+                                        </a>
                                     </h2>
-                                    <div id="appointInfo">
-                                        <p><b>Client:</b> Donatello Hamato</p>
-                                        <p><b>Email:</b> bootyyyshaker9000@someemail.com</p>
-                                        <p><b>Phone:</b> I wish I had it bro</p>
-                                        <p><b>Medical Concerns:</b> Too smart tbh plus his shell is super soft. Chronically has 3 dumb brothers and constantly has to save the world. Honestly prolly diagnosed with the autism</p>
-                                        <p><b>Service:</b> Please give him a massage this mans back is prolly busted from slouching all the time lmAOOOO</p>
-                                        <p><b>Location:</b> The sewers frfr</p>
+                                    <div id="apppointInfo ${appointment.appointmentId}">
+                                        <p><b>Client: </b>${appointment.account.fullName}</p>
+                                        <p><b>Email: </b>${appointment.account.email}</p>
+                                        <p><b>Phone: </b>${appointment.account.phone}</p>
+                                        <p><b>Medical Concerns: </b>${appointment.account.medicalInfo}</p>
+                                        <p><b>Service: </b>${appointment.service.serviceType}</p>
+                                        <p><b>Service: </b>${appointment.duration} mins</p>
+                                        <p><b>Location: </b>${appointment.appointmentAddress}</p>
                                     </div>
-                                </div>
-                            </form>
+                                </c:forEach>
+                            </div>
 
-                            <form action="" method="POST">
-                                <div class="appointment">
-                                    <h2>
-                                        <input type="button" onclick="displayInfo()" id="displaySymbol" class="displaySymbol" value="˅">
-                                        <input type="hidden" id="appoint" name="appoint" value="appointInfo2">
-                                        1:30am - 3:00pm
-                                        <button class="acceptAppoint hidden">accept</button>
-                                        <button class="declineAppoint hidden">decline</button>
-                                    </h2>
-                                    <div id="appointInfo">
-                                        <p><b>Client:</b></p>
-                                        <p><b>Email:</b></p>
-                                        <p><b>Phone:</b></p>
-                                        <p><b>Medical Concerns:</b></p>
-                                        <p><b>Service:</b></p>
-                                        <p><b>Location:</b></p>
-                                    </div>
-                                </div>
-                            </form>
-
-                            <form action="" method="POST">
-                                <div class="appointment">
-                                    <h2>
-                                        <input type="button" onclick="displayInfo()" id="displaySymbol" class="displaySymbol" value="˅">
-                                        <input type="hidden" id="appoint" name="appoint" value="appointInfo3">
-                                        6:00am - 7:00pm
-                                        <!-- prolly do something where if the status of the appointment is accepted hide
-                                        them but if they're declined then remove the appointment from being displayed-->
-                                        <button class="acceptAppoint">accept</button>
-                                        <button class="declineAppoint">decline</button>
-                                    </h2>
-                                    <div id="appointInfo">
-                                        <p><b>Client:</b></p>
-                                        <p><b>Email:</b></p>
-                                        <p><b>Phone:</b></p>
-                                        <p><b>Medical Concerns:</b></p>
-                                        <p><b>Service:</b></p>
-                                        <p><b>Location:</b></p>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <script src="Assets/Scripts/Reservation.js"></script>
-        <script src="Assets/Scripts/AdminMain.js"></script>
-    </body>
+    <script src="Assets/Scripts/Reservation.js"></script>
+    <script src="Assets/Scripts/AdminMain.js"></script>
+</body>
 </html>
