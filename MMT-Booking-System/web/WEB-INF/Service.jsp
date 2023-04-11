@@ -106,6 +106,8 @@
            body.
         </p>
         <a href="reservation">SCHEDULE AN APPOINTMENT</a>
+        
+        <h2>Other Services</h2>
 
         <h3>Teeth Whitening</h3>
         <p>
@@ -117,7 +119,7 @@
         </p>
         <a href="reservation">SCHEDULE AN APPOINTMENT</a>
 
-        <h3>facial skin treatment</h3>
+        <h3>Facial Skin Treatment</h3>
         <p>
            <img src="./Assets/Images/facial.jpg" alt="">
            Hot stone massage helps treating body aches and pain without deep

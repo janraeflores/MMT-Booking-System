@@ -43,7 +43,7 @@
             <h2>Services & Reservations</h2>
 
             <div class="float-container">
-                <a href="#">
+                <a href="service">
                     <div class="float-child1">
                         <div class="masssage">
                             <P>MASSAGE</P>
@@ -51,7 +51,7 @@
                     </div>
                 </a>
 
-                <a href="#">
+                <a href="service">
                     <div class="float-child2">
                         <div class="spec-massage">
                             <p>SPECIAL</p>
@@ -60,7 +60,7 @@
                     </div>
                 </a>
 
-                <a href="#">
+                <a href="service">
                     <div class="float-child3">
                         <div class="box teeth-white">
                             <p>TEETH</p>
@@ -69,7 +69,7 @@
                     </div>
                 </a>
 
-                <a href="#">
+                <a href="service">
                     <div class="float-child4">
                         <div class="box facial-etc">
                             <p>FACIAL,</p>
