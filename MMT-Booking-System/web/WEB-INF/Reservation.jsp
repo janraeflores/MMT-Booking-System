@@ -69,7 +69,7 @@
                                 <input type="text" placeholder="MM/YYYY" class="date-input" />
                                 <button class="goto-btn">GO</button>
                             </div>
-                            <button class="today-btn">TODAY</button>
+                            <button class="today-btn">CURRENT MONTH</button>
                         </div>
                     </div>
                 </div>
