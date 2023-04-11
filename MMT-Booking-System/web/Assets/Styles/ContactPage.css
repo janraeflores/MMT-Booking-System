@@ -96,8 +96,8 @@ body {
 
 label {
     margin: auto;
-    font-size: 30px;
-    color: rgba(249, 251, 253, 1);
+    font-size: 25px;
+    color: rgba(105, 114, 104, 1);
     font-weight: bold;
     padding-bottom: 10px;
     display: block;
@@ -118,9 +118,11 @@ input {
 button {
     display: block;
     background-color: rgba(188, 211, 156, 1);
-    color: rgba(249, 251, 253, 1);
+    color: black;
     padding: 12px 24px;
     margin: 4px 2px;
+    text-color: black;
+    font-weight: bold;
 }
 
 
