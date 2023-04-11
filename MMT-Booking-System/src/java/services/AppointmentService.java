@@ -32,7 +32,7 @@ public class AppointmentService {
         AppointmentDB apptdb = new AppointmentDB();
      
         Service service = servdb.get(serviceId);
-        Appointment appt = new Appointment(0, appointmentAddress, appointmentDate, false, duration);
+        Appointment appt = new Appointment(0, appointmentAddress, appointmentDate, true, duration);
         
         appt.setAccount(account);
         appt.setAppointmentDate(appointmentDate);
@@ -55,6 +55,13 @@ public class AppointmentService {
         appt.setAppointmentAddress(address);
         appt.setAdditionalInfo(additionalInfo);
         
+        apptdb.update(appt);
+    }
+    
+    public void cancel(int appointmentId) throws Exception {
+        AppointmentDB apptdb = new AppointmentDB();
+        Appointment appt = apptdb.get(appointmentId);
+        appt.setStatus(false);
         apptdb.update(appt);
     }
 }

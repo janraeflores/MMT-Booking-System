@@ -26,6 +26,7 @@
         <div class="wrapper stack-top">
             <ul>
                 <li><a href="admin">MAIN</a></li>
+                <li><a href="reservation">RESERVATION</a></li>
                 <li><a href="clients">CLIENTS</a></li>
                 <li><a href="login">LOGOUT</a></li>
             </ul>
@@ -61,7 +62,7 @@
                                     <input type="text" placeholder="MM/YYYY" class="date-input" />
                                     <button class="goto-btn">GO</button>
                                 </div>
-                                <button class="today-btn">TODAY</button>
+                                <button class="today-btn">CURRENT MONTH</button>
                             </div>
                         </div>
                     </div>
@@ -72,33 +73,41 @@
                     <div id="viewAppoints">
                         <div class="today-date">
                             <div class="event-day"></div>
-                            <div class="event-date"></div>
-                            <!-- figure out how to display appointments based on day selected-->
+                            <form action="admin" method="post">
+                                <div class="event-date"></div>
+                                <input type="hidden" id="selected-date" name="selected-date">
+                                <button id="showAppoints" type="sumbit">show appointments</button>
 
-                            <div class="appointment">
-                                <c:forEach items="${appointment}" var="appointment">
-                                    <h2>
-                                        <a id="appointmentTime" 
-                                           href="<c:url value='/admin?action=displayAppoints'>
-                                               <c:param name='appointId' value='${appointment.appointmentId}'></c:param>
-                                           </c:url>">
-                                            <fmt:formatDate pattern="dd MMMM, yyyy hh:mm a" timeZone="America/Denver" value="${appointment.appointmentDate}"/>
-                                        </a>
-                                    </h2>
-                                    <div id="apppointInfo ${appointment.appointmentId}">
-                                        <p><b>Client: </b>${appointment.account.fullName}</p>
-                                        <p><b>Email: </b>${appointment.account.email}</p>
-                                        <p><b>Phone: </b>${appointment.account.phone}</p>
-                                        <p><b>Medical Concerns: </b>${appointment.account.medicalInfo}</p>
-                                        <p><b>Service: </b>${appointment.service.serviceType}</p>
-                                        <p><b>Service: </b>${appointment.duration} mins</p>
-                                        <p><b>Location: </b>${appointment.appointmentAddress}</p>
-                                    </div>
-                                </c:forEach>
-                            </div>
+                                <!-- figure out how to display appointments based on day selected-->
 
+                                <div class="appointment">
+                                    <c:forEach items="${appointment}" var="appointment">
+
+                                        <c:if test="${appointmentDay == appointment.appointmentDate}">
+                                            <p>It matches! ${appointmentDay} and ${appointent.appointmentDate}</p>
+                                        </c:if>
+
+                                        <h2>
+                                            <a id="appointmentTime" 
+                                               href="<c:url value='/admin?action=displayAppoints'>
+                                                   <c:param name='appointId' value='${appointment.appointmentId}'></c:param>
+                                               </c:url>">
+                                                <fmt:formatDate pattern="dd MMMM, yyyy hh:mm a" timeZone="America/Denver" value="${appointment.appointmentDate}"/>
+                                            </a>
+                                        </h2>
+                                        <div id="apppointInfo ${appointment.appointmentId}">
+                                            <p><b>Client: </b>${appointment.account.fullName}</p>
+                                            <p><b>Email: </b>${appointment.account.email}</p>
+                                            <p><b>Phone: </b>${appointment.account.phone}</p>
+                                            <p><b>Medical Concerns: </b>${appointment.account.medicalInfo}</p>
+                                            <p><b>Service: </b>${appointment.service.serviceType}</p>
+                                            <p><b>Service: </b>${appointment.duration} mins</p>
+                                            <p><b>Location: </b>${appointment.appointmentAddress}</p>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </form>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>

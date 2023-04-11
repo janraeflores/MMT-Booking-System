@@ -137,9 +137,9 @@
                                             <td><input type="text" name="u-email" id="u-email" value="${account.email}"></td>
                                         </tr>
                                         <tr>
-                                            <td>Address</td>
+                                            <td>Location</td>
                                             <td>
-                                                <input type="text" name="u-address" id="u-address" value="${account.address}">
+                                                <input type="text" name="u-address" id="u-address" value="58 Fredson Dr SE Calgary, AB T2H 1E1">
                                             </td>
                                         </tr>
                                         </tbody>

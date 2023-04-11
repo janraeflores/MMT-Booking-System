@@ -2,7 +2,7 @@
 <Context path="/MMT-Booking-System">
     <Resource name="jdbc/mmtdb" auth="Container" 
         driverClassName="com.mysql.jdbc.Driver"
-        url="jdbc:mysql://localhost:3306/mmtdb" 
+        url="jdbc:mysql://localhost:3308/mmtdb" 
         username="root" password="password" 
         maxActive="100" maxIdle="30" maxWait="10000" 
         logAbandoned="true" removeAbandoned="true" 

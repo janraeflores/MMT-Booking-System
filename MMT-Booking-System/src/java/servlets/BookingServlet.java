@@ -1,4 +1,3 @@
-
 package servlets;
 
 import java.io.IOException;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Account;
+import models.Appointment;
 import services.AccountService;
 import services.AppointmentService;
 
@@ -24,15 +24,35 @@ public class BookingServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
-        
+
         AccountService as = new AccountService();
         AppointmentService apptserv = new AppointmentService();
-        
+
         String username = account.getUsername();
+        
+
+        String action = request.getParameter("action");
+        action = action == null ? "" : action;
         
         try {
             request.setAttribute("account", as.get(username));
             request.setAttribute("appointment", apptserv.getAll(username));
+        } catch (Exception ex) {
+            Logger.getLogger(BookingServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        
+        try {
+            String appointmentId = request.getParameter("appointment_id");
+            if (action.equalsIgnoreCase("cancel")) {
+                apptserv.cancel(Integer.parseInt(appointmentId));
+                Appointment appt = apptserv.get(Integer.parseInt(appointmentId));
+                request.setAttribute("message", "Your appointment at " + appt.getAppointmentDate() + " has been cancelled.");
+                request.setAttribute("appointment", apptserv.getAll(username));
+                request.setAttribute("account", as.get(username));
+           
+            }
+            
         } catch (Exception ex) {
             Logger.getLogger(BookingServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

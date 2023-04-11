@@ -237,7 +237,9 @@ table tbody tr input:focus {
 #emergency-contact table th {
     letter-spacing: 1px;
     padding: 5px;
-    background-color: #7FA0CA;
+    background-color: rgba(105, 114, 104, 1);
+    color: rgba(249, 251, 253, 1);
+    font-weight:400;
 }
 #emergency-contact table td {
     height: fit-content;

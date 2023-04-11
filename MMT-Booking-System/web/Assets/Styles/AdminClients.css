@@ -97,10 +97,10 @@ body {
     font-size: 14pt;
 }
 #message {
-    color:#ed3434;
+    color:#697268;
 }
 #error-message {
-    color:#697268;
+    color:#ed3434;
 }
 
 .emergency-container, 
@@ -267,4 +267,11 @@ a.deleteButt:hover::after {
     text-decoration: underline;
     cursor: pointer;
     padding: 0;
+}
+
+.cancelled {
+    background-color: #ffb7b7;
+}
+.confirmed {
+    font-weight: 500;
 }

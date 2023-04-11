@@ -44,12 +44,11 @@ public class AdminClientsServlet extends HttpServlet {
         try {
             switch (action) {
                 case "display":
-                    Account selectedAccount = as.get(clientUsername);
-
+                    ;
                     request.setAttribute("display", true);
-                    request.setAttribute("account", selectedAccount);
+                    request.setAttribute("account", as.get(clientUsername));
                     request.setAttribute("emergencyContacts", ecs.getAll(clientUsername));
-                    request.setAttribute("appointments", apptserv.getAll(selectedAccount.getUsername()));
+                    request.setAttribute("appointments", apptserv.getAll(clientUsername));
 
                     break;
                 case "deactivate":
@@ -64,6 +63,17 @@ public class AdminClientsServlet extends HttpServlet {
                     request.setAttribute("accounts", as.getAllActive());
 
                     break;
+                case "delete":
+                    int appointmentId = Integer.parseInt(request.getParameter("appointment_id"));
+                    apptserv.delete(appointmentId);
+                    
+                    request.setAttribute("display", true);
+//                    request.setAttribute("account", as.get(clientUsername));
+                    request.setAttribute("emergencyContacts", ecs.getAll(clientUsername));
+                    request.setAttribute("appointments", apptserv.getAll(clientUsername));
+                    request.setAttribute("accounts", as.getAllActive());
+                    break;
+
             }
         } catch (Exception ex) {
             Logger.getLogger(AdminClientsServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -113,8 +123,7 @@ public class AdminClientsServlet extends HttpServlet {
             Account selectedAccount = as.get(clientUsername);
             request.setAttribute("account", selectedAccount);
             request.setAttribute("accounts", as.getAllActive());
-            
-            
+
         } catch (Exception ex) {
             Logger.getLogger(AdminClientsServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
