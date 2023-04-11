@@ -78,8 +78,7 @@
                     <div class="today-date">
                         <div class="event-day"></div>
                         <div class="event-date"></div>
-                        <form action="reservation" method="post">
-                            
+                        <form action="reservation" method="post"> 
                             <div id="services" class="services hide">
                                 <p>SERVICES</p>
                                 
@@ -125,22 +124,22 @@
                                         </tr>
                                         <tr>
                                             <td>Full Name</td>
-                                            <td><input type="text" name="u-name" id="u-name" value="${account.fullName}" readonly></td>
+                                            <td><input type="text" name="u-name" id="u-name" value="${account.fullName}"></td>
                                         </tr>
                                         <tr>
                                             <td>Phone Number</td>
                                             <td>
-                                                <input type="text" name="u-tel" id="u-tel" value="${account.phone}" readonly>
+                                                <input type="text" name="u-tel" id="u-tel" value="${account.phone}">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Email</td>
-                                            <td><input type="text" name="u-email" id="u-email" value="${account.email}" readonly></td>
+                                            <td><input type="text" name="u-email" id="u-email" value="${account.email}"></td>
                                         </tr>
                                         <tr>
                                             <td>Address</td>
                                             <td>
-                                                <input type="text" name="u-address" id="u-address" value="${account.address}" readonly>
+                                                <input type="text" name="u-address" id="u-address" value="${account.address}">
                                             </td>
                                         </tr>
                                         </tbody>

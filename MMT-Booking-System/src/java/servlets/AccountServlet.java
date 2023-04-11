@@ -33,6 +33,7 @@ public class AccountServlet extends HttpServlet {
 
         EmergencyContactService ecs = new EmergencyContactService();
 
+        String username = account.getUsername();
         String action = request.getParameter("action");
         action = action == null ? "" : action;
 
@@ -41,15 +42,22 @@ public class AccountServlet extends HttpServlet {
                 case "add":
                     request.setAttribute("add", true);
                     request.setAttribute("account", account);
-                    request.setAttribute("emergencyContact", ecs.getAll(account.getUsername()));
+                    request.setAttribute("emergencyContact", ecs.getAll(username));
                     break;
+                case "delete":
+                    int ecId = Integer.parseInt(request.getParameter("ec_id"));
+                    ecs.delete(ecId);
+                    request.setAttribute("account", account);
+                    request.setAttribute("emergencyContact", ecs.getAll(username));
             }
 
 //            request.setAttribute("account", account);
-            request.setAttribute("emergencyContact", ecs.getAll(account.getUsername()));
+            request.setAttribute("emergencyContact", ecs.getAll(username));
             getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
         } catch (Exception ex) {
-            response.sendRedirect("login");
+
+            getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
+            System.out.println("ecId: " + request.getParameter("ecId"));
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -61,24 +69,24 @@ public class AccountServlet extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
         AccountService as = new AccountService();
         EmergencyContactService ecs = new EmergencyContactService();
-        
+
         String action = request.getParameter("action");
-        
+
         String username = account.getUsername();
-        
+
         String fullName = request.getParameter("full_name");
         String birthdate = request.getParameter("birthdate");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
         String password = request.getParameter("password");
-        
-        String ecIdString = request.getParameter("ec_id");
+
+        String ecId = request.getParameter("ec_id");
         String ecName = request.getParameter("ec_name");
         String ecRelation = request.getParameter("ec_relation");
         String ecPhone = request.getParameter("ec_phone");
         String ecEmail = request.getParameter("ec_email");
-        
+
         String contactName = request.getParameter("contact_name");
         String contactRelation = request.getParameter("contact_relation");
         String contactPhone = request.getParameter("contact_phone");
@@ -89,14 +97,11 @@ public class AccountServlet extends HttpServlet {
                 case "updateAccount":
                     if (!isEmpty(new String[]{fullName, email, phone, address, password})) {
                         Role role = account.getRole();
-                        if (!ecs.getAll(username).isEmpty()) {
-                            int ecId = Integer.parseInt(ecIdString);
-                            ecs.update(ecId, ecName, ecRelation, ecPhone, ecEmail);
-                        }
+
                         if (birthdate.equals("")) {
                             as.update(username, fullName, email, password, phone, address);
                         } else {
-                            as.update(fullName, email, true, username, password, phone, role, convertBirthday(birthdate), address);
+                            as.update(fullName, email, true, username, password, formatPhoneNumber(phone), role, convertBirthday(birthdate), address);
                         }
                         request.setAttribute("message", "Account has been updated successfully!");
                         request.setAttribute("account", as.get(username));
@@ -106,14 +111,11 @@ public class AccountServlet extends HttpServlet {
                     }
                     getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
                     break;
-                case "add":
-                    if (!isEmpty(new String[]{ecName, ecRelation})) {
-                        ecs.insert(contactName, contactPhone, contactEmail, contactRelation, username);
-                        request.setAttribute("account", as.get(username));
-                        request.setAttribute("emergencyContact", ecs.getAll(username));
-                    } else {
-                        request.setAttribute("message", "A phone number or email must be provided for the emergency contact.");
-                    }
+                case "addContact":
+                    ecs.insert(contactName, formatPhoneNumber(contactPhone), contactEmail, contactRelation, username);
+                    request.setAttribute("account", as.get(username));
+                    request.setAttribute("emergencyContact", ecs.getAll(username));
+
                     getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
                     break;
                 case "cancel":
@@ -168,5 +170,16 @@ public class AccountServlet extends HttpServlet {
             }
         }
         return false;
+    }
+
+    /**
+     * Method for formatting phone numbers in a (###) ###-#### format
+     *
+     * @param phoneNumber
+     * @return a formatted phone number
+     */
+    private String formatPhoneNumber(String phoneNumber) {
+        phoneNumber = phoneNumber.replaceAll("[^\\d]", "");
+        return String.format("(%s) %s-%s", phoneNumber.substring(0, 3), phoneNumber.substring(3, 6), phoneNumber.substring(6));
     }
 }

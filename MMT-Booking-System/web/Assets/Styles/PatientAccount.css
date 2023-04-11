@@ -43,7 +43,7 @@ header h1 {
 }
 
 main {
-    width: 60%;
+    width:62%;
     margin-left: auto;
     margin-right: auto;
     background-color: rgba(249, 251, 253, 1);
@@ -131,7 +131,7 @@ form {
     border: 2px solid rgba(105, 114, 104, 1);
     border-radius: 10px;
     min-height: 500px;
-    width: 70%;
+    width: 75%;
 }
 
 .right-column p {
@@ -152,6 +152,7 @@ form {
     color: rgba(105, 114, 104, 1);
     letter-spacing: 2px;
     font-family: "josefin sans";
+    margin-bottom: 60px;
 }
 
 table {
@@ -178,7 +179,7 @@ p#emergency-contact-heading {
     background: none;
     color: rgba(105, 114, 104, 1);
 }
-#add-emergency {
+#add-emergency, #delete-emergency, #edit-emergency {
     text-decoration: none;
     font-size: 12pt;
     display: inline-block;
@@ -188,7 +189,7 @@ p#emergency-contact-heading {
     background: none;
     letter-spacing: 1px;
 }
-#add-emergency:hover {
+#add-emergency:hover, #delete-emergency:hover, #edit-emergency:hover {
     text-decoration: underline;
     color: #648ab7;
     background: none;
@@ -236,17 +237,19 @@ table tbody tr input:focus {
 #emergency-contact table th {
     letter-spacing: 1px;
     padding: 5px;
+    background-color: #7FA0CA;
 }
 #emergency-contact table td {
     height: fit-content;
-    padding: 5px;
+    padding: 0;
+   
 }
 #emergency-contact table input {
     height: fit-content;
     border: none;
-    padding: 0;
+    padding: 5px;
     font-size: 10pt;
-    width: 100%;
+    width: 80%;
     margin: 0;
     font-family: "Josefin Sans";
 }
@@ -294,14 +297,14 @@ button:hover {
     border: 1px;
 }
 
-#emerg-contact-form {
+.emerg-contact-form {
     margin: 30px;
     font-family: 'josefin sans';
     display: flex;
     flex-direction: column;
 }
 
-#emerg-contact-form p {
+.emerg-contact-form p {
     background: none;
     color:rgba(105, 114, 104, 1);
     font-family: 'josefin sans';
@@ -310,7 +313,7 @@ button:hover {
 
 }
 
-#emerg-contact-form input[type="text"]{
+.emerg-contact-form input[type="text"]{
     width: 250px;
     border: 2px solid rgba(105, 114, 104, 1);
     border-radius: 4px;
@@ -350,4 +353,9 @@ button:hover {
     width: fit-content;
     border: none;
 }
-
+#delete-emergency {
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+    font-size: 10pt;
+}

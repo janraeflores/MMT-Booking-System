@@ -61,7 +61,7 @@
                     <p>PROFILE</p>
                     <div class="line"></div>
                     <div id="message">${message}</div>
-                    <form action="" method="POST">
+                    <form action="account?username=${account.username}" method="POST">
                         <table>
                             <tbody>
                                 <tr>
@@ -130,22 +130,27 @@
                                             <th>Relation</th>
                                             <th>Phone Number</th>
                                             <th>Email</th>
+                                            <th></th>
                                         </tr>
                                         <c:forEach items="${emergencyContact}" var="emergencyContact">
                                             <tr>
-                                            <input type="hidden" name="ec_id" value="${emergencyContact.ecId}">
-                                            <td>
-                                                <input type="text" name="ec_name" value="${emergencyContact.ecName}">
-                                            </td>
-                                            <td>
-                                                <input type="text" name="ec_relation" value="${emergencyContact.ecRelation}">
-                                            </td>
-                                            <td>
-                                                <input type="text" name="ec_phone" value="${emergencyContact.ecPhone}">
-                                            </td>
-                                            <td>
-                                                <input type="text" name="ec_email" value="${emergencyContact.ecEmail}">
-                                            </td>
+                                                <td>                   
+                                                    <input type="text" name="ec_name" value="${emergencyContact.ecName}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="ec_relation" value="${emergencyContact.ecRelation}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="ec_phone" value="${emergencyContact.ecPhone}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="ec_email" value="${emergencyContact.ecEmail}">
+                                                </td>
+                                                <td>
+                                                    <a id="delete-emergency" href="<c:url value='/account?action=delete'>
+                                                           <c:param name='ec_id' value='${emergencyContact.ecId}'></c:param>
+                                                    </c:url>">Delete</a>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                     </table>
@@ -154,7 +159,7 @@
 
                         </div>
                         <c:if test="${add eq true}">
-                            <div id="emerg-contact-form">
+                            <div class="emerg-contact-form">
                                 <p>Add an Emergency Contact</p>
                                 <label>Name</label>
                                 <input required type="text" id="contact-name" name="contact_name" value="">
@@ -163,23 +168,26 @@
                                 <input required type="text" id="contact-relation" name="contact_relation" value="">
                                 <br>
                                 <label>Phone Number</label>
-                                <input type="text" id="contact-phone" name="contact_phone" value="">
+                                <input required type="text" id="contact-phone" name="contact_phone" value="">
                                 <br>
                                 <label>Email</label>
                                 <input type="text" id="contact-email" name="contact_email" value="">
                                 <div id="add-emerg-contact">
                                     <a id="cancel-button" href="account?action=cancel">Cancel</a>
                                     <button class="add-contact-btn">Add</button>
-                                    <input type="hidden" name="action" value="add">
-                                </div>
+                                    <input type="hidden" name="action" value="addContact">
 
+                                </div>
 
                             </div>
                         </c:if>
-                        <div class="save-container">
-                            <button class="save">SAVE</button>
-                            <input type="hidden" name="action" value="updateAccount">
-                        </div>
+                      
+                            <div class="save-container">
+                                <button class="save">SAVE</button>
+                                <input type="hidden" name="action" value="updateAccount">
+                            </div>
+                 
+
                     </form>
 
                 </div>
