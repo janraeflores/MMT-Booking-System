@@ -47,14 +47,19 @@ body {
     width: 80%;
     padding: 20px;
     text-align: center;
+    position: absolute;
+    z-index: -2;
 }
 
 .contactimage {
     filter: blur(8px);
     -webkit-filter: blur(8px);
-    height: 20%;
+    height: 675px;
     background-position: center;
     background-repeat: no-repeat;
+    padding-top: 75px;
+    position: relative;
+    z-index: -5;
 }
 
 .hours {
