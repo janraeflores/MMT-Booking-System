@@ -46,7 +46,7 @@ public class AccountServlet extends HttpServlet {
             }
 
 //            request.setAttribute("account", account);
-//            request.setAttribute("emergencyContact", ecs.getAll(account.getUsername()));
+            request.setAttribute("emergencyContact", ecs.getAll(account.getUsername()));
             getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
         } catch (Exception ex) {
             response.sendRedirect("login");

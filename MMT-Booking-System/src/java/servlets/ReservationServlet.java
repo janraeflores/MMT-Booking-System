@@ -103,6 +103,14 @@ public class ReservationServlet extends HttpServlet {
             
             apptserv.insert(serviceType, account, address, convertToDate(appointmentDate), serviceDuration);
             
+            if (serviceDuration == 120) {
+                Date date = convertToDate(appointmentDate);
+                
+                Date secondHour = addOneHour(date);
+                
+                apptserv.insert(serviceType, account, address, secondHour, (serviceDuration - 60));
+            }
+            
             String username = account.getUsername();
             int currentAppointment = apptserv.getAll(username).size() - 1;
             
@@ -138,5 +146,25 @@ public class ReservationServlet extends HttpServlet {
         Date date = Date.from(LocalDateTime.parse(formattedSelectedDate, dateFormat).atZone(ZoneId.systemDefault()).toInstant());
         
         return date;
+    }
+    
+    /**
+     * Adds an hour to an appointment time
+     */
+    private Date addOneHour(Date date) {
+        
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        
+        LocalDateTime ldt = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+        
+        LocalDateTime updatedLdt = ldt.plusHours(1);
+        
+        String formattedDt = updatedLdt.format(dateFormat);
+        
+        LocalDateTime parsedDt = LocalDateTime.parse(formattedDt, dateFormat);
+        
+        Date updatedDate = Date.from(parsedDt.atZone(ZoneId.systemDefault()).toInstant());
+        
+        return updatedDate;
     }
 }
