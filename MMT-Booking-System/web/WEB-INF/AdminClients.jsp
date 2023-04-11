@@ -29,9 +29,8 @@
             <div class="wrapper">
                 <ul>
                     <li><a href="admin">MAIN</a></li>
-                    <li><a href="availability">AVAILABILITY</a></li>
                     <li><a href="clients">CLIENTS</a></li>
-                    <li><a href="login">LOGOUT</a></li>
+                    <li><a href="login?logout">LOGOUT</a></li>
                 </ul>
             </div>
         </header>
@@ -154,9 +153,10 @@
                                             <th>Service</th>
                                             <th>Duration</th>
                                             <th>Status</th>
+                                            <th></th>
                                         </tr>
                                         <c:forEach items="${appointments}" var="appointment">
-                                            <tr class="appointment-info">
+                                            <tr class="appointment-info ${appointment.status == false ? 'cancelled' : 'confirmed'}">
                                                 <td>
                                                     <p><fmt:formatDate pattern="MMM. dd, yyyy h:mm a" timeZone="America/Denver" value="${appointment.appointmentDate}"/></p>
                                                 </td>                                    
@@ -166,13 +166,20 @@
                                                 <td>
                                                     <p>${appointment.duration} mins</p>
                                                 </td> 
-                                                <td>
+                                                <td class="${appointment.status == false ? 'cancelled' : 'confirmed'}">
                                                     <p>
                                                         <c:choose>
-                                                            <c:when test="${appointment.status == false}">Pending</c:when>
+                                                            <c:when test="${appointment.status == false}">Cancelled</c:when>
                                                             <c:otherwise>Confirmed</c:otherwise>
                                                         </c:choose> 
                                                     </p>   
+                                                </td>
+                                                <td>
+                                                    <a href="<c:url value='clients?action=delete'>
+                                                           <c:param name='appointment_id' value='${appointment.appointmentId}'></c:param>
+                                                    </c:url>">
+                                                        Delete
+                                                    </a>
                                                 </td>
                                             </tr>
                                         </c:forEach>  
@@ -182,10 +189,6 @@
                         </div>
                     </c:otherwise>
                 </c:choose>
-
-                <c:if test="${display eq true}">
-
-                </c:if>
             </div>
         </main>
     </body>
