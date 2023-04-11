@@ -131,7 +131,7 @@ form {
     border: 2px solid rgba(105, 114, 104, 1);
     border-radius: 10px;
     min-height: 500px;
-    width: 100%;
+    width: 70%;
 }
 
 .right-column p {
@@ -152,9 +152,6 @@ form {
     color: rgba(105, 114, 104, 1);
     letter-spacing: 2px;
     font-family: "josefin sans";
-}
-#emergency-contact {
-    margin: 20px 40px;
 }
 
 table {
@@ -181,6 +178,21 @@ p#emergency-contact-heading {
     background: none;
     color: rgba(105, 114, 104, 1);
 }
+#add-emergency {
+    text-decoration: none;
+    font-size: 12pt;
+    display: inline-block;
+    margin: 0 0 0 10px;
+    color: #7FA0CA;
+    font-weight: 500;
+    background: none;
+    letter-spacing: 1px;
+}
+#add-emergency:hover {
+    text-decoration: underline;
+    color: #648ab7;
+    background: none;
+}
 
 table tbody tr input {
     margin-top: 10px;
@@ -201,6 +213,7 @@ table tbody tr input:focus {
 
 #emergency-contact {
     text-align: left;
+    margin: 10px 0 0 30px;
 }
 #no-contacts {
     text-align: center;
@@ -217,17 +230,23 @@ table tbody tr input:focus {
     font-size: 10pt;
     color: #202020;
     text-align: left;
-    margin: 10px auto;
-    border: none;
+    margin: 10px 0;
+    border: 2px solid rgba(105, 114, 104, 1);
 }
 #emergency-contact table th {
+    letter-spacing: 1px;
+    padding: 5px;
+}
+#emergency-contact table td {
+    height: fit-content;
     padding: 5px;
 }
 #emergency-contact table input {
+    height: fit-content;
     border: none;
-    padding: 5px;
+    padding: 0;
     font-size: 10pt;
-    width: 70%;
+    width: 100%;
     margin: 0;
     font-family: "Josefin Sans";
 }
@@ -274,3 +293,61 @@ button:hover {
     color: rgba(249, 251, 253, 1);
     border: 1px;
 }
+
+#emerg-contact-form {
+    margin: 30px;
+    font-family: 'josefin sans';
+    display: flex;
+    flex-direction: column;
+}
+
+#emerg-contact-form p {
+    background: none;
+    color:rgba(105, 114, 104, 1);
+    font-family: 'josefin sans';
+    font-weight: 500;
+    padding: 0 0 20px 0;
+
+}
+
+#emerg-contact-form input[type="text"]{
+    width: 250px;
+    border: 2px solid rgba(105, 114, 104, 1);
+    border-radius: 4px;
+    padding: 10px;
+    background-color: rgba(249, 251, 253, 1);
+    font-size: 12pt;
+    font-family: 'josefin sans';
+}
+
+#add-emerg-contact {
+    margin: 15px 0;
+}
+
+#cancel-button {
+    background: none;
+    color: #7FA0CA;
+}
+#cancel-button:hover {
+    text-decoration: underline;
+    opacity: 0.5;
+}
+
+.add-contact-btn {
+    letter-spacing: 1px;
+    font-size: 12pt;
+    box-shadow: 0 0 20px rgba(249, 251, 253, 1);
+    background: none;
+    border: 2px solid rgba(105, 114, 104, 1);
+    width: fit-content;
+    padding: 7px 15px 5px 15px;
+    color: rgba(105, 114, 104, 1);
+    margin: 0 0 0 150px;
+}
+.add-contact-btn:hover {
+    background-color: rgba(105, 114, 104, 1);
+    color: white;
+    width: fit-content;
+    border: none;
+}
+

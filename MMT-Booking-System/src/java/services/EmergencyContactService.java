@@ -1,8 +1,10 @@
 
 package services;
 
+import dataaccess.AccountDB;
 import dataaccess.EmergencyContactDB;
 import java.util.List;
+import models.Account;
 import models.EmergencyContact;
 
 /**
@@ -32,14 +34,18 @@ public class EmergencyContactService {
         return ecs;
     }
     
-    public void insert(String ecName, String ecPhone, String ecEmail, String ecRelation) throws Exception {
+    public void insert(String ecName, String ecPhone, String ecEmail, String ecRelation, String username) throws Exception {
         EmergencyContactDB ecDB = new EmergencyContactDB();
+        AccountDB accountDB = new AccountDB();
+        
+        Account account = accountDB.get(username);
         EmergencyContact ec = new EmergencyContact(0);
         
         ec.setEcEmail(ecEmail);
         ec.setEcName(ecName);
         ec.setEcPhone(ecPhone);
         ec.setEcRelation(ecRelation);
+        ec.setFkAccount(account);
 
         ecDB.insert(ec);
     }

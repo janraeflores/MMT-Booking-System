@@ -56,11 +56,12 @@
                     <p><a id="bookings" href="booking">BOOKINGS</a></p>
                     <p><a id="current" href="account">PERSONAL INFO</a></p>
                 </div>
-                <form action="" method="POST">
-                    <div class="right-column">
-                        <p>PROFILE</p>
-                        <div class="line"></div>
-                        <div id="message">${message}</div>
+
+                <div class="right-column">
+                    <p>PROFILE</p>
+                    <div class="line"></div>
+                    <div id="message">${message}</div>
+                    <form action="" method="POST">
                         <table>
                             <tbody>
                                 <tr>
@@ -111,7 +112,13 @@
                             </tbody>
                         </table>
                         <div id="emergency-contact">
-                            <p id="emergency-contact-heading">EMERGENCY CONTACT</p>
+                            <p id="emergency-contact-heading">EMERGENCY CONTACT 
+                                <a id="add-emergency" href="<c:url value='/account?action=add'>
+                                       <c:param name='username' value='${account.username}' />
+                                   </c:url>">
+                                    Add contact
+                                </a>
+                            </p>
                             <c:choose>
                                 <c:when test="${empty emergencyContact}">
                                     <p id="no-contacts">No emergency contacts</p>
@@ -120,7 +127,7 @@
                                     <table border="2">
                                         <tr>
                                             <th>Name</th>
-                                            <th>Relationship</th>
+                                            <th>Relation</th>
                                             <th>Phone Number</th>
                                             <th>Email</th>
                                         </tr>
@@ -144,14 +151,40 @@
                                     </table>
                                 </c:otherwise>
                             </c:choose>
-                        </div>
 
+                        </div>
+                        <c:if test="${add eq true}">
+                            <div id="emerg-contact-form">
+                                <p>Add an Emergency Contact</p>
+                                <label>Name</label>
+                                <input required type="text" id="contact-name" name="contact_name" value="">
+                                <br>
+                                <label>Relation</label>
+                                <input required type="text" id="contact-relation" name="contact_relation" value="">
+                                <br>
+                                <label>Phone Number</label>
+                                <input type="text" id="contact-phone" name="contact_phone" value="">
+                                <br>
+                                <label>Email</label>
+                                <input type="text" id="contact-email" name="contact_email" value="">
+                                <div id="add-emerg-contact">
+                                    <a id="cancel-button" href="account?action=cancel">Cancel</a>
+                                    <button class="add-contact-btn">Add</button>
+                                    <input type="hidden" name="action" value="add">
+                                </div>
+
+
+                            </div>
+                        </c:if>
                         <div class="save-container">
                             <button class="save">SAVE</button>
                             <input type="hidden" name="action" value="updateAccount">
                         </div>
-                    </div>
-                </form>
+                    </form>
+
+                </div>
+
+
             </div>
         </main>
 

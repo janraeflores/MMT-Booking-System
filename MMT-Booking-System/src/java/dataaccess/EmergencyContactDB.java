@@ -13,6 +13,12 @@ import models.EmergencyContact;
  */
 public class EmergencyContactDB {
     
+    /**
+     * Gets all emergency contacts in the database
+     * 
+     * @return a list of all emergency contacts as a List<EmergencyContact>
+     * @throws Exception if there is a database connection error
+     */
     public List<EmergencyContact> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
 
@@ -23,6 +29,15 @@ public class EmergencyContactDB {
             em.close();
         }
     }
+    
+    /**
+     * Gets all emergency contacts associated with an account.
+     * 
+     * @param username of the account
+     * @return a list of all emergency contacts associated with an account as
+     *         a List<EmergencyContact>
+     * @throws Exception if there is a database connection error
+     */
     public List<EmergencyContact> getAll(String username) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
 
@@ -34,6 +49,15 @@ public class EmergencyContactDB {
         }
     }
     
+    /**
+     * Gets an emergency contact in the database with the associated 
+     * primary key.
+     * 
+     * @param ecId unique identifier of the emergency contact
+     * @return an emergency contact with the associated id
+     * @throws Exception if there is a database connection error or
+     *         there is no entry in the database
+     */
     public EmergencyContact get(int ecId) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
 
@@ -45,6 +69,12 @@ public class EmergencyContactDB {
         }
     }
     
+    /**
+     * Adds a new emergency contact entry in the database.
+     * 
+     * @param ec
+     * @throws Exception 
+     */
     public void insert(EmergencyContact ec) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction et = em.getTransaction();
@@ -55,7 +85,7 @@ public class EmergencyContactDB {
             
             et.begin();
             em.persist(ec);
-            em.merge(ec);
+            em.merge(account);
             et.commit();
         } catch (Exception e) {
             et.rollback();
@@ -64,24 +94,11 @@ public class EmergencyContactDB {
         }
     }
     
-    public void delete(EmergencyContact ec) throws Exception {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction et = em.getTransaction();
-  
-        try {
-            Account account = ec.getFkAccount();
-            account.getEmergencyContactList().remove(ec);
-            
-            et.begin();
-            em.remove(em.merge(ec));
-            et.commit();
-        } catch (Exception e) {
-            et.rollback();
-        } finally {
-            em.close();
-        }
-    }
-    
+    /**
+     * 
+     * @param ec
+     * @throws Exception 
+     */
     public void update(EmergencyContact ec) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -96,4 +113,30 @@ public class EmergencyContactDB {
             em.close();
         }
     }
+    
+    /**
+     * 
+     * @param ec
+     * @throws Exception 
+     */
+    public void delete(EmergencyContact ec) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction et = em.getTransaction();
+  
+        try {
+            Account account = ec.getFkAccount();
+            account.getEmergencyContactList().remove(ec);
+            
+            et.begin();
+            em.remove(em.merge(ec));
+            em.merge(account);
+            et.commit();
+        } catch (Exception e) {
+            et.rollback();
+        } finally {
+            em.close();
+        }
+    }
+    
+    
 }
