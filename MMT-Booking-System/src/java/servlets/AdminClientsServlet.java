@@ -70,11 +70,11 @@ public class AdminClientsServlet extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/clients?action=display&username=" + clientUsername);
                     return;
             }
-             getServletContext().getRequestDispatcher("/WEB-INF/AdminClients.jsp").forward(request, response);
+             
         } catch (Exception ex) {
             Logger.getLogger(AdminClientsServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        getServletContext().getRequestDispatcher("/WEB-INF/AdminClients.jsp").forward(request, response);
     }
 
     @Override
