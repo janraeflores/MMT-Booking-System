@@ -86,7 +86,11 @@
                                                href="<c:url value='/admin?action=displayAppoints'>
                                                    <c:param name='appointId' value='${dispAppoints.appointmentId}'></c:param>
                                                </c:url>">
-                                                <fmt:formatDate pattern="dd MMMM, yyyy hh:mm a" timeZone="America/Denver" value="${dispAppoints.appointmentDate}"/>
+                                                <fmt:formatDate pattern="hh:mm a" timeZone="America/Denver" value="${dispAppoints.appointmentDate}"/>
+                                                <br>
+                                                <div class="apptDay">
+                                                    <fmt:formatDate pattern="dd MMMM, yyyy" timeZone="America/Denver" value="${dispAppoints.appointmentDate}"/>
+                                                </div>
                                             </a>
                                         </h2>
                                         <div id="apppointInfo ${dispAppoints.appointmentId}">
