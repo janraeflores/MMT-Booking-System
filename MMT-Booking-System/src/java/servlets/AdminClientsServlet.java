@@ -48,7 +48,7 @@ public class AdminClientsServlet extends HttpServlet {
                     request.setAttribute("account", as.get(clientUsername));
                     request.setAttribute("emergencyContacts", ecs.getAll(clientUsername));
                     request.setAttribute("appointments", apptserv.getAll(clientUsername));
-
+                    
                     break;
                 case "deactivate":
                     clientUsername = request.getParameter("username");
@@ -64,20 +64,17 @@ public class AdminClientsServlet extends HttpServlet {
                     break;
                 case "delete":
                     int appointmentId = Integer.parseInt(request.getParameter("appointment_id"));
+                    clientUsername = request.getParameter("username");
                     apptserv.delete(appointmentId);
-                    
-                    request.setAttribute("display", true);
-                    request.setAttribute("account", as.get(clientUsername));
-                    request.setAttribute("emergencyContacts", ecs.getAll(clientUsername));
-                    request.setAttribute("appointments", apptserv.getAll(clientUsername));
-                    request.setAttribute("accounts", as.getAllActive());
-                    break;
 
+                    response.sendRedirect(request.getContextPath() + "/clients?action=display&username=" + clientUsername);
+                    return;
             }
+             getServletContext().getRequestDispatcher("/WEB-INF/AdminClients.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(AdminClientsServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/AdminClients.jsp").forward(request, response);
+        
     }
 
     @Override
