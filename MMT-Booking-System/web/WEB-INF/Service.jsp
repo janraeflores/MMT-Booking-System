@@ -113,7 +113,7 @@
 
         <h3>Teeth Whitening</h3>
         <p>
-           <img src="./Assets/Images/teeth-whitening.jpg" alt="">
+           <img src="./Assets/Images/teeth_whitening2.jpg" alt="">
            Teeth whitening improves the overall appearance of a stained,
            discoloured smile which you can receive the positive reactions. Using
            state-of-the-art whitening treatments, I can make your teeth brighter
@@ -123,7 +123,7 @@
 
         <h3>Facial Skin Treatment</h3>
         <p>
-           <img src="./Assets/Images/facial.jpg" alt="">
+           <img src="./Assets/Images/facial2.jpg" alt="">
            Hot stone massage helps treating body aches and pain without deep
            pressure. Hot stones would treat muscle tension very efficiently and
            increase circulation. I will also guide hot stones over your body using
