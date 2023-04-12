@@ -103,6 +103,14 @@
                                             <p><b>Service: </b>${dispAppoints.service.serviceType}</p>
                                             <p><b>Service: </b>${dispAppoints.duration} mins</p>
                                             <p><b>Location: </b>${dispAppoints.appointmentAddress}</p>
+                                            <p><b>Status: </b>
+                                                <c:if test="${!dispAppoints.status}">
+                                                    cancelled
+                                                </c:if>
+                                                <c:if test="${dispAppoints.status}">
+                                                    confirmed
+                                                </c:if>    
+                                            </p>
                                         </div>
                                     </c:forEach>
                                 </div>

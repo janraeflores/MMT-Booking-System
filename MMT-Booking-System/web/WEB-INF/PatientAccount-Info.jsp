@@ -182,7 +182,6 @@
                                     <a id="cancel-button" href="account?action=cancel">Cancel</a>
                                     <button class="add-contact-btn">Add</button>
                                     <input type="hidden" name="action" value="addContact">
-
                                 </div>
 
                             </div>

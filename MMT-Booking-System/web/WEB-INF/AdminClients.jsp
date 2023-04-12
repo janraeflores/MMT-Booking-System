@@ -43,7 +43,6 @@
                     <c:forEach items="${accounts}" var="account">
 
                         <!--Excludes any user that is an admin -->
-                        <c:if test="${account.role.roleName eq 'client'}">
                             
                             <div class="client-list-container">
                                 <a id="deactivate" class="deleteButt" 
@@ -58,7 +57,6 @@
                                 ${account.fullName}    
                             </a>
                             </div>
-                        </c:if>
                     </c:forEach>   
                 </div>
             </div>
