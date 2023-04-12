@@ -73,7 +73,10 @@ public class ReservationServlet extends HttpServlet {
             String timeSlot = request.getParameter("t-slot");
             String address = request.getParameter("u-address");
             String additionalInfo = request.getParameter("med-concerns");
+            
+            additionalInfo = additionalInfo == null ? "N/A" : additionalInfo;
 
+            selectedDate = selectedDate.trim();
             String appointmentDate = selectedDate + " " + timeSlot;
 
             if (selectedDate.equals("") || selectedDate == null) {
@@ -107,39 +110,24 @@ public class ReservationServlet extends HttpServlet {
                 }
             }
 
-            apptserv.insert(serviceType, account, address, convertToDate(appointmentDate), serviceDuration);
+            apptserv.insert(serviceType, account, address, convertToDate(appointmentDate), serviceDuration, additionalInfo);
 
             if (serviceDuration == 120) {
                 Date date = convertToDate(appointmentDate);
 
                 Date secondHour = addOneHour(date);
 
-                apptserv.insert(serviceType, account, address, secondHour, (serviceDuration - 60));
+                apptserv.insert(serviceType, account, address, secondHour, (serviceDuration - 60), additionalInfo);
             }
 
-            String username = account.getUsername();
-            try {
-                int currentAppointment = apptserv.getAll(username).size() - 1;
-                int appointmentId = apptserv.get(currentAppointment).getAppointmentId();
-
-                if (additionalInfo.equals("") || additionalInfo == null) {
-                    apptserv.update(appointmentId, convertToDate(appointmentDate), address, "N/A");
-                } else {
-                    apptserv.update(appointmentId, convertToDate(appointmentDate), address, additionalInfo);
-                }
-            } catch (Exception e) {
-                request.setAttribute("message", "An error occured, please try again.");
-                getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
-                return;
-            }
-             response.sendRedirect("booking");
+            response.sendRedirect("booking");
         } catch (Exception ex) {
             request.setAttribute("message", ex.getMessage());
             getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
 
             Logger.getLogger(ReservationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     /**

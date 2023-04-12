@@ -44,7 +44,6 @@ public class AdminClientsServlet extends HttpServlet {
         try {
             switch (action) {
                 case "display":
-                    ;
                     request.setAttribute("display", true);
                     request.setAttribute("account", as.get(clientUsername));
                     request.setAttribute("emergencyContacts", ecs.getAll(clientUsername));
@@ -68,7 +67,7 @@ public class AdminClientsServlet extends HttpServlet {
                     apptserv.delete(appointmentId);
                     
                     request.setAttribute("display", true);
-//                    request.setAttribute("account", as.get(clientUsername));
+                    request.setAttribute("account", as.get(clientUsername));
                     request.setAttribute("emergencyContacts", ecs.getAll(clientUsername));
                     request.setAttribute("appointments", apptserv.getAll(clientUsername));
                     request.setAttribute("accounts", as.getAllActive());

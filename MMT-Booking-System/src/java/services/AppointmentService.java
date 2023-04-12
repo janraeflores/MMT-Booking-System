@@ -15,7 +15,13 @@ public class AppointmentService {
         
         return apptdb.getAll();
     }
-    // get all appointments associated with specific client
+    /**
+     * Gets all appointments associated to an account
+     * 
+     * @param username
+     * @return
+     * @throws Exception 
+     */
     public List<Appointment> getAll(String username) throws Exception {
         AppointmentDB apptdb = new AppointmentDB();
         
@@ -27,7 +33,7 @@ public class AppointmentService {
         return appt;
     }
     
-    public void insert(int serviceId, Account account, String appointmentAddress, Date appointmentDate, int duration) throws Exception {
+    public void insert(int serviceId, Account account, String appointmentAddress, Date appointmentDate, int duration, String additionalInfo) throws Exception {
         ServiceDB servdb = new ServiceDB();
         AppointmentDB apptdb = new AppointmentDB();
      
@@ -37,6 +43,8 @@ public class AppointmentService {
         appt.setAccount(account);
         appt.setAppointmentDate(appointmentDate);
         appt.setService(service);
+        appt.setAdditionalInfo(additionalInfo);
+   
         apptdb.insert(appt);
     }
     

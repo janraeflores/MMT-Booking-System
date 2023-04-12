@@ -16,7 +16,7 @@
 
         <!--Stylesheet-->
         <link rel="stylesheet" type="text/css" href="Assets/Styles/AdminMain.css">
-
+        
     </head>
     <header>
         <!--Menu button stuff-->

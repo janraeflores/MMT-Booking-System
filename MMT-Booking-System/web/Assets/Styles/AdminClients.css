@@ -270,7 +270,7 @@ a.deleteButt:hover::after {
 }
 
 .cancelled {
-    background-color: #ffb7b7;
+    background-color: #b7b7b7;
 }
 .confirmed {
     font-weight: 500;
