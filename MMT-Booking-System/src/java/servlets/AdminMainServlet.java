@@ -85,6 +85,12 @@ public class AdminMainServlet extends HttpServlet {
         AppointmentService apptserv = new AppointmentService();
 
         String selectedDate = request.getParameter("selected-date");
+        
+        if(selectedDate == null || selectedDate == ""){
+            request.setAttribute("emptyMessage", "You haven't chosen a day!");
+        } else {
+            request.setAttribute("emptyMessage", "");
+        }
 
         try {
             request.setAttribute("appointment", apptserv.getAll());

@@ -27,9 +27,9 @@
         <div class="wrapper stack-top">
             <ul>
                 <li><a href="admin">MAIN</a></li>
+                <li><a href="clients">CLIENTS</a></li>
                 <li><a href="account">ACCOUNT</a></li>
                 <li><a href="reservation">RESERVATION</a></li>
-                <li><a href="clients">CLIENTS</a></li>
                 <li><a href="login">LOGOUT</a></li>
             </ul>
         </div>
@@ -114,6 +114,7 @@
                                         </div>
                                     </c:forEach>
                                 </div>
+                                <div class="emptyMessage">${emptyMessage}</div>
                             </form>
                         </div>
                     </div>

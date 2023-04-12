@@ -29,9 +29,9 @@
             <div class="wrapper">
                 <ul>
                     <li><a href="admin">MAIN</a></li>
+                    <li><a href="clients">CLIENTS</a></li>
                     <li><a href="account">ACCOUNT</a></li>
                     <li><a href="reservation">RESERVATION</a></li>
-                    <li><a href="clients">CLIENTS</a></li>
                     <li><a href="login?logout">LOGOUT</a></li>
                 </ul>
             </div>
@@ -43,21 +43,21 @@
                     <c:forEach items="${accounts}" var="account">
 
                         <!--Excludes any user that is an admin -->
-             
-                            <div class="client-list-container">
-                                <a id="deactivate" class="deleteButt" 
-                                   href="<c:url value='/clients?action=deactivate'>
-                                       <c:param name='username' value='${account.username}'></c:param>
-                                   </c:url>" 
-                                   >-</a>
-                                <a id="client" class="client" 
-                                   href="<c:url value='/clients?action=display'>
-                                       <c:param name='username' value='${account.username}'></c:param>
-                                   </c:url>">
-                                    ${account.fullName}    
-                                </a>
-                            </div>
-                  
+
+                        <div class="client-list-container">
+                            <a id="deactivate" class="deleteButt" 
+                               href="<c:url value='/clients?action=deactivate'>
+                                   <c:param name='username' value='${account.username}'></c:param>
+                               </c:url>" 
+                               >-</a>
+                            <a id="client" class="client" 
+                               href="<c:url value='/clients?action=display'>
+                                   <c:param name='username' value='${account.username}'></c:param>
+                               </c:url>">
+                                ${account.fullName}    
+                            </a>
+                        </div>
+
 
                     </c:forEach>   
                 </div>
