@@ -1,12 +1,11 @@
 package servlets;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,6 +32,12 @@ public class AdminMainServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
+        System.out.println(request.getParameter("selected-date") + " is the selected date in doGet");
+
+        if (request.getParameter("selected-date") != null) {
+            request.setAttribute("selected-date", request.getParameter("selected-date"));
+        }
+
         AppointmentService apptserv = new AppointmentService();
         String action = request.getParameter("action");
         action = action == null ? "" : action;
@@ -49,6 +54,8 @@ public class AdminMainServlet extends HttpServlet {
         try {
             appointId = Integer.parseInt(appointIdString);
         } catch (NumberFormatException ex) {
+            Logger.getLogger(AdminMainServlet.class.getName()).log(Level.SEVERE, null, ex);
+
         }
 
         try {
@@ -76,50 +83,86 @@ public class AdminMainServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         AppointmentService apptserv = new AppointmentService();
-        DateFormat df = new SimpleDateFormat();
+
+        String selectedDate = request.getParameter("selected-date");
 
         try {
             request.setAttribute("appointment", apptserv.getAll());
-            
+
             List<Appointment> appointments = apptserv.getAll();
-            
-            //idea is to read through all the appointments and see which ones match w the selected one (will have to do date formatting) and then push that as the appointment request attribute
-            for(Appointment appt: appointments){
-                
+            List<Appointment> dispAppoints = new ArrayList<>();
+
+            //read through all appointments and display only the ones that occur on that date
+            for (Appointment appt : appointments) {
+                Date selDate = stringToDate(selectedDate);
+                Date apptDate = dateToDate(appt.getAppointmentDate());
+
+                if (apptDate.equals(selDate)) {
+                    dispAppoints.add(appt);
+                }
             }
 
-            String selectedDate = request.getParameter("selected-date");
-            String appointmentDate = request.getParameter("appointmentDate");
-
-            System.out.println(selectedDate);
-            System.out.println(appointmentDate);
-
-            String date = convertToDate(selectedDate);
-//            System.out.println(date);
-
-            request.setAttribute("appointmentDay", date);
-            request.setAttribute("appointmentDate", appointmentDate);
+            request.setAttribute("selected-date", selectedDate);
+            request.setAttribute("dispAppoints", dispAppoints);
 
             getServletContext().getRequestDispatcher("/WEB-INF/AdminMain.jsp").forward(request, response);
 
         } catch (Exception ex) {
+            Logger.getLogger(AdminMainServlet.class.getName()).log(Level.SEVERE, null, ex);
 
         }
 
     }
 
-    private String convertToDate(String selectedDate) {
+    /**
+     * Converts a selectedDate (string), that includes the date and time, as a
+     * String to a Date object
+     *
+     * @param selectedDate
+     * @return
+     */
+    private Date stringToDate(String selectedDate) {
 
         try {
 
             DateTimeFormatter selectedDateFormat = DateTimeFormatter.ofPattern("d MMMM, yyyy");
-            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-            LocalDate ld = LocalDate.parse(selectedDate, selectedDateFormat);
+            LocalDateTime ldt = LocalDate.parse(selectedDate, selectedDateFormat).atStartOfDay();
 
-            String formattedSelectedDate = ld.format(dateFormat);
+            String formattedSelectedDate = ldt.format(dateFormat);
 
-            return formattedSelectedDate;
+            Date date = Date.from(LocalDateTime.parse(formattedSelectedDate, dateFormat).atZone(ZoneId.systemDefault()).toInstant());
+
+            return date;
+        } catch (Exception ex) {
+            Logger.getLogger(AdminMainServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+            return null;
+        }
+    }
+
+    /**
+     * Reformats a date object to be able to compare to other values regardless
+     * of time
+     *
+     * @param date
+     * @return
+     */
+    private Date dateToDate(Date date) {
+
+        try {
+
+            DateTimeFormatter selectedDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+            LocalDateTime ldt = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault()).toLocalDate().atStartOfDay();
+
+            String formattedSelectedDate = ldt.format(dateFormat);
+
+            Date dateUpdated = Date.from(LocalDateTime.parse(formattedSelectedDate, dateFormat).atZone(ZoneId.systemDefault()).toInstant());
+
+            return dateUpdated;
         } catch (Exception ex) {
             Logger.getLogger(AdminMainServlet.class.getName()).log(Level.SEVERE, null, ex);
 
