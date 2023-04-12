@@ -34,7 +34,6 @@
                 <li><a href="reservation">RESERVATION</a></li>
                 <li><a href="service">SERVICES</a></li>
                 <li><a href="contact">CONTACT</a></li>
-                <li><a href="login?logout">LOGOUT</a></li>
             </ul>
         </div>
     </header>
