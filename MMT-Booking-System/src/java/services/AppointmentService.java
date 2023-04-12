@@ -1,5 +1,6 @@
 package services;
 
+import dataaccess.AccountDB;
 import dataaccess.AppointmentDB;
 import dataaccess.ServiceDB;
 import java.util.Date;
@@ -36,6 +37,7 @@ public class AppointmentService {
     public void insert(int serviceId, Account account, String appointmentAddress, Date appointmentDate, int duration, String additionalInfo) throws Exception {
         ServiceDB servdb = new ServiceDB();
         AppointmentDB apptdb = new AppointmentDB();
+        Account clientAccount = account;
      
         Service service = servdb.get(serviceId);
         Appointment appt = new Appointment(0, appointmentAddress, appointmentDate, true, duration);
@@ -44,6 +46,8 @@ public class AppointmentService {
         appt.setAppointmentDate(appointmentDate);
         appt.setService(service);
         appt.setAdditionalInfo(additionalInfo);
+        
+        clientAccount.setMedicalInfo(additionalInfo);
    
         apptdb.insert(appt);
     }
