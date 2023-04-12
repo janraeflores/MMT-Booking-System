@@ -125,10 +125,16 @@ public class AccountServlet extends HttpServlet {
                     getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
                     break;
                 default:
+                    request.setAttribute("emergencyContact", ecs.getAll(username));
                     getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
                     break;
             }
         } catch (Exception ex) {
+            try {
+                request.setAttribute("emergencyContact", ecs.getAll(username));
+            } catch (Exception ex1) {
+                Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex1);
+            }
             request.setAttribute("message", "An error occurred.");
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
             getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
