@@ -19,9 +19,9 @@ public class AppointmentService {
     /**
      * Gets all appointments associated to an account
      * 
-     * @param username
-     * @return
-     * @throws Exception 
+     * @param username username associated with the appointment
+     * @return all appointments with the specific username
+     * @throws Exception if there is an error while accessing the database
      */
     public List<Appointment> getAll(String username) throws Exception {
         AppointmentDB apptdb = new AppointmentDB();

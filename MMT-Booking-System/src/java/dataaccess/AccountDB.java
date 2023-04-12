@@ -11,8 +11,8 @@ public class AccountDB {
     /**
      * Gets all accounts in the MMTDB database
      * 
-     * @return a list of accounts in the database as a List<Account>
-     * @throws Exception
+     * @return a list of accounts in the database
+     * @throws Exception if an error occurs while accessing the database
      */
     public List<Account> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -44,7 +44,7 @@ public class AccountDB {
     }
     
     /**
-     * Adds an account to the database and to the List<Account> list
+     * Adds an account to the database and to the account list
      * 
      * @param account to be inserted
      * @throws Exception if the account is null, or it already exists in the database
@@ -69,7 +69,7 @@ public class AccountDB {
     }
     
     /**
-     * Removes the given account from the database and from the List<Account> list
+     * Removes the given account from the database and from the account list
      * 
      * @param account to be removed
      * @throws Exception if the account does not exist in the database
@@ -113,11 +113,11 @@ public class AccountDB {
     }
         
     /**
+     * Updates an account in the database with the parameters account and role
      * 
-     * 
-     * @param account
-     * @param pRole
-     * @throws Exception 
+     * @param account to be updated
+     * @param pRole new role of the account
+     * @throws Exception if an error occurs while accessing the database
      */
     public void update(Account account, Role pRole) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();

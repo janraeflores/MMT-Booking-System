@@ -71,9 +71,9 @@ public class AccountService {
     }
     
     /**
-     * Gets a list of all accounts in the database as a List<> of Account type ( List<Account> )
+     * Gets a list of all accounts in the database as a List of Account type
      * 
-     * @return a list of all accounts as a List<Account>
+     * @return a list of all accounts
      * @throws Exception if the list is null.
      */
     public List<Account> getAll() throws Exception {
@@ -84,10 +84,10 @@ public class AccountService {
     
     /**
      * Gets a list of all active accounts; accounts with their Active status as 'true', in 
-     * the database as a List<Account>
+     * the database
      * 
      * @return a list of active accounts
-     * @throws Exception 
+     * @throws Exception if there is an error while accessing the database
      */
     public List<Account> getAllActive() throws Exception {
         List<Account> allAccounts = getAll();
@@ -167,7 +167,7 @@ public class AccountService {
      * @param fullName of the user
      * @param email provided by the user to the account
      * @param phone number of the user
-     * @@param address of the user
+     * @param address of the user
      * @throws Exception if the username does not exist
      */
     public void update(String username, String fullName, String email, String phone, String address) throws Exception {
@@ -210,7 +210,7 @@ public class AccountService {
      * This method deletes an account, given the provided username, in the database.
      * 
      * @param username of the account to be deleted
-     * @throws Exception 
+     * @throws Exception if there is an error while accessing the database
      */
     public void delete(String username) throws Exception {
         AccountDB accountDB = new AccountDB();

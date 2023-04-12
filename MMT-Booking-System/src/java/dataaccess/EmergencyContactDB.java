@@ -16,7 +16,7 @@ public class EmergencyContactDB {
     /**
      * Gets all emergency contacts in the database
      * 
-     * @return a list of all emergency contacts as a List<EmergencyContact>
+     * @return a list of all emergency contacts as a EmegerncyContact List
      * @throws Exception if there is a database connection error
      */
     public List<EmergencyContact> getAll() throws Exception {
@@ -35,7 +35,7 @@ public class EmergencyContactDB {
      * 
      * @param username of the account
      * @return a list of all emergency contacts associated with an account as
-     *         a List<EmergencyContact>
+     *         a List of EmergencyContacts
      * @throws Exception if there is a database connection error
      */
     public List<EmergencyContact> getAll(String username) throws Exception {
@@ -72,8 +72,8 @@ public class EmergencyContactDB {
     /**
      * Adds a new emergency contact entry in the database.
      * 
-     * @param ec
-     * @throws Exception 
+     * @param ec emergency contacted to be added
+     * @throws Exception if there is an error while accessing the database
      */
     public void insert(EmergencyContact ec) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -96,8 +96,8 @@ public class EmergencyContactDB {
     
     /**
      * 
-     * @param ec
-     * @throws Exception 
+     * @param ec emergency contact that is being updated
+     * @throws Exception if there is an error while accessing the database
      */
     public void update(EmergencyContact ec) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -116,8 +116,8 @@ public class EmergencyContactDB {
     
     /**
      * 
-     * @param ec
-     * @throws Exception 
+     * @param ec emergency contact that is being deleted
+     * @throws Exception if there is an error while accessing the database
      */
     public void delete(EmergencyContact ec) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
