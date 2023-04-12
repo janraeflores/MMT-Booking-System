@@ -25,8 +25,8 @@ h1 {
 h2 {
     border: 5px solid rgba(188, 210, 238, 0.5);
     text-align: center;
-/*    margin-top: 20px;
-    margin-bottom: 20px;*/
+    margin-top: 75px;
+    /*margin-bottom: 20px;*/
     /*margin-left: 150px;*/
 }
 
@@ -412,7 +412,17 @@ input.button {
 .button {
     color: rgba(249, 251, 253, 1);
     background-color: rgba(188, 211, 156, 1);
-    border: 5px solid rgba(188, 211, 156, 1);
+    border: 10px solid rgba(188, 211, 156, 1);
+    border-radius: 10px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+    color: black;
+    cursor: pointer;
+    font-family: 'Josefin Sans';
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    padding: 2px 0px;
+    text-decoration: none;
 }
 
 input.button:hover {

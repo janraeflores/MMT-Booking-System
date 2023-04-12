@@ -51,7 +51,7 @@
                 I can use my hands, forearms, and elbows to treat problems in the soft
                 tissue.
             </p>
-            <a href="reservation">SCHEDULE AN APPOINTMENT</a>
+            <a href="reservation" class="button">SCHEDULE AN APPOINTMENT</a>
 
             <h3>Deep Tissue Massage</h3>
             <p>
@@ -62,7 +62,7 @@
                 specific techniques and the right amount of pressure to address your
                 needs.
             </p>
-            <a href="reservation">SCHEDULE AN APPOINTMENT</a>
+            <a href="reservation" class="button">SCHEDULE AN APPOINTMENT</a>
 
             <h3>Relaxation Massage</h3>
             <p>
@@ -73,7 +73,7 @@
                 stimulation. sedating your nervous system while resting your mind can
                 give you the needed time to restore your better-self.
             </p>
-            <a href="reservation">SCHEDULE AN APPOINTMENT</a>
+            <a href="reservation" class="button">SCHEDULE AN APPOINTMENT</a>
 
             <h3>Lymphatic Massage</h3>
             <p>
@@ -83,7 +83,7 @@
                 skin in the direction that the lymph flows naturally which it stimulates
                 the lymphatic vessels.
             </p>
-            <a href="reservation">SCHEDULE AN APPOINTMENT</a>
+            <a href="reservation" class="button">SCHEDULE AN APPOINTMENT</a>
 
             <h2>Special Massage Services</h2>
             <h3>Hot Stone Massage</h3>
@@ -95,7 +95,7 @@
                 massage oil to create relaxation and releasing tension throughout the
                 body.
             </p>
-            <a href="reservation">SCHEDULE AN APPOINTMENT</a>
+            <a href="reservation" class="button">SCHEDULE AN APPOINTMENT</a>
 
             <h3>Cupping</h3>
             <p>
@@ -106,7 +106,7 @@
                 massage oil to create relaxation and releasing tension throughout the
                 body.
             </p>
-            <a href="reservation">SCHEDULE AN APPOINTMENT</a>
+            <a href="reservation" class="button">SCHEDULE AN APPOINTMENT</a>
 
             <h2>Other Services</h2>
 
@@ -118,7 +118,7 @@
                 state-of-the-art whitening treatments, I can make your teeth brighter
                 and whiter.
             </p>
-            <a href="reservation">SCHEDULE AN APPOINTMENT</a>
+            <a href="reservation" class="button">SCHEDULE AN APPOINTMENT</a>
 
             <h3>Facial Skin Treatment</h3>
             <p>
@@ -129,7 +129,7 @@
                 massage oil to create relaxation and releasing tension throughout the
                 body.
             </p>
-            <a href="reservation">SCHEDULE AN APPOINTMENT</a>
+            <a href="reservation" class="button">SCHEDULE AN APPOINTMENT</a>
         </div>
 
         <div class="footer-basic">
