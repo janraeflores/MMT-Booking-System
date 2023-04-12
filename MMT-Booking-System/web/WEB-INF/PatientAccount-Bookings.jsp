@@ -35,6 +35,10 @@
             <div class="wrapper">
                 <ul>
                     <li><a href="MMT">HOME</a></li>
+                    <c:if test="${account.role.roleName eq 'admin'}">
+                        <li><a href="admin">MAIN</a></li>
+                        <li><a href="clients">CLIENTS</a></li>
+                    </c:if>
                     <li><a href="bookings">ACCOUNT</a></li>
                     <li><a href="service">SERVICES</a></li>
                     <li><a href="reservation">RESERVATION</a></li>

@@ -39,19 +39,19 @@
                     <img class="contactimage" src="./Assets/Images/hans-vivek-UiMkBvDQSAA-unsplash.jpg">
                 <div class="inquirymessage">
                     <h1>For Booking Or Any Questions, Please Feel Free To Contact Us</h1>
-                    <h1>Phone Number: 587-889-2061</h1>
+                    <h1>Phone Number: (587) 889-2061</h1>
                     <h1>Address: 58 Fredson Drive Southeast Calgary, AB T2H 1E1 Canada </h1>
                 </div>
                     </div>
                 <div class="hours">
-                    <h1>Business Hours: </h1>
+                    <h1>Business Hours </h1>
                     <p>Mon: 10:00am - 7:00pm</p>
                     <p>Tue: 10:00am - 7:00pm</p>
                     <p>Wed: 10:00am - 7:00pm</p>
                     <p>Thu: 10:00am - 7:00pm</p>
                     <p>Fri: 10:00am - 7:00pm</p>
                     <p>Sat: 10:00am - 7:00pm</p>
-                    <p>Sun: Closed</p>
+                    <p id="closed">Sun: Closed</p>
                 </div>
                 
                 <div class="formdiv">
@@ -82,7 +82,7 @@
                             <label> Message: </label>
                             <input type="text" name="message" required>
                         </div>
-                        <button type="submit"> Send </button>
+                        <button type="submit" id="send-btn"> Send </button>
                         <input type="hidden" name="_next" value="http://localhost:8084/MMT-Booking-System/contact">
                     </form>
                 </div>

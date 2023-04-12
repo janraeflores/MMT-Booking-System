@@ -32,12 +32,14 @@ public class AccountServlet extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
 
         EmergencyContactService ecs = new EmergencyContactService();
-
         String username = account.getUsername();
+
         String action = request.getParameter("action");
         action = action == null ? "" : action;
 
         try {
+            request.setAttribute("account", account);
+            request.setAttribute("emergencyContact", ecs.getAll(username));
             switch (action) {
                 case "add":
                     request.setAttribute("add", true);
@@ -51,16 +53,12 @@ public class AccountServlet extends HttpServlet {
                     request.setAttribute("emergencyContact", ecs.getAll(username));
             }
 
-//            request.setAttribute("account", account);
-            request.setAttribute("emergencyContact", ecs.getAll(username));
-            getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
         } catch (Exception ex) {
-
             getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
             System.out.println("ecId: " + request.getParameter("ecId"));
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        getServletContext().getRequestDispatcher("/WEB-INF/PatientAccount-Info.jsp").forward(request, response);
     }
 
     @Override

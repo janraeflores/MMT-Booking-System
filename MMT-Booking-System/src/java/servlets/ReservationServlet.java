@@ -42,9 +42,8 @@ public class ReservationServlet extends HttpServlet {
         MassageService ms = new MassageService();
 
         try {
-
             request.setAttribute("service", ms.getAll());
-            request.setAttribute("account", as.get(account.getUsername()));
+            request.setAttribute("account", account);
 
         } catch (Exception ex) {
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);

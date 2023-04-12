@@ -30,14 +30,15 @@ body {
     width: 100%;
     flex-direction: column;
     flex: 1 1 auto;
-    
+
 }
 
 .inquirymessage {
     background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0, 0.4); 
+    font-family: 'josefin sans';
     color: white;
-    font-weight: bold;
+    font-weight: 500;
     border: 3px solid #f1f1f1;
     position: absolute;
     top: 50%;
@@ -63,14 +64,22 @@ body {
 }
 
 .hours {
-  padding-top: 30px;
-  margin: auto;
-  width: 50%;
-  padding: 10px;
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  color: rgba(249, 251, 253, 1)
+    padding-top: 30px;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+    font-family: 'josefin sans';
+    font-size: 30px;
+    font-weight: 400;
+    color: rgba(105, 114, 104, 1);
+}
+.hours h1 {
+    font-family: 'josefin slab';
+    color: rgba(105, 114, 104, 1);
+}
+.hours #closed {
+    color: #e05959;
 }
 
 .formdiv {
@@ -95,79 +104,57 @@ body {
     padding: 10px;
     text-align: center;
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 500;
     color: rgba(105, 114, 104, 1);
+    font-family: 'josefin slab';
 }
 
 label {
-    margin: auto;
-    font-size: 25px;
+    margin: 0;
+    font-size: 18px;
     color: rgba(105, 114, 104, 1);
-    font-weight: bold;
-    padding-bottom: 10px;
+    font-weight: 400;
     display: block;
     text-align: left;
+    font-family: 'josefin sans';
 }
 
 input {
     font-size: 15px;
     width: 50%;
     padding: 10px 20px;
-    margin: 10px 0;
+    margin: 0 0 20px 0 ;
     box-sizing: border-box;
+    border: 2px solid rgba(105, 114, 104, 1);
+    border-radius: 4px;
     color: rgba(105, 114, 104, 1);
     background-color: white;
     display: block;
 }
 
-button {
+button#send-btn {
     display: block;
-    background-color: rgba(188, 211, 156, 1);
+    background-color:  rgba(105, 114, 104, 1);
+    border: 2px solid rgba(105, 114, 104, 1);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+    border-radius: 4px;
     color: black;
-    padding: 12px 24px;
-    margin: 4px 2px;
-    text-color: black;
-    font-weight: bold;
+    padding: 10px;
+    width: 190px;
+    margin: 0 2px;
+    color: white;
+    font-family: 'josefin sans';
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: 15pt;
+    transition: 0.4s;
 }
 
-
-footer {
-    background: #1a1a1a;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    margin-top: 200px;
-}
-
-.footer-basic {
-    background-color: #ffffff;
-    color: rgba(105, 114, 104, 1);
-}
-
-.footer-basic ul {
-    padding: 0;
-    list-style: none;
-    text-align: center;
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 0;
-}
-
-.footer-basic li {
-    padding: 0 10px;
-}
-
-.footer-basic ul a {
-    color: inherit;
-    text-decoration: none;
-    opacity: 0.8;
-}
-
-.footer-basic ul a:hover {
-    opacity: 1;
-}
-
-.footer-basic .copyright {
-    margin-top: 15px;
-    text-align: center;
+button#send-btn:hover {
+    border: none;
+    color: rgba(249, 251, 253, 1);
+    width: 180px;
+    background-color: rgba(188, 210, 238, 1);
+    cursor: pointer;
 }
 
