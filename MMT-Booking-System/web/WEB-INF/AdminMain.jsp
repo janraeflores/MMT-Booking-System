@@ -16,6 +16,7 @@
 
         <!--Stylesheet-->
         <link rel="stylesheet" type="text/css" href="Assets/Styles/AdminMain.css">
+        <link rel="stylesheet" type="text/css" href="Assets/Styles/NavigationBar.css">
 
     </head>
     <header>
@@ -27,8 +28,8 @@
             <ul>
                 <li><a href="admin">MAIN</a></li>
                 <li><a href="account">ACCOUNT</a></li>
-                <li><a href="clients">CLIENTS</a></li>
                 <li><a href="reservation">RESERVATION</a></li>
+                <li><a href="clients">CLIENTS</a></li>
                 <li><a href="login">LOGOUT</a></li>
             </ul>
         </div>

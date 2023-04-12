@@ -8,17 +8,18 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    
+
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
         <title>MMT - Reservations</title>
         <link rel="stylesheet" type="text/css" href="Assets/Styles/Reservation.css">
         <link rel="stylesheet" type="text/css" href="Assets/Styles/Footer.css">
+        <link rel="stylesheet" type="text/css" href="Assets/Styles/NavigationBar.css">
     </head>
-    
+
     <body>
         <header>
             <div class="mmt-logo">
@@ -32,13 +33,16 @@
             <div class="wrapper stack-top">
                 <ul>
                     <li><a href="MMT">HOME</a></li>
-                    <c:if test="${account.role.roleName eq 'administrator'}">
+                        <c:if test="${account.role.roleName eq 'administrator'}">
                         <li><a href="admin">MAIN</a></li>
-                    </c:if>
+                        <li><a href="clients">CLIENTS</a>
+                        </c:if>
                     <li><a href="account">ACCOUNT</a></li>
-                    <li><a href="service">SERVICES</a></li>
                     <li><a href="reservation">RESERVATION</a></li>
-                    <li><a href="contact">CONTACT</a></li>
+                        <c:if test="${account.role.roleName eq 'client'}">
+                        <li><a href="service">SERVICES</a></li>
+                        <li><a href="contact">CONTACT</a></li>
+                        </c:if>
                     <li><a href="login?logout">LOGOUT</a></li>
                 </ul>
             </div>
@@ -84,7 +88,7 @@
                         <form action="reservation" method="post"> 
                             <div id="services" class="services hide">
                                 <p>SERVICES</p>
-                                
+
                                 <div class="service-select">
                                     <select name="s-type" id="s-type">
                                         <option value="0">Select Service</option>
@@ -101,9 +105,9 @@
                                         <option value="120">120 Mins (2 hrs)</option>
                                     </select>
                                 </div>
-                                
+
                                 <input type="hidden" id="selected-date" name="selected-date">
-                                
+
                                 <div class="time-slot">
                                     <select name="t-slot" id="t-slot">
                                         <option value="0">Time Slot</option>
@@ -118,12 +122,12 @@
                                         <option value="6:00 PM">6:00 PM</option>
                                     </select>
                                 </div>       
-                                
+
                                 <div class="patient-info">
                                     <table>
                                         <tbody>
-                                        <tr>
-                                            <p>INFORMATION</p>
+                                            <tr>
+                                        <p>INFORMATION</p>
                                         </tr>
                                         <tr>
                                             <td>Full Name</td>

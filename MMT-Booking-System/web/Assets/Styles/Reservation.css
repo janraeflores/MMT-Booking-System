@@ -17,6 +17,7 @@ body {
     position: fixed;
     top: 0;
     right: -100%;
+    margin: 0 auto;
     height: 100%;
     width: 100%;
     background: rgba(105, 114, 104, 1);
@@ -93,11 +94,12 @@ body {
 .wrapper ul {
     position: absolute;
     top: 60%;
-    left: 50%;
+    left: 47%;
     height: 90%;
     transform: translate(-50%, -50%);
     list-style: none;
     text-align: center;
+    margin-top: 0%;
 }
 
 .wrapper ul li {
@@ -488,7 +490,7 @@ form p {
     margin: 14px 0 0 0;
     gap: 10px;
     width: fit-content;
-    
+
 }
 button {
     margin: 0 50px;

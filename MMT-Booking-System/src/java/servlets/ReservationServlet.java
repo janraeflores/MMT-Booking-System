@@ -72,7 +72,7 @@ public class ReservationServlet extends HttpServlet {
             String timeSlot = request.getParameter("t-slot");
             String address = request.getParameter("u-address");
             String additionalInfo = request.getParameter("med-concerns");
-            
+
             additionalInfo = additionalInfo == null ? "N/A" : additionalInfo;
 
             selectedDate = selectedDate.trim();

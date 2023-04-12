@@ -36,13 +36,16 @@
             <div class="wrapper">
                 <ul>
                     <li><a href="MMT">HOME</a></li>
-                    <c:if test="${account.role.roleName eq 'administrator'}">
+                        <c:if test="${account.role.roleName eq 'administrator'}">
                         <li><a href="admin">MAIN</a></li>
-                    </c:if>
+                        <li><a href="clients">CLIENTS</a>
+                        </c:if>
                     <li><a href="account">ACCOUNT</a></li>
-                    <li><a href="service">SERVICES</a></li>
                     <li><a href="reservation">RESERVATION</a></li>
-                    <li><a href="contact">CONTACT</a></li>
+                        <c:if test="${account.role.roleName eq 'client'}">
+                        <li><a href="service">SERVICES</a></li>
+                        <li><a href="contact">CONTACT</a></li>
+                        </c:if>
                     <li><a href="login?logout">LOGOUT</a></li>
                 </ul>
             </div>
@@ -152,7 +155,7 @@
                                                 <td>
                                                     <a id="delete-emergency" href="<c:url value='/account?action=delete'>
                                                            <c:param name='ec_id' value='${emergencyContact.ecId}'></c:param>
-                                                    </c:url>">Delete</a>
+                                                       </c:url>">Delete</a>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -184,12 +187,12 @@
 
                             </div>
                         </c:if>
-                      
-                            <div class="save-container">
-                                <button class="save">SAVE</button>
-                                <input type="hidden" name="action" value="updateAccount">
-                            </div>
-                 
+
+                        <div class="save-container">
+                            <button class="save">SAVE</button>
+                            <input type="hidden" name="action" value="updateAccount">
+                        </div>
+
 
                     </form>
 

@@ -35,15 +35,17 @@
             <div class="wrapper">
                 <ul>
                     <li><a href="MMT">HOME</a></li>
-                    <c:if test="${account.role.roleName eq 'admin'}">
+                        <c:if test="${account.role.roleName eq 'administrator'}">
                         <li><a href="admin">MAIN</a></li>
-                        <li><a href="clients">CLIENTS</a></li>
-                    </c:if>
-                    <li><a href="bookings">ACCOUNT</a></li>
-                    <li><a href="service">SERVICES</a></li>
+                        <li><a href="clients">CLIENTS</a>
+                        </c:if>
+                    <li><a href="account">ACCOUNT</a></li>
                     <li><a href="reservation">RESERVATION</a></li>
-                    <li><a href="contact">CONTACT</a></li>
-                    <li><a href="login">LOGOUT</a></li>
+                        <c:if test="${account.role.roleName eq 'client'}">
+                        <li><a href="service">SERVICES</a></li>
+                        <li><a href="contact">CONTACT</a></li>
+                        </c:if>
+                    <li><a href="login?logout">LOGOUT</a></li>
                 </ul>
             </div>
         </header>
