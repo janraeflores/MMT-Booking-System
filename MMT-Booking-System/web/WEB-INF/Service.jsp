@@ -3,7 +3,7 @@
     Created on : 21-Feb-2023, 12:46:41 PM
     Author     : marce
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,10 +30,21 @@
         <div class="wrapper">
             <ul>
                 <li><a href="MMT">HOME</a></li>
-                <li><a href="account">ACCOUNT</a></li>
+                    <c:choose>
+                        <c:when test="${account ne null}">
+                            <li><a href="account">ACCOUNT</a></li>
+                        </c:when>
+                        <c:otherwise>
+                             <li><a href="login">LOGIN</a></li>
+                        </c:otherwise>
+                    </c:choose>
+
                 <li><a href="reservation">RESERVATION</a></li>
                 <li><a href="service">SERVICES</a></li>
                 <li><a href="contact">CONTACT</a></li>
+                <c:if test="${account ne null}">
+                    <li><a href="login?logout">LOGOUT</a></li>
+                </c:if>
             </ul>
         </div>
     </header>
