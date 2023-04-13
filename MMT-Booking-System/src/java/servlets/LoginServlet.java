@@ -1,4 +1,3 @@
-
 package servlets;
 
 import java.io.IOException;
@@ -26,12 +25,12 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         String logout = request.getParameter("logout");
-
+        
         if (logout != null) {
             session.invalidate();
             request.setAttribute("message", "You have successfully logged out!");
-            
         }
+        
         getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
     }
 

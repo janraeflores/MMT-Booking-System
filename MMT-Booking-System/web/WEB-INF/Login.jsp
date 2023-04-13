@@ -37,7 +37,6 @@
             <div>
                 <img class="mmt-logo" src="./Assets/Images/white-logo-tp.png" />
                 <form class="form" action="login" method="POST">
-                    <div id="message">${message}</div>
                     <div id="error-message">${errorMessage}</div>
                     <div class="user-container">
                         <i class="gg-user"></i>

@@ -13,7 +13,6 @@ public class AppointmentService {
     
     public List<Appointment> getAll() throws Exception {
         AppointmentDB apptdb = new AppointmentDB();
-        
         return apptdb.getAll();
     }
     /**
@@ -25,19 +24,20 @@ public class AppointmentService {
      */
     public List<Appointment> getAll(String username) throws Exception {
         AppointmentDB apptdb = new AppointmentDB();
-        
         return apptdb.getAll(username);
     }
+    
     public Appointment get(int appointmentId) throws Exception {
         AppointmentDB apptdb = new AppointmentDB();
         Appointment appt = apptdb.get(appointmentId);
         return appt;
     }
     
-    public void insert(int serviceId, Account account, String appointmentAddress, Date appointmentDate, int duration, String additionalInfo) throws Exception {
+    public void insert(int serviceId, String username, String appointmentAddress, Date appointmentDate, int duration, String additionalInfo) throws Exception {
         ServiceDB servdb = new ServiceDB();
         AppointmentDB apptdb = new AppointmentDB();
-        Account clientAccount = account;
+        AccountDB accountdb = new AccountDB();
+        Account account = accountdb.get(username);
      
         Service service = servdb.get(serviceId);
         Appointment appt = new Appointment(0, appointmentAddress, appointmentDate, true, duration);
@@ -47,7 +47,7 @@ public class AppointmentService {
         appt.setService(service);
         appt.setAdditionalInfo(additionalInfo);
         
-        clientAccount.setMedicalInfo(additionalInfo);
+        account.setMedicalInfo(additionalInfo);
    
         apptdb.insert(appt);
     }

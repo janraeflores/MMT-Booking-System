@@ -30,12 +30,12 @@ public class ReservationServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
+        Account account = (Account)session.getAttribute("account");
 
         if (account == null) {
-            request.setAttribute("message", "Please log in to make a reservation.");
+            request.setAttribute("errorMessage", "Please log in to make a reservation.");
 
-            response.sendRedirect("login");
+            getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
             return;
         }
 
@@ -58,13 +58,15 @@ public class ReservationServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
+        
+        String username = account.getUsername();
 
         AccountService as = new AccountService();
         AppointmentService apptserv = new AppointmentService();
         MassageService ms = new MassageService();
 
         try {
-            request.setAttribute("account", as.get(account.getUsername()));
+            request.setAttribute("account", as.get(username));
             request.setAttribute("service", ms.getAll());
 
             int serviceType = Integer.parseInt(request.getParameter("s-type"));
@@ -110,17 +112,18 @@ public class ReservationServlet extends HttpServlet {
                 }
             }
 
-            apptserv.insert(serviceType, account, address, convertToDate(appointmentDate), serviceDuration, additionalInfo);
+            apptserv.insert(serviceType, username, address, convertToDate(appointmentDate), 60, additionalInfo);
 
-            if (serviceDuration == 120) {
+            if (serviceDuration > 60) {
                 Date date = convertToDate(appointmentDate);
 
                 Date secondHour = addOneHour(date);
 
-                apptserv.insert(serviceType, account, address, secondHour, (serviceDuration - 60), additionalInfo);
+                apptserv.insert(serviceType, username, address, secondHour, (serviceDuration - 60), additionalInfo);
             }
-
+            
             response.sendRedirect("booking");
+            
         } catch (Exception ex) {
             request.setAttribute("message", ex.getMessage());
             getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
