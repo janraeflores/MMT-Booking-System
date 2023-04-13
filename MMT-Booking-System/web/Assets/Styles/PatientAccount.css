@@ -90,7 +90,7 @@ main {
 
 .left-column p a {
     color: rgba(105, 114, 104, 1);
-    font-size: 20px;
+    font-size: 18.5px;
     border: 2px solid rgba(105, 114, 104, 1);
     border-radius: 4px;
     padding: 15px;
@@ -244,7 +244,7 @@ table tbody tr input:focus {
 #emergency-contact table td {
     height: fit-content;
     padding: 0;
-   
+
 }
 #emergency-contact table input {
     height: fit-content;

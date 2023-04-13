@@ -159,7 +159,6 @@ public class AdminMainServlet extends HttpServlet {
 
         try {
 
-            DateTimeFormatter selectedDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
             LocalDateTime ldt = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault()).toLocalDate().atStartOfDay();
