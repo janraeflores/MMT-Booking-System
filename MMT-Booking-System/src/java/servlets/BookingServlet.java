@@ -37,6 +37,9 @@ public class BookingServlet extends HttpServlet {
         try {
             request.setAttribute("account", as.get(username));
             request.setAttribute("appointment", apptserv.getAll(username));
+            
+            System.out.println("*****************ERROR PRINTOUT*****************");
+            System.out.println(apptserv.getAll(username));
         } catch (Exception ex) {
             Logger.getLogger(BookingServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

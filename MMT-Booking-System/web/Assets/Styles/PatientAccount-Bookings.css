@@ -47,6 +47,7 @@ main {
     margin-left: auto;
     margin-right: auto;
     background-color: rgba(249, 251, 253, 1);
+    min-height: 750px;
 }
 
 .title-container {
@@ -69,10 +70,11 @@ main {
 
 .flex-container {
     display: flex;
+    min-width: 900px;
 }
 
 .left-column {
-    width: 25%;
+    min-width: 25%;
     flex: 1;
     background-color: rgba(249, 251, 253, 1);
 }
@@ -88,6 +90,7 @@ main {
     margin-bottom: 40px;
     font-family: 'Josefin Sans';
     letter-spacing: 2px;
+    min-width: 125%;
 }
 
 .left-column p a {
