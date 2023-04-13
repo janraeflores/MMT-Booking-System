@@ -179,3 +179,11 @@ table td#status {
     color:#ed3434;
     font-family: 'Josefin sans';
 }
+
+#cancel-btn {
+    color: #ed3434;
+}
+#cancel-btn:hover {
+    background:none;
+    text-decoration: underline;
+}

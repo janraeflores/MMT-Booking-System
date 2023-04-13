@@ -97,7 +97,7 @@
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>
-                                        <td><a href="<c:url value='/booking?action=cancel'>
+                                        <td><a id="cancel-btn" href="<c:url value='/booking?action=cancel'>
                                                    <c:param name='appointment_id' value='${appointment.appointmentId}'></c:param>
                                                </c:url>">Cancel</a></td>
                                     </tr>

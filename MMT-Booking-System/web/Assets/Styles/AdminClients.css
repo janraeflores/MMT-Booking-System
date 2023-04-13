@@ -275,3 +275,11 @@ a.deleteButt:hover::after {
 .confirmed {
     font-weight: 500;
 }
+
+#delete-appt {
+    color: #ed3434;
+}
+#delete-appt:hover {
+    background:none;
+    text-decoration: underline;
+}

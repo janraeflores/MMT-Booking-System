@@ -42,14 +42,16 @@
                 <div class="list">
                     <c:forEach items="${accounts}" var="account">
 
-                        <!--Excludes any user that is an admin -->
 
                         <div class="client-list-container">
-                            <a id="deactivate" class="deleteButt" 
+                            <c:if test="${account.role.roleName eq 'client'}">
+                                <a id="deactivate" class="deleteButt" 
                                href="<c:url value='/clients?action=deactivate'>
                                    <c:param name='username' value='${account.username}'></c:param>
                                </c:url>" 
                                >-</a>
+                            </c:if>
+                            
                             <a id="client" class="client" 
                                href="<c:url value='/clients?action=display'>
                                    <c:param name='username' value='${account.username}'></c:param>
@@ -177,7 +179,7 @@
                                                     </p>   
                                                 </td>
                                                 <td>
-                                                    <a href="<c:url value='clients?action=delete'>
+                                                    <a id="delete-appt" href="<c:url value='clients?action=delete'>
                                                            <c:param name='appointment_id' value='${appointment.appointmentId}'></c:param>
                                                            <c:param name='username' value='${account.username}'></c:param>
                                                        </c:url>">
