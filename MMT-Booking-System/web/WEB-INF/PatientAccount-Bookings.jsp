@@ -97,9 +97,12 @@
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>
-                                        <td><a id="cancel-btn" href="<c:url value='/booking?action=cancel'>
-                                                   <c:param name='appointment_id' value='${appointment.appointmentId}'></c:param>
-                                               </c:url>">Cancel</a></td>
+                                        <td>
+                                            <c:if test="${appointment.status == true}"><a id="cancel-btn" href="<c:url value='/booking?action=cancel'>
+                                                       <c:param name='appointment_id' value='${appointment.appointmentId}'></c:param>
+                                                   </c:url>">Cancel</a>
+                                            </c:if>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                             </table>

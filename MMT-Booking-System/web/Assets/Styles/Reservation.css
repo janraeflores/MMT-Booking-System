@@ -472,7 +472,15 @@ form p {
     border: 2px rgb(105, 115, 104) solid;
     border-radius: 4px;
     outline: none;
+    /*padding: 5px;*/
 }
+textarea {
+    padding: 10px;
+}
+textarea::placeholder {
+    /*padding: 5px;*/
+}
+
 
 #message {
     margin: 10px;

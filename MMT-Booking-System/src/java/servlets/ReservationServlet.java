@@ -35,7 +35,8 @@ public class ReservationServlet extends HttpServlet {
         if (account == null) {
             request.setAttribute("message", "Please log in to make a reservation.");
 
-            getServletContext().getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
+            response.sendRedirect("login");
+            return;
         }
 
         AccountService as = new AccountService();
@@ -102,7 +103,7 @@ public class ReservationServlet extends HttpServlet {
 
                 Date date = convertToDate(appointmentDate);
 
-                if (date.compareTo(appt.getAppointmentDate()) == 0) {
+                if (date.compareTo(appt.getAppointmentDate()) == 0 && appt.getStatus() == true) {
                     request.setAttribute("message", "Time slot already taken, please select a different time.");
                     getServletContext().getRequestDispatcher("/WEB-INF/Reservation.jsp").forward(request, response);
                     return;

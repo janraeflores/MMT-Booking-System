@@ -74,6 +74,7 @@ public class AppointmentService {
         AppointmentDB apptdb = new AppointmentDB();
         Appointment appt = apptdb.get(appointmentId);
         appt.setStatus(false);
+        
         apptdb.update(appt);
     }
 }

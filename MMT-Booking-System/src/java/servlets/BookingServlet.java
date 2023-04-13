@@ -40,13 +40,13 @@ public class BookingServlet extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(BookingServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
         
         try {
             String appointmentId = request.getParameter("appointment_id");
             if (action.equalsIgnoreCase("cancel")) {
                 apptserv.cancel(Integer.parseInt(appointmentId));
                 Appointment appt = apptserv.get(Integer.parseInt(appointmentId));
+                
                 request.setAttribute("message", "Your appointment at " + appt.getAppointmentDate() + " has been cancelled.");
                 request.setAttribute("appointment", apptserv.getAll(username));
                 request.setAttribute("account", as.get(username));
