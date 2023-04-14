@@ -165,6 +165,18 @@
                     </div>                       
                 </div>
             </div>
+
+            <div class="footer-basic">
+                <footer>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="MMT">Home</a></li>
+                        <li class="list-inline-item"><a href="service">Services</a></li>
+                        <li class="list-inline-item"><a href="reservation">Reservations</a></li>
+                        <li class="list-inline-item"><a href="contact">Contact</a></li>
+                    </ul>
+                    <p class="copyright">Massage Master Therapy © 2023</p>
+                </footer>
+            </div>
         </main>      
         <script src="Assets/Scripts/Reservation.js"></script>
     </body>
