@@ -79,12 +79,6 @@ public class AccountServlet extends HttpServlet {
         String address = request.getParameter("address");
         String password = request.getParameter("password");
 
-//        String ecId = request.getParameter("ec_id");
-//        String ecName = request.getParameter("ec_name");
-//        String ecRelation = request.getParameter("ec_relation");
-//        String ecPhone = request.getParameter("ec_phone");
-//        String ecEmail = request.getParameter("ec_email");
-
         String contactName = request.getParameter("contact_name");
         String contactRelation = request.getParameter("contact_relation");
         String contactPhone = request.getParameter("contact_phone");

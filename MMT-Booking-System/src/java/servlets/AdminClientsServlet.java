@@ -15,7 +15,7 @@ import services.EmergencyContactService;
 
 /**
  *
- * @author User
+ * @author Taburada
  */
 public class AdminClientsServlet extends HttpServlet {
 
@@ -107,8 +107,6 @@ public class AdminClientsServlet extends HttpServlet {
                 request.setAttribute("account", as.get(clientUsername));
                 request.setAttribute("emergencyContacts", ecs.getAll(clientUsername));
                 request.setAttribute("appointments", apptserv.getAll(selectedAccount.getUsername()));
-//                getServletContext().getRequestDispatcher("/WEB-INF/AdminClients.jsp").forward(request, response);
-
             }
 
         } catch (Exception ex) {
