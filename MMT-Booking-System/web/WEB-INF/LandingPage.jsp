@@ -21,6 +21,7 @@
 
     <header>
         <input type="checkbox" id="active">
+        <p class="menu">MENU</p>
         <label for="active" class="menu-btn"><span></span></label>
         <label for="active" class="close"></label>
         <div class="wrapper">
