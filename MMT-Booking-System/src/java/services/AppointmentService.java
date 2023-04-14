@@ -11,10 +11,17 @@ import models.Service;
 
 public class AppointmentService {
     
+    /**
+     * Gets all appointments in the MMTDB database
+     * 
+     * @return list of all appointments
+     * @throws Exception if an error occurs while accessing the database
+     */
     public List<Appointment> getAll() throws Exception {
         AppointmentDB apptdb = new AppointmentDB();
         return apptdb.getAll();
     }
+    
     /**
      * Gets all appointments associated to an account
      * 
@@ -27,12 +34,30 @@ public class AppointmentService {
         return apptdb.getAll(username);
     }
     
+    /**
+     * Gets specific appointment associated to an appointment ID
+     * 
+     * @param appointmentId unique identifier for appointment
+     * @return specific appointment
+     * @throws Exception if an error occurs while accessing the database
+     */
     public Appointment get(int appointmentId) throws Exception {
         AppointmentDB apptdb = new AppointmentDB();
         Appointment appt = apptdb.get(appointmentId);
         return appt;
     }
     
+    /**
+     * Inserts new appointment
+     * 
+     * @param serviceId type of service
+     * @param username patient accounts username
+     * @param appointmentAddress location of appointment
+     * @param appointmentDate date of appointment
+     * @param duration length of appointment
+     * @param additionalInfo extra information for appointment
+     * @throws Exception if an error occurs while accessing the database
+     */
     public void insert(int serviceId, String username, String appointmentAddress, Date appointmentDate, int duration, String additionalInfo) throws Exception {
         ServiceDB servdb = new ServiceDB();
         AppointmentDB apptdb = new AppointmentDB();
@@ -52,6 +77,12 @@ public class AppointmentService {
         apptdb.insert(appt);
     }
     
+    /**
+     * Deletes appointment from MMTDB
+     * 
+     * @param appointmentId unique identifier of appointment
+     * @throws Exception if an error occurs while accessing the database
+     */
     public void delete(int appointmentId) throws Exception {
         AppointmentDB apptdb = new AppointmentDB();
         Appointment appt = apptdb.get(appointmentId);
@@ -59,6 +90,15 @@ public class AppointmentService {
         apptdb.delete(appt);
     }
     
+    /**
+     * Updates appointment
+     * 
+     * @param appointmentId unique identifier of appointment
+     * @param appointmentDate date of appointment
+     * @param address of appointment
+     * @param additionalInfo extra information about appointment
+     * @throws Exception if an error occurs while accessing the database
+     */
     public void update(int appointmentId, Date appointmentDate, String address, String additionalInfo) throws Exception {
         AppointmentDB apptdb = new AppointmentDB();
         Appointment appt = apptdb.get(appointmentId);
@@ -70,6 +110,12 @@ public class AppointmentService {
         apptdb.update(appt);
     }
     
+    /**
+     * Allows patient to cancel appointment. Does not remove from MMTDB database.
+     * 
+     * @param appointmentId unique identifier of appointment
+     * @throws Exception if an error occurs while accessing the database
+     */
     public void cancel(int appointmentId) throws Exception {
         AppointmentDB apptdb = new AppointmentDB();
         Appointment appt = apptdb.get(appointmentId);
