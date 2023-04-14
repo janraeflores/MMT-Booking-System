@@ -110,7 +110,6 @@ public class AccountService {
      * @param username provided by the user to the account
      * @param fullName of the user
      * @param email provided by the user to the account
-     * @param active
      * @param password provided by the user to the account
      * @param phone number of the user
      * @param address of the user
