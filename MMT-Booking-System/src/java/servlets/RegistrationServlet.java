@@ -67,12 +67,12 @@ public class RegistrationServlet extends HttpServlet {
                             return;
                         }
                         
-                        if (phone.matches(".*[a-zA-Z]+.*") || phone.length() < 10 || phone.length() > 10) {
+                        if (phone.length() < 10) {
                             request.setAttribute("message", "Phone number is invalid. Please try again.");
                             getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
                             return;
                         }
-
+                        
                         phone = formatPhoneNumber(phone);
                         as.insert(username, fullName, email, password, phone, address); 
 
