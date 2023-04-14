@@ -32,7 +32,7 @@ public class RoleDB {
      * 
      * @param roleID unique identifier of role
      * @return specific role corresponding with roleID
-     * @throws Exception 
+     * @throws Exception if an error occurs while accessing the database
      */
     public Role getRole(int roleID) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
