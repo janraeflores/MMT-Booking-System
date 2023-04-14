@@ -7,7 +7,12 @@ import models.Appointment;
 import models.Account;
 
 public class AppointmentDB {
-    
+    /**
+     * Gets all the Appointments in the MMTDB database
+     * 
+     * @return list of appointments 
+     * @throws Exception if an error occurs while accessing the database
+     */
     public List<Appointment> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
@@ -17,6 +22,14 @@ public class AppointmentDB {
             em.close();
         }
     }
+    
+    /**
+     * Gets all appointments based on the provided username
+     * 
+     * @param username associated with the appointment
+     * @return list of all appointments with specified username
+     * @throws Exception if an error occurs while accessing the database
+     */
     public List<Appointment> getAll(String username) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
@@ -28,6 +41,14 @@ public class AppointmentDB {
             em.close();
         }
     }
+    
+    /**
+     * Gets appointment based on specified appointment ID
+     * 
+     * @param appointmentId unique ID for appointment
+     * @return appointment based on specified ID
+     * @throws Exception if an error occurs while accessing the database
+     */
     public Appointment get(int appointmentId) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
@@ -38,6 +59,13 @@ public class AppointmentDB {
             em.close();
         }
     }
+    
+    /**
+     * Inserts a new appointment into the database
+     * 
+     * @param appt object that holds all the details of an appointment
+     * @throws Exception if an error occurs while accessing the database
+     */
     public void insert(Appointment appt) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction et = em.getTransaction();
@@ -56,6 +84,13 @@ public class AppointmentDB {
             em.close();
         }
     }
+    
+    /**
+     * Updates an appointments details
+     * 
+     * @param appt object that holds the appointment details
+     * @throws Exception if an error occurs while accessing the database
+     */
     public void update(Appointment appt) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction et = em.getTransaction();
@@ -70,6 +105,12 @@ public class AppointmentDB {
             em.close();
         }
     }
+    /**
+     * Deletes an appointment
+     * 
+     * @param appt appointment object
+     * @throws Exception if an error occurs while accessing the database
+     */
     public void delete(Appointment appt) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction et = em.getTransaction();

@@ -88,7 +88,7 @@
                     <div class="button-container">
                         <input type="submit" class="button" value="REGISTER">
                         <input type="hidden" name="action" value="register">
-                        <!-- Not sure if the below line (line 81) is needed for backend -->
+                        <!-- Not sure if the below line (line 91) is needed for backend -->
                         <!-- <input type="hidden" name="action" value="register"> -->
                     </div>
                 </form>

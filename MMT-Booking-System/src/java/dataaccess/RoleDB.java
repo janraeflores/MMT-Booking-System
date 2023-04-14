@@ -10,6 +10,12 @@ import models.Role;
  */
 public class RoleDB {
 
+    /**
+     * Gets all the role's in the MMTDB database
+     * 
+     * @return list of roles in the database
+     * @throws Exception if an error occurs while accessing the database
+     */
     public List<Role> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
 
@@ -21,6 +27,13 @@ public class RoleDB {
         }
     }
 
+    /**
+     * Gets specific role based on the unique identifier
+     * 
+     * @param roleID unique identifier of role
+     * @return specific role corresponding with roleID
+     * @throws Exception 
+     */
     public Role getRole(int roleID) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
 

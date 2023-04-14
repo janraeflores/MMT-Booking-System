@@ -11,6 +11,11 @@ import models.Service;
  */
 public class ServiceDB {
     
+    /**
+     * Gets all provided services from MMTDB database
+     * 
+     * @return list of services offered
+     */
     public List<Service> getAll() {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -20,6 +25,13 @@ public class ServiceDB {
         }
     }
     
+    /**
+     * Gets service based on specific ID given
+     * 
+     * @param serviceId unique identifier for type of service
+     * @return type of service based on unique identifier
+     * @throws Exception if an error occurs while accessing the database
+     */
     public Service get(int serviceId) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
@@ -30,6 +42,13 @@ public class ServiceDB {
             em.close();
         }
     }
+    
+    /**
+     * Inserts new service into MMTDB
+     * 
+     * @param service type of service object
+     * @throws Exception if an error occurs while accessing the database
+     */
     public void insert(Service service) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction et = em.getTransaction();
@@ -47,6 +66,13 @@ public class ServiceDB {
             em.close();
         }
     }
+    
+    /**
+     * updates the details of a service
+     * 
+     * @param service type of service object
+     * @throws Exception if an error occurs while accessing the database
+     */
     public void update(Service service) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction et = em.getTransaction();
@@ -61,6 +87,13 @@ public class ServiceDB {
             em.close();
         }
     }
+    
+    /**
+     * Deletes a type of service from MMTDB database
+     * 
+     * @param service type of service object
+     * @throws Exception if an error occurs while accessing the database
+     */
     public void delete(Service service) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction et = em.getTransaction();
